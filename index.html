@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Samridah Cleaning Services — Kampala</title>
-<meta name="description" content="Residential, commercial, and compound cleaning in Uganda." />
+<title>Samridah Cleaning Services — uganda</title>
+<meta name="description" content="Residential, commercial, and compound cleaning in Kampala, Uganda. Registered with URSB." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,7 +48,6 @@
   img { display: block; max-width: 100%; }
   ul { list-style: none; }
 
-  /* ============ LEFT RAIL ============ */
   .rail {
     position: fixed;
     top: 0;
@@ -76,7 +75,6 @@
     transform: translateY(-50%);
   }
 
-  /* ============ NAV ============ */
   .nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -187,7 +185,6 @@
     border-bottom: 1px solid var(--line-soft);
   }
 
-  /* ============ HERO ============ */
   .hero {
     position: relative;
     min-height: 92vh;
@@ -292,7 +289,6 @@
 
   .link-secondary:hover { color: var(--gold-light); border-color: var(--gold-light); }
 
-  /* Hero aside — the tag block on the right */
   .hero-aside {
     border-left: 1px solid rgba(255, 255, 255, 0.2);
     padding-left: 40px;
@@ -308,9 +304,7 @@
     font-weight: 500;
   }
 
-  .hero-aside-stat {
-    margin-bottom: 22px;
-  }
+  .hero-aside-stat { margin-bottom: 22px; }
 
   .hero-aside-num {
     font-family: 'Fraunces', serif;
@@ -328,7 +322,6 @@
     line-height: 1.5;
   }
 
-  /* ============ STATS STRIP ============ */
   .stats-strip {
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
@@ -376,7 +369,19 @@
     color: var(--muted);
   }
 
-  /* ============ SECTION BASE ============ */
+  .stat-badge {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 4px 10px;
+    background: var(--navy);
+    color: var(--sand);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 2px;
+  }
+
   section { padding: 120px 32px; }
   .container { max-width: 1320px; margin: 0 auto; }
 
@@ -408,7 +413,6 @@
 
   .section-title em { font-style: italic; font-weight: 300; color: var(--gold); }
 
-  /* ============ SERVICES ============ */
   .services { background: var(--sand); }
   .services-grid { display: grid; gap: 0; }
 
@@ -465,7 +469,6 @@
     border-radius: 2px;
   }
 
-  /* ============ GALLERY ============ */
   .gallery {
     background: var(--cream);
     border-top: 1px solid var(--line);
@@ -520,7 +523,6 @@
     border: 1px dashed var(--line);
   }
 
-  /* ============ ORDER ============ */
   .order {
     background: var(--navy);
     color: var(--sand);
@@ -643,7 +645,6 @@
   .form-status.success { display: block; color: #B8D9B8; }
   .form-status.error { display: block; color: #E6A0A0; }
 
-  /* ============ CONTACT ============ */
   .contact {
     background: var(--sand);
     padding: 120px 32px;
@@ -699,7 +700,6 @@
     line-height: 1.55;
   }
 
-  /* ============ FOOTER ============ */
   footer {
     background: var(--navy);
     color: rgba(239, 231, 216, 0.5);
@@ -727,7 +727,17 @@
     letter-spacing: -0.02em;
   }
 
-  /* ============ WHATSAPP ============ */
+  .footer-right {
+    text-align: right;
+    line-height: 1.7;
+  }
+
+  .footer-ursb {
+    font-size: 0.78rem;
+    color: var(--gold-light);
+    letter-spacing: 0.06em;
+  }
+
   .wa-btn {
     position: fixed;
     bottom: 28px;
@@ -747,7 +757,6 @@
   .wa-btn:hover { transform: translateY(-3px); background: var(--gold); }
   .wa-btn svg { width: 26px; height: 26px; color: var(--sand); }
 
-  /* ============ POPUP AD ============ */
   .ad-popup {
     position: fixed;
     bottom: 110px;
@@ -824,7 +833,6 @@
     font-family: inherit;
   }
 
-  /* ============ RESPONSIVE ============ */
   @media (max-width: 1024px) {
     .hero-inner { grid-template-columns: 1fr; gap: 50px; }
     .hero-aside {
@@ -867,6 +875,7 @@
     .contact-grid { grid-template-columns: 1fr; gap: 40px; }
 
     .footer-inner { flex-direction: column; align-items: flex-start; }
+    .footer-right { text-align: left; }
 
     .ad-popup { bottom: 100px; right: 20px; left: 20px; width: auto; }
   }
@@ -923,10 +932,10 @@
     <div>
       <div class="hero-eyebrow">Kampala, Uganda</div>
       <h1>Client satisfaction is our <em>key to success.</em></h1>
-      <p class="hero-lede">Residential, commercial, and compound cleaning for homes and businesses across Kampala. Book for service.</p>
+      <p class="hero-lede">Residential, commercial, and compound cleaning for homes and businesses across Kampala. place your orders.</p>
       <div class="hero-actions">
         <a href="#order" class="link-primary">
-          Book a cleaning service
+          Book a cleaning
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
         <a href="#services" class="link-secondary">See our services</a>
@@ -940,8 +949,8 @@
         <div class="hero-aside-desc">Residential clients in Kampala</div>
       </div>
       <div class="hero-aside-stat">
-        <div class="hero-aside-num">7 days</div>
-        <div class="hero-aside-desc">Available every day of the week</div>
+        <div class="hero-aside-num">URSB</div>
+        <div class="hero-aside-desc">Registered cleaning company</div>
       </div>
     </aside>
   </div>
@@ -963,6 +972,7 @@
       <div class="stat-label">Since</div>
       <div class="stat-value">2024</div>
       <div class="stat-desc">Serving Kampala homes and businesses</div>
+      <div class="stat-badge">URSB Registered</div>
     </div>
   </div>
 </div>
@@ -1159,7 +1169,10 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">Samridah Cleaning Services</div>
-    <div>© <span id="year"></span> Samridah Cleaning Services</div>
+    <div class="footer-right">
+      © <span id="year"></span> Samridah Cleaning Services<br>
+      <span class="footer-ursb">URSB Reg. No. XXXXXXXXXXXXX</span>
+    </div>
   </div>
 </footer>
 
