@@ -2,7 +2,7 @@ Samridah Cleaning Services
 
 Website for Samridah Cleaning Services, a cleaning company based in Kampala, Uganda.
 
-Live site: https://samridah-website.vercel.app
+Live site: https://samridahcleaningservices.vercel.app
 
 WHAT IT DOES
 
