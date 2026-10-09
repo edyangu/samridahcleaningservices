@@ -75,4 +75,303 @@
   .gallery-item { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); transition: transform 0.3s; }
   .gallery-item:hover { transform: translateY(-4px); }
   .gallery-item img { width: 100%; height: 200px; object-fit: cover; display: block; }
-  .gallery-item p { padding: 12px 16px; font-size: 0.9rem; color: #555; margin
+  .gallery-item p { padding: 12px 16px; font-size: 0.9rem; color: #555; margin: 0; }
+
+  /* POPUP AD */
+  .ad-popup { position: fixed; bottom: 100px; right: 24px; width: 320px; max-width: calc(100vw - 48px); background: #fff; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.25); overflow: hidden; opacity: 0; transform: translateY(20px); transition: all 0.4s ease; z-index: 999; border-top: 4px solid #FFD700; }
+  .ad-popup.show { opacity: 1; transform: translateY(0); }
+  .ad-popup img { width: 100%; height: 160px; object-fit: cover; display: block; }
+  .ad-popup .ad-body { padding: 18px 20px 20px; }
+  .ad-popup h3 { color: #1A237E; font-size: 1.05rem; margin-bottom: 6px; font-weight: 700; }
+  .ad-popup p { color: #666; font-size: 0.88rem; line-height: 1.5; margin-bottom: 14px; }
+  .ad-popup .ad-btn { display: inline-block; background: #FFD700; color: #1A237E; padding: 9px 20px; border-radius: 6px; font-weight: 700; font-size: 0.9rem; }
+  .ad-popup .ad-close { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.5); color: #fff; border: none; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 1.1rem; line-height: 1; display: flex; align-items: center; justify-content: center; }
+
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+    .form-card { padding: 30px 22px; }
+    section { padding: 60px 20px; }
+    .section-title { font-size: 1.7rem; }
+    .ad-popup { bottom: 90px; right: 12px; width: calc(100vw - 24px); }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">Samridah <span>Cleaning</span></div>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#gallery">Our Work</a>
+      <a href="#order">Place Order</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-content">
+    <h1>Samridah <span>Cleaning Services</span></h1>
+    <p>Client satisfaction is our key to success</p>
+    <a href="#order" class="btn-primary">Book a Service Today</a>
+  </div>
+</header>
+
+<section id="services">
+  <div class="container">
+    <h2 class="section-title">Our Services</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Residential Cleaning</h3>
+        <ul>
+          <li>General house cleaning</li>
+          <li>Deep cleaning</li>
+          <li>Carpet and rug cleaning</li>
+          <li>Window and glass cleaning</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <h3>Commercial Cleaning</h3>
+        <ul>
+          <li>Offices cleaning & maintenance</li>
+          <li>Factories, warehouses, malls</li>
+          <li>Arcades, supermarkets, schools</li>
+          <li>Restaurants and hotels</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <h3>Compound Cleaning</h3>
+        <ul>
+          <li>Sweeping and maintenance</li>
+          <li>Trimming</li>
+          <li>Lawn mowing services</li>
+          <li>Compound designing</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <h3>Other Services & Supplies</h3>
+        <ul>
+          <li>Tile cleaning</li>
+          <li>Cleaning detergents & disinfectants</li>
+          <li>Air fresheners & toilet tissue</li>
+          <li>Toilet balls / urinal balls</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="container">
+    <h2 class="section-title">Our Work</h2>
+    <div class="gallery-grid" id="galleryGrid">
+      <p style="grid-column:1/-1; text-align:center; color:#999;">Loading photos...</p>
+    </div>
+  </div>
+</section>
+
+<section id="order" class="order-section">
+  <div class="container">
+    <h2 class="section-title">Place Your Order</h2>
+    <div class="form-card">
+      <!-- ⚠️ Replace YOUR_FORM_ID with your real Formspree form ID -->
+      <form id="orderForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" name="name" required placeholder="Your name" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" name="email" required placeholder="you@email.com" />
+          </div>
+          <div class="form-group">
+            <label>Phone *</label>
+            <input type="tel" name="phone" required placeholder="+256 ..." />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Service Needed *</label>
+          <select name="service" required>
+            <option value="">Select a service...</option>
+            <option>Residential Cleaning</option>
+            <option>Commercial Cleaning</option>
+            <option>Compound Cleaning</option>
+            <option>Other Services / Supplies</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Additional Details</label>
+          <textarea name="message" placeholder="Location, space size, preferred date..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn" id="submitBtn">Send Order</button>
+        <p class="form-status" id="formStatus"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer id="contact" class="order-section" style="padding-top:60px;">
+  <div class="container">
+    <h2 class="section-title">Get in Touch</h2>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <p>+256 746 200 441<br>+256 762 093 951</p>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <p><a href="mailto:samridahservices@gmail.com">samridahservices@gmail.com</a></p>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <p>Mutungo 1 Zone 1A,<br>Nakawa, Kampala Uganda</p>
+      </div>
+    </div>
+    <p class="footer-text">© <span id="year"></span> Samridah Cleaning Services. All rights reserved.</p>
+  </div>
+</footer>
+
+<a href="https://wa.me/256746200441" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ============ JSONBIN CONFIG ============
+  const BIN_ID = "6ac91135ac6210605a2312fd";
+  const ACCESS_KEY = "$2a$10$Hay64kFi7LRq1dLr4h057eyezzu8zm87wt0PN/FZ1umKIVo90TVAu";
+  const API_URL = "https://api.jsonbin.io/v3/b/" + BIN_ID;
+  // =======================================
+
+  // ---- LOAD PHOTOS & ADS FROM JSONBIN ----
+  let liveData = { ads: [], photos: [] };
+
+  async function loadLive() {
+    try {
+      const res = await fetch(API_URL + "/latest", {
+        headers: { "X-Access-Key": ACCESS_KEY }
+      });
+      const json = await res.json();
+      liveData = json.record || { ads: [], photos: [] };
+      if (!liveData.ads) liveData.ads = [];
+      if (!liveData.photos) liveData.photos = [];
+      renderGallery();
+      scheduleAds();
+    } catch (err) {
+      console.error("Failed to load live data:", err);
+    }
+  }
+
+  function renderGallery() {
+    const grid = document.getElementById("galleryGrid");
+    if (!grid) return;
+    if (liveData.photos.length === 0) {
+      grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:#999;">Photos coming soon.</p>';
+      return;
+    }
+    grid.innerHTML = liveData.photos.map(p => `
+      <div class="gallery-item">
+        <img src="${p.imageUrl}" alt="${escapeHtml(p.caption || '')}" loading="lazy">
+        <p>${escapeHtml(p.caption || '')}</p>
+      </div>
+    `).join("");
+  }
+
+  // ---- POPUP ADS ----
+  const shownAds = JSON.parse(sessionStorage.getItem("samridah_shown_ads") || "[]");
+
+  function scheduleAds() {
+    const available = liveData.ads.filter(a => a.active === "yes" && !shownAds.includes(a.id));
+    if (available.length === 0) return;
+
+    const ad = available[Math.floor(Math.random() * available.length)];
+
+    setTimeout(() => showAd(ad), 3000);
+  }
+
+  function showAd(ad) {
+    const popup = document.createElement("div");
+    popup.className = "ad-popup";
+    popup.innerHTML = `
+      <button class="ad-close" aria-label="Close">&times;</button>
+      ${ad.imageUrl ? `<img src="${ad.imageUrl}" alt="">` : ""}
+      <div class="ad-body">
+        <h3>${escapeHtml(ad.title || '')}</h3>
+        ${ad.description ? `<p>${escapeHtml(ad.description)}</p>` : ""}
+        ${ad.link ? `<a href="${ad.link}" target="_blank" class="ad-btn">${escapeHtml(ad.btnText || 'Learn More')}</a>` : ""}
+      </div>
+    `;
+    document.body.appendChild(popup);
+
+    requestAnimationFrame(() => popup.classList.add("show"));
+
+    const duration = (ad.duration || 8) * 1000;
+    const hideTimer = setTimeout(hideAd, duration);
+
+    popup.querySelector(".ad-close").onclick = () => {
+      clearTimeout(hideTimer);
+      hideAd();
+    };
+
+    function hideAd() {
+      popup.classList.remove("show");
+      setTimeout(() => popup.remove(), 400);
+      shownAds.push(ad.id);
+      sessionStorage.setItem("samridah_shown_ads", JSON.stringify(shownAds));
+    }
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement("div");
+    div.textContent = str || "";
+    return div.innerHTML;
+  }
+
+  // Load live data on page load
+  loadLive();
+
+  // Reload every 60 seconds to pick up admin changes
+  setInterval(loadLive, 60000);
+
+  // ---- ORDER FORM ----
+  const form = document.getElementById('orderForm');
+  const status = document.getElementById('formStatus');
+  const btn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    status.className = 'form-status';
+    status.textContent = '';
+
+    const data = new FormData(form);
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        status.className = 'form-status success';
+        status.textContent = '✓ Order sent! We will contact you shortly.';
+        form.reset();
+      } else {
+        throw new Error('Failed');
+      }
+    } catch (err) {
+      status.className = 'form-status error';
+      status.textContent = 'Something went wrong. Please WhatsApp us instead.';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Send Order';
+    }
+  });
+</script>
+
+</body>
+</html>
