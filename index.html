@@ -70,14 +70,12 @@
   .whatsapp-float { position: fixed; bottom: 24px; right: 24px; background: #25D366; color: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: 0 6px 20px rgba(37,211,102,0.5); z-index: 1000; transition: transform .25s; }
   .whatsapp-float:hover { transform: scale(1.1); }
 
-  /* GALLERY */
   .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
   .gallery-item { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); transition: transform 0.3s; }
   .gallery-item:hover { transform: translateY(-4px); }
   .gallery-item img { width: 100%; height: 200px; object-fit: cover; display: block; }
   .gallery-item p { padding: 12px 16px; font-size: 0.9rem; color: #555; margin: 0; }
 
-  /* POPUP AD */
   .ad-popup { position: fixed; bottom: 100px; right: 24px; width: 320px; max-width: calc(100vw - 48px); background: #fff; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.25); overflow: hidden; opacity: 0; transform: translateY(20px); transition: all 0.4s ease; z-index: 999; border-top: 4px solid #FFD700; }
   .ad-popup.show { opacity: 1; transform: translateY(0); }
   .ad-popup img { width: 100%; height: 160px; object-fit: cover; display: block; }
@@ -176,8 +174,7 @@
   <div class="container">
     <h2 class="section-title">Place Your Order</h2>
     <div class="form-card">
-      <!-- ⚠️ Replace YOUR_FORM_ID with your real Formspree form ID -->
-      <form id="orderForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <form id="orderForm" action="https://formspree.io/f/mjygwnny" method="POST">
         <div class="form-group">
           <label>Full Name *</label>
           <input type="text" name="name" required placeholder="Your name" />
@@ -241,13 +238,10 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // ============ JSONBIN CONFIG ============
   const BIN_ID = "6ac91135ac6210605a2312fd";
   const ACCESS_KEY = "$2a$10$Hay64kFi7LRq1dLr4h057eyezzu8zm87wt0PN/FZ1umKIVo90TVAu";
   const API_URL = "https://api.jsonbin.io/v3/b/" + BIN_ID;
-  // =======================================
 
-  // ---- LOAD PHOTOS & ADS FROM JSONBIN ----
   let liveData = { ads: [], photos: [] };
 
   async function loadLive() {
@@ -281,15 +275,12 @@
     `).join("");
   }
 
-  // ---- POPUP ADS ----
   const shownAds = JSON.parse(sessionStorage.getItem("samridah_shown_ads") || "[]");
 
   function scheduleAds() {
     const available = liveData.ads.filter(a => a.active === "yes" && !shownAds.includes(a.id));
     if (available.length === 0) return;
-
     const ad = available[Math.floor(Math.random() * available.length)];
-
     setTimeout(() => showAd(ad), 3000);
   }
 
@@ -306,7 +297,6 @@
       </div>
     `;
     document.body.appendChild(popup);
-
     requestAnimationFrame(() => popup.classList.add("show"));
 
     const duration = (ad.duration || 8) * 1000;
@@ -331,13 +321,9 @@
     return div.innerHTML;
   }
 
-  // Load live data on page load
   loadLive();
-
-  // Reload every 60 seconds to pick up admin changes
   setInterval(loadLive, 60000);
 
-  // ---- ORDER FORM ----
   const form = document.getElementById('orderForm');
   const status = document.getElementById('formStatus');
   const btn = document.getElementById('submitBtn');
