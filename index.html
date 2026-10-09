@@ -3,115 +3,158 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Samridah Cleaning Services — Professional Cleaning service providers</title>
-<meta name="description" content="Residential, commercial, and compound cleaning in Kampala, Uganda. Book a service online or on WhatsApp." />
+<title>Samridah Cleaning Services — Kampala</title>
+<meta name="description" content="Residential, commercial, and compound cleaning in Kampala, Uganda." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
   :root {
-    --navy: #0F1B3D;
-    --navy-soft: #1A2A56;
-    --gold: #B48A3C;
-    --gold-light: #D4A94E;
-    --paper: #EFE7D8;
-    --ink: #1A1A1A;
-    --muted: #5A5A5A;
-    --line: #D8CFBC;
+    --navy: #101B39;
+    --navy-soft: #1B2851;
+    --gold: #A67C2E;
+    --gold-light: #C89A45;
+    --sand: #E4D8BF;
+    --sand-deep: #D6C8A8;
+    --cream: #EEE3CC;
+    --ink: #14161E;
+    --muted: #4F4D48;
+    --line: #C9BC9E;
+    --line-soft: #D5C9AC;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
-
   body {
     font-family: 'Inter', -apple-system, sans-serif;
-    background: var(--paper);
+    background: var(--sand);
     color: var(--ink);
-    line-height: 1.6;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
-  h1, h2, h3 {
+  h1, h2, h3, h4 {
     font-family: 'Fraunces', Georgia, serif;
-    font-weight: 600;
-    letter-spacing: -0.02em;
+    font-weight: 400;
+    letter-spacing: -0.025em;
     color: var(--navy);
-    line-height: 1.15;
+    line-height: 1.1;
   }
 
-  a { text-decoration: none; color: inherit; }
+  a { color: inherit; text-decoration: none; }
   img { display: block; max-width: 100%; }
   ul { list-style: none; }
 
-  /* ---------- NAV ---------- */
+  /* ============ LEFT RAIL ============ */
+  .rail {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 24px;
+    width: 1px;
+    background: var(--line);
+    z-index: 1;
+    display: none;
+  }
+
+  @media (min-width: 1100px) {
+    .rail { display: block; }
+    body { padding-left: 48px; }
+  }
+
+  .rail-mark {
+    position: absolute;
+    top: 50%;
+    left: -3px;
+    width: 7px;
+    height: 7px;
+    background: var(--gold);
+    border-radius: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* ============ NAV ============ */
   .nav {
     position: fixed;
     top: 0; left: 0; right: 0;
-    background: rgba(239, 231, 216, 0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--line);
+    background: rgba(228, 216, 191, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     z-index: 100;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
   }
 
+  .nav.scrolled { border-bottom-color: var(--line); }
+
   .nav-inner {
-    max-width: 1200px;
+    max-width: 1320px;
     margin: 0 auto;
-    padding: 18px 24px;
+    padding: 22px 32px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 32px;
   }
 
   .brand {
     font-family: 'Fraunces', serif;
-    font-size: 1.35rem;
-    font-weight: 600;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: -0.03em;
     color: var(--navy);
-    letter-spacing: -0.02em;
+    white-space: nowrap;
   }
 
-  .brand-dot {
-    display: inline-block;
-    width: 6px; height: 6px;
-    background: var(--gold);
-    border-radius: 50%;
-    margin-left: 6px;
-    vertical-align: middle;
-    transform: translateY(-2px);
+  .brand em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 400;
   }
 
   .nav-links {
     display: flex;
-    gap: 36px;
-    font-size: 0.92rem;
+    gap: 40px;
+    font-size: 0.9rem;
     font-weight: 500;
   }
 
   .nav-links a {
     color: var(--muted);
     transition: color 0.2s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
   }
 
   .nav-links a:hover { color: var(--navy); }
+  .nav-links a:hover::after { transform: scaleX(1); }
 
-  .nav-cta {
-    display: inline-flex;
+  .nav-phone {
+    display: flex;
     align-items: center;
     gap: 8px;
-    background: var(--navy);
-    color: var(--paper);
-    padding: 10px 20px;
     font-size: 0.88rem;
     font-weight: 500;
-    border-radius: 4px;
-    transition: background 0.2s;
+    color: var(--navy);
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--gold);
+    white-space: nowrap;
   }
-
-  .nav-cta:hover { background: var(--navy-soft); }
 
   .menu-toggle {
     display: none;
@@ -125,487 +168,598 @@
   .mobile-menu {
     display: none;
     position: fixed;
-    top: 65px;
+    top: 72px;
     left: 0; right: 0;
-    background: var(--paper);
+    background: var(--sand);
     border-bottom: 1px solid var(--line);
-    padding: 24px;
+    padding: 32px;
     z-index: 99;
     flex-direction: column;
-    gap: 20px;
+    gap: 22px;
   }
 
   .mobile-menu.open { display: flex; }
-
   .mobile-menu a {
-    font-size: 1rem;
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
     color: var(--navy);
     padding: 8px 0;
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid var(--line-soft);
   }
 
-  /* ---------- HERO ---------- */
+  /* ============ HERO ============ */
   .hero {
     position: relative;
-    min-height: 90vh;
+    min-height: 92vh;
     display: flex;
     align-items: flex-end;
+    padding: 140px 32px 90px;
     background-image:
-      linear-gradient(180deg, rgba(15, 27, 61, 0.45) 0%, rgba(15, 27, 61, 0.85) 100%),
+      linear-gradient(180deg, rgba(16, 27, 57, 0.35) 0%, rgba(16, 27, 57, 0.85) 100%),
       url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=2000&q=80');
     background-size: cover;
     background-position: center;
-    color: #fff;
-    padding: 120px 24px 80px;
+    color: var(--sand);
   }
 
   .hero-inner {
-    max-width: 1200px;
+    max-width: 1320px;
     margin: 0 auto;
     width: 100%;
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 60px;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 80px;
     align-items: flex-end;
   }
 
   .hero-eyebrow {
-    display: inline-block;
-    font-size: 0.8rem;
-    letter-spacing: 0.18em;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold-light);
-    margin-bottom: 24px;
+    margin-bottom: 32px;
     font-weight: 500;
   }
 
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold-light);
+  }
+
   .hero h1 {
-    font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+    font-size: clamp(2.4rem, 5vw, 4.2rem);
+    font-weight: 400;
+    letter-spacing: -0.035em;
     color: #fff;
-    margin-bottom: 28px;
-    max-width: 18ch;
-    font-weight: 600;
     line-height: 1.05;
+    margin-bottom: 32px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold-light);
   }
 
   .hero-lede {
     font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.85);
-    max-width: 42ch;
-    line-height: 1.6;
-    margin-bottom: 36px;
+    color: rgba(228, 216, 191, 0.85);
+    max-width: 44ch;
+    line-height: 1.65;
+    margin-bottom: 40px;
   }
 
   .hero-actions {
     display: flex;
-    gap: 16px;
+    gap: 24px;
+    align-items: center;
     flex-wrap: wrap;
   }
 
-  .btn {
+  .link-primary {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    padding: 14px 28px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
-    transition: all 0.2s;
-  }
-
-  .btn-gold {
     background: var(--gold);
     color: #fff;
-  }
-
-  .btn-gold:hover { background: var(--gold-light); }
-
-  .btn-outline {
-    background: transparent;
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-  }
-
-  .btn-outline:hover { border-color: #fff; background: rgba(255, 255, 255, 0.05); }
-
-  .hero-aside {
-    border-left: 1px solid rgba(255, 255, 255, 0.2);
-    padding-left: 40px;
-    padding-bottom: 8px;
-  }
-
-  .hero-stat { margin-bottom: 24px; }
-
-  .hero-stat-num {
-    font-family: 'Fraunces', serif;
-    font-size: 2.2rem;
-    color: #fff;
-    font-weight: 600;
-    line-height: 1;
-  }
-
-  .hero-stat-label {
-    font-size: 0.82rem;
-    color: rgba(255, 255, 255, 0.7);
-    margin-top: 6px;
-    letter-spacing: 0.02em;
-  }
-
-  /* ---------- SECTION BASE ---------- */
-  section { padding: 100px 24px; }
-  .container { max-width: 1200px; margin: 0 auto; }
-
-  .section-head {
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 60px;
-    margin-bottom: 70px;
-    align-items: baseline;
-  }
-
-  .section-label {
-    font-size: 0.78rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold);
+    padding: 16px 30px;
+    font-size: 0.9rem;
     font-weight: 500;
-  }
-
-  .section-title {
-    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-    max-width: 22ch;
-  }
-
-  /* ---------- SERVICES ---------- */
-  .services {
-    background: var(--paper);
-    border-top: 1px solid var(--line);
-  }
-
-  .services-list {
-    display: grid;
-    gap: 0;
-    border-top: 1px solid var(--line);
-  }
-
-  .service-row {
-    display: grid;
-    grid-template-columns: 80px 1fr 1.4fr;
-    gap: 40px;
-    padding: 40px 0;
-    border-bottom: 1px solid var(--line);
-    align-items: start;
+    letter-spacing: 0.04em;
+    border-radius: 2px;
     transition: background 0.2s;
   }
 
-  .service-row:hover { background: rgba(180, 138, 60, 0.05); }
+  .link-primary:hover { background: var(--gold-light); }
+
+  .link-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #fff;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .link-secondary:hover { color: var(--gold-light); border-color: var(--gold-light); }
+
+  /* Hero aside — the tag block on the right */
+  .hero-aside {
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    padding-left: 40px;
+    padding-bottom: 12px;
+  }
+
+  .hero-aside-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  .hero-aside-stat {
+    margin-bottom: 22px;
+  }
+
+  .hero-aside-num {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: #fff;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .hero-aside-desc {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.5;
+  }
+
+  /* ============ STATS STRIP ============ */
+  .stats-strip {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--cream);
+  }
+
+  .stats-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .stat-cell {
+    padding: 40px 40px 40px 0;
+    border-right: 1px solid var(--line);
+  }
+
+  .stat-cell:last-child { border-right: none; padding-right: 0; }
+  .stat-cell:nth-child(2),
+  .stat-cell:nth-child(3) { padding-left: 40px; }
+
+  .stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+
+  .stat-value {
+    font-family: 'Fraunces', serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+
+  /* ============ SECTION BASE ============ */
+  section { padding: 120px 32px; }
+  .container { max-width: 1320px; margin: 0 auto; }
+
+  .section-head {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 80px;
+    margin-bottom: 80px;
+    align-items: start;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    padding-top: 8px;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+    max-width: 26ch;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+  }
+
+  .section-title em { font-style: italic; font-weight: 300; color: var(--gold); }
+
+  /* ============ SERVICES ============ */
+  .services { background: var(--sand); }
+  .services-grid { display: grid; gap: 0; }
+
+  .service-row {
+    display: grid;
+    grid-template-columns: 80px 260px 1fr;
+    gap: 60px;
+    padding: 48px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: start;
+    transition: padding-left 0.3s;
+  }
+
+  .service-row:hover { padding-left: 12px; }
+  .service-row:first-child { border-top: 1px solid var(--line); }
 
   .service-num {
     font-family: 'Fraunces', serif;
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     color: var(--gold);
     font-weight: 400;
+    padding-top: 8px;
   }
 
   .service-name {
     font-family: 'Fraunces', serif;
-    font-size: 1.6rem;
+    font-size: 1.7rem;
+    font-weight: 400;
     color: var(--navy);
-    font-weight: 600;
-    line-height: 1.2;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
   }
 
   .service-desc {
     color: var(--muted);
-    font-size: 0.98rem;
-    line-height: 1.7;
+    font-size: 1rem;
+    line-height: 1.75;
+    max-width: 55ch;
   }
 
   .service-items {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px 20px;
-    margin-top: 16px;
+    gap: 8px 24px;
+    margin-top: 20px;
   }
 
   .service-items li {
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     color: var(--muted);
-    position: relative;
-    padding-left: 14px;
+    padding: 6px 14px;
+    background: var(--cream);
+    border: 1px solid var(--line-soft);
+    border-radius: 2px;
   }
 
-  .service-items li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 4px; height: 4px;
-    background: var(--gold);
-    border-radius: 50%;
-    transform: translateY(-50%);
-  }
-
-  /* ---------- GALLERY ---------- */
+  /* ============ GALLERY ============ */
   .gallery {
-    background: #F5EFE2;
+    background: var(--cream);
     border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
   }
 
   .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
   }
 
   .gallery-item {
-    background: var(--paper);
+    aspect-ratio: 1;
     overflow: hidden;
-    border-radius: 4px;
     position: relative;
-    aspect-ratio: 4/3;
+    background: var(--sand-deep);
   }
 
   .gallery-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
+    transition: transform 0.8s ease;
   }
 
-  .gallery-item:hover img { transform: scale(1.04); }
+  .gallery-item:hover img { transform: scale(1.06); }
 
   .gallery-caption {
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    padding: 20px;
-    background: linear-gradient(0deg, rgba(15, 27, 61, 0.85) 0%, transparent 100%);
+    padding: 24px;
+    background: linear-gradient(0deg, rgba(16, 27, 57, 0.9) 0%, transparent 100%);
     color: #fff;
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     font-weight: 500;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
   }
+
+  .gallery-item:hover .gallery-caption { transform: translateY(0); }
 
   .gallery-empty {
     grid-column: 1 / -1;
+    padding: 100px 20px;
     text-align: center;
-    padding: 80px 20px;
     color: var(--muted);
-    font-size: 0.95rem;
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    background: var(--sand);
     border: 1px dashed var(--line);
-    border-radius: 4px;
   }
 
-  /* ---------- ORDER ---------- */
+  /* ============ ORDER ============ */
   .order {
     background: var(--navy);
-    color: #fff;
-    border-top: 1px solid var(--navy-soft);
+    color: var(--sand);
+    padding: 120px 32px;
   }
 
+  .order .section-head { border-bottom-color: rgba(239, 231, 216, 0.15); }
   .order .section-label { color: var(--gold-light); }
-  .order .section-title { color: #fff; }
+  .order .section-title { color: var(--sand); }
+  .order .section-title em { color: var(--gold-light); }
 
-  .order-form {
-    max-width: 640px;
-    margin-left: auto;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 48px;
-    border-radius: 6px;
-  }
-
-  .form-group { margin-bottom: 22px; }
-
-  .form-group label {
-    display: block;
-    font-size: 0.82rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.65);
-    margin-bottom: 10px;
-    font-weight: 500;
-  }
-
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    width: 100%;
-    padding: 14px 16px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 4px;
-    color: #fff;
-    font-family: inherit;
-    font-size: 0.95rem;
-    transition: border-color 0.2s, background 0.2s;
-  }
-
-  .form-group input::placeholder,
-  .form-group textarea::placeholder { color: rgba(255, 255, 255, 0.35); }
-
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-color: var(--gold-light);
-    background: rgba(255, 255, 255, 0.08);
-  }
-
-  .form-group select option { color: var(--ink); background: #fff; }
-
-  .form-group textarea { resize: vertical; min-height: 110px; }
-
-  .form-row {
+  .order-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 100px;
+    align-items: start;
+  }
+
+  .order-copy { padding-top: 20px; }
+
+  .order-copy p {
+    font-size: 1.05rem;
+    color: rgba(239, 231, 216, 0.7);
+    line-height: 1.7;
+    max-width: 40ch;
+    margin-bottom: 32px;
+  }
+
+  .order-meta {
+    border-top: 1px solid rgba(239, 231, 216, 0.15);
+    padding-top: 24px;
+    display: grid;
     gap: 20px;
   }
 
-  .form-submit {
+  .order-meta-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .order-meta-num {
+    font-family: 'Fraunces', serif;
+    font-size: 0.9rem;
+    color: var(--gold-light);
+    padding-top: 2px;
+    min-width: 24px;
+  }
+
+  .order-meta-text {
+    font-size: 0.92rem;
+    color: rgba(239, 231, 216, 0.8);
+    line-height: 1.55;
+  }
+
+  .order-form { display: grid; gap: 22px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .form-field { display: grid; gap: 8px; }
+
+  .form-field label {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(239, 231, 216, 0.55);
+    font-weight: 500;
+  }
+
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
     width: 100%;
-    padding: 16px;
+    padding: 14px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(239, 231, 216, 0.25);
+    color: var(--sand);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+  }
+
+  .form-field input::placeholder,
+  .form-field textarea::placeholder { color: rgba(239, 231, 216, 0.3); }
+
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    outline: none;
+    border-bottom-color: var(--gold-light);
+  }
+
+  .form-field select option { color: var(--ink); background: var(--sand); }
+  .form-field textarea { resize: vertical; min-height: 80px; }
+
+  .form-submit {
+    margin-top: 16px;
+    padding: 18px 32px;
     background: var(--gold);
     color: #fff;
     border: none;
-    border-radius: 4px;
     font-family: inherit;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     cursor: pointer;
     transition: background 0.2s;
-    margin-top: 8px;
+    justify-self: start;
   }
 
   .form-submit:hover { background: var(--gold-light); }
-  .form-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+  .form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
 
   .form-status {
-    margin-top: 18px;
     font-size: 0.9rem;
-    text-align: center;
     display: none;
+    margin-top: 8px;
   }
 
-  .form-status.success { display: block; color: #8CD68C; }
-  .form-status.error { display: block; color: #F08080; }
+  .form-status.success { display: block; color: #B8D9B8; }
+  .form-status.error { display: block; color: #E6A0A0; }
 
-  /* ---------- CONTACT ---------- */
+  /* ============ CONTACT ============ */
   .contact {
-    background: var(--paper);
-    border-top: 1px solid var(--line);
+    background: var(--sand);
+    padding: 120px 32px;
   }
 
   .contact-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
+    gap: 60px;
   }
 
   .contact-cell {
-    padding: 48px 36px;
-    border-right: 1px solid var(--line);
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
   }
 
-  .contact-cell:last-child { border-right: none; }
-
   .contact-icon {
-    width: 36px;
-    height: 36px;
+    width: 28px;
+    height: 28px;
     color: var(--gold);
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
 
   .contact-label {
-    font-size: 0.78rem;
-    letter-spacing: 0.14em;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--muted);
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     font-weight: 500;
   }
 
   .contact-value {
     font-family: 'Fraunces', serif;
-    font-size: 1.2rem;
+    font-size: 1.35rem;
+    font-weight: 400;
     color: var(--navy);
     line-height: 1.5;
-    font-weight: 400;
+    letter-spacing: -0.015em;
   }
 
-  .contact-value a { transition: color 0.2s; }
-  .contact-value a:hover { color: var(--gold); }
+  .contact-value a {
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .contact-value a:hover { color: var(--gold); border-bottom-color: var(--gold); }
 
   .contact-sub {
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     color: var(--muted);
-    margin-top: 8px;
-    line-height: 1.5;
+    margin-top: 10px;
+    line-height: 1.55;
   }
 
-  /* ---------- FOOTER ---------- */
+  /* ============ FOOTER ============ */
   footer {
     background: var(--navy);
-    color: rgba(255, 255, 255, 0.6);
-    padding: 48px 24px 32px;
+    color: rgba(239, 231, 216, 0.5);
+    padding: 60px 32px 40px;
     font-size: 0.85rem;
   }
 
   .footer-inner {
-    max-width: 1200px;
+    max-width: 1320px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 24px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(239, 231, 216, 0.12);
   }
 
   .footer-brand {
     font-family: 'Fraunces', serif;
-    color: #fff;
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--sand);
+    letter-spacing: -0.02em;
   }
 
-  /* ---------- WHATSAPP ---------- */
+  /* ============ WHATSAPP ============ */
   .wa-btn {
     position: fixed;
-    bottom: 24px;
-    right: 24px;
-    width: 52px;
-    height: 52px;
-    background: #1A237E;
+    bottom: 28px;
+    right: 28px;
+    width: 56px;
+    height: 56px;
+    background: var(--navy);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 8px 24px rgba(15, 27, 61, 0.35);
+    box-shadow: 0 12px 32px rgba(16, 27, 57, 0.35);
     z-index: 90;
-    transition: transform 0.2s, background 0.2s;
+    transition: transform 0.25s, background 0.25s;
   }
 
-  .wa-btn:hover { transform: translateY(-2px); background: var(--gold); }
-  .wa-btn svg { width: 24px; height: 24px; color: #fff; }
+  .wa-btn:hover { transform: translateY(-3px); background: var(--gold); }
+  .wa-btn svg { width: 26px; height: 26px; color: var(--sand); }
 
-  /* ---------- POPUP AD ---------- */
+  /* ============ POPUP AD ============ */
   .ad-popup {
     position: fixed;
-    bottom: 100px;
-    right: 24px;
-    width: 320px;
-    max-width: calc(100vw - 48px);
-    background: #fff;
-    border-radius: 6px;
-    box-shadow: 0 24px 60px rgba(15, 27, 61, 0.25);
+    bottom: 110px;
+    right: 28px;
+    width: 340px;
+    max-width: calc(100vw - 56px);
+    background: var(--cream);
+    border-radius: 3px;
+    box-shadow: 0 32px 80px rgba(16, 27, 57, 0.3);
     overflow: hidden;
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(24px);
     transition: opacity 0.4s ease, transform 0.4s ease;
     z-index: 95;
     border-top: 3px solid var(--gold);
@@ -614,39 +768,52 @@
   .ad-popup.show { opacity: 1; transform: translateY(0); }
   .ad-popup img { width: 100%; height: 150px; object-fit: cover; }
 
-  .ad-popup .ad-body { padding: 20px; }
+  .ad-popup-body { padding: 24px; }
 
-  .ad-popup h3 {
-    font-size: 1.05rem;
-    color: var(--navy);
-    margin-bottom: 8px;
-    font-weight: 600;
-  }
-
-  .ad-popup p {
-    font-size: 0.85rem;
-    color: var(--muted);
-    line-height: 1.5;
-    margin-bottom: 16px;
-  }
-
-  .ad-popup .ad-btn {
-    display: inline-block;
-    background: var(--navy);
-    color: #fff;
-    padding: 9px 18px;
-    border-radius: 4px;
-    font-size: 0.82rem;
+  .ad-popup-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
     font-weight: 500;
   }
 
-  .ad-popup .ad-close {
+  .ad-popup h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 8px;
+    line-height: 1.25;
+  }
+
+  .ad-popup p {
+    font-size: 0.86rem;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 16px;
+  }
+
+  .ad-popup-btn {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--sand);
+    padding: 10px 20px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 2px;
+  }
+
+  .ad-popup-close {
     position: absolute;
     top: 10px; right: 10px;
-    background: rgba(0, 0, 0, 0.5);
+    width: 28px; height: 28px;
+    background: rgba(16, 27, 57, 0.6);
     color: #fff;
     border: none;
-    width: 26px; height: 26px;
     border-radius: 50%;
     cursor: pointer;
     font-size: 1rem;
@@ -657,133 +824,160 @@
     font-family: inherit;
   }
 
-  /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 900px) {
-    .nav-links, .nav-cta { display: none; }
-    .menu-toggle { display: block; }
-
-    .hero { min-height: 85vh; padding: 120px 20px 60px; }
-    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1024px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 50px; }
     .hero-aside {
       border-left: none;
       border-top: 1px solid rgba(255, 255, 255, 0.2);
       padding-left: 0;
-      padding-top: 28px;
-    }
-
-    section { padding: 70px 20px; }
-
-    .section-head {
-      grid-template-columns: 1fr;
-      gap: 16px;
-      margin-bottom: 50px;
-    }
-
-    .service-row {
-      grid-template-columns: 50px 1fr;
+      padding-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 20px;
-      padding: 32px 0;
     }
+    .hero-aside-label { grid-column: 1 / -1; }
 
-    .service-desc { grid-column: 2 / -1; }
+    .order-layout { grid-template-columns: 1fr; gap: 60px; }
 
-    .order-form { padding: 32px 24px; }
+    .service-row { grid-template-columns: 60px 1fr; gap: 24px; }
+    .service-desc { grid-column: 2 / -1; margin-top: 12px; }
 
-    .form-row { grid-template-columns: 1fr; }
+    .section-head { grid-template-columns: 1fr; gap: 20px; }
+  }
 
-    .contact-grid { grid-template-columns: 1fr; }
+  @media (max-width: 900px) {
+    .nav-links, .nav-phone { display: none; }
+    .menu-toggle { display: block; }
+    .nav-inner { padding: 18px 24px; }
 
-    .contact-cell {
+    .hero { padding: 120px 24px 70px; min-height: 85vh; }
+
+    section, .contact, .order { padding: 80px 24px; }
+    .stats-inner { grid-template-columns: 1fr; padding: 0 24px; }
+    .stat-cell {
+      padding: 28px 0;
       border-right: none;
       border-bottom: 1px solid var(--line);
-      padding: 36px 24px;
     }
+    .stat-cell:last-child { border-bottom: none; }
+    .stat-cell:nth-child(2), .stat-cell:nth-child(3) { padding-left: 0; }
 
-    .contact-cell:last-child { border-bottom: none; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
 
-    .footer-inner { flex-direction: column; text-align: center; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
 
-    .ad-popup { bottom: 90px; right: 12px; }
+    .ad-popup { bottom: 100px; right: 20px; left: 20px; width: auto; }
+  }
+
+  @media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; gap: 22px; }
+    .hero h1 { font-size: 2rem; }
+    .hero-aside { grid-template-columns: 1fr; }
+    .section-title { font-size: 1.5rem; }
+    .service-name { font-size: 1.4rem; }
+    .service-row { padding: 36px 0; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .order-layout { gap: 40px; }
+    .brand { font-size: 1rem; }
   }
 </style>
 </head>
 <body>
 
-<nav class="nav">
+<div class="rail"><div class="rail-mark"></div></div>
+
+<nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="#" class="brand">Samridah<span class="brand-dot"></span></a>
+    <a href="#" class="brand">Samridah Cleaning <em>Services</em></a>
 
     <div class="nav-links">
       <a href="#services">Services</a>
-      <a href="#work">Our Work</a>
+      <a href="#work">Work</a>
       <a href="#order">Book</a>
       <a href="#contact">Contact</a>
     </div>
 
-    <a href="https://wa.me/256746200441" target="_blank" class="nav-cta">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
-      WhatsApp
+    <a href="tel:+256746200441" class="nav-phone">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      +256 746 200 441
     </a>
 
     <button class="menu-toggle" aria-label="Open menu" onclick="toggleMenu()">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="3" y1="8" x2="21" y2="8"/><line x1="3" y1="16" x2="21" y2="16"/></svg>
     </button>
   </div>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
   <a href="#services" onclick="toggleMenu()">Services</a>
-  <a href="#work" onclick="toggleMenu()">Our Work</a>
+  <a href="#work" onclick="toggleMenu()">Work</a>
   <a href="#order" onclick="toggleMenu()">Book</a>
   <a href="#contact" onclick="toggleMenu()">Contact</a>
-  <a href="https://wa.me/256746200441" target="_blank">WhatsApp Us</a>
+  <a href="tel:+256746200441">Call us</a>
 </div>
 
 <header class="hero">
   <div class="hero-inner">
-    <div class="hero-main">
-      <span class="hero-eyebrow">Kampala, Uganda</span>
-      <h1>Client satisfaction is our key to success.</h1>
-      <p class="hero-lede">Residential, commercial, and compound cleaning for homes and businesses across Kampala. Book a service in under a minute.</p>
+    <div>
+      <div class="hero-eyebrow">Kampala, Uganda</div>
+      <h1>Client satisfaction is our <em>key to success.</em></h1>
+      <p class="hero-lede">Residential, commercial, and compound cleaning for homes and businesses across Kampala. Book in under a minute.</p>
       <div class="hero-actions">
-        <a href="#order" class="btn btn-gold">
-          Book a Cleaning
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        <a href="#order" class="link-primary">
+          Book a cleaning
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
-        <a href="#services" class="btn btn-outline">See Services</a>
+        <a href="#services" class="link-secondary">See our services</a>
       </div>
     </div>
 
     <aside class="hero-aside">
-      <div class="hero-stat">
-        <div class="hero-stat-num">10+</div>
-        <div class="hero-stat-label">Residential clients served</div>
+      <div class="hero-aside-label">Trusted by</div>
+      <div class="hero-aside-stat">
+        <div class="hero-aside-num">10+</div>
+        <div class="hero-aside-desc">Residential clients in Kampala</div>
       </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">7</div>
-        <div class="hero-stat-label">Days a week availability</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">100%</div>
-        <div class="hero-stat-label">Satisfaction guaranteed</div>
+      <div class="hero-aside-stat">
+        <div class="hero-aside-num">7 days</div>
+        <div class="hero-aside-desc">Available every day of the week</div>
       </div>
     </aside>
   </div>
 </header>
 
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-cell">
+      <div class="stat-label">Availability</div>
+      <div class="stat-value">7 days</div>
+      <div class="stat-desc">Every day of the week</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">Service area</div>
+      <div class="stat-value">Kampala</div>
+      <div class="stat-desc">Nakawa and surrounding divisions</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">Since</div>
+      <div class="stat-value">2024</div>
+      <div class="stat-desc">Serving Kampala homes and businesses</div>
+    </div>
+  </div>
+</div>
+
 <section class="services" id="services">
   <div class="container">
     <div class="section-head">
       <span class="section-label">Services</span>
-      <h2 class="section-title">Everything we clean, from a single room to a full compound.</h2>
+      <h2 class="section-title">Everything we clean, from a <em>single room</em> to a full compound.</h2>
     </div>
 
-    <div class="services-list">
+    <div class="services-grid">
       <div class="service-row">
         <div class="service-num">01</div>
-        <div>
-          <h3 class="service-name">Residential Cleaning</h3>
-        </div>
+        <div><h3 class="service-name">Residential Cleaning</h3></div>
         <div class="service-desc">
           Regular upkeep or a full top-to-bottom clean for your home.
           <ul class="service-items">
@@ -797,25 +991,21 @@
 
       <div class="service-row">
         <div class="service-num">02</div>
-        <div>
-          <h3 class="service-name">Commercial Cleaning</h3>
-        </div>
+        <div><h3 class="service-name">Commercial Cleaning</h3></div>
         <div class="service-desc">
           Scheduled maintenance for offices, retail, and industrial spaces.
           <ul class="service-items">
             <li>Offices</li>
             <li>Warehouses and factories</li>
-            <li>Malls, arcades, supermarkets</li>
-            <li>Schools, restaurants, hotels</li>
+            <li>Malls and arcades</li>
+            <li>Schools and hotels</li>
           </ul>
         </div>
       </div>
 
       <div class="service-row">
         <div class="service-num">03</div>
-        <div>
-          <h3 class="service-name">Compound & Grounds</h3>
-        </div>
+        <div><h3 class="service-name">Compound & Grounds</h3></div>
         <div class="service-desc">
           Keeping your outdoor space clean, trimmed, and well-kept year round.
           <ul class="service-items">
@@ -829,11 +1019,9 @@
 
       <div class="service-row">
         <div class="service-num">04</div>
-        <div>
-          <h3 class="service-name">Specialist Work & Supplies</h3>
-        </div>
+        <div><h3 class="service-name">Specialist Work</h3></div>
         <div class="service-desc">
-          Tile restoration and supply of cleaning products in bulk.
+          Tile restoration and bulk supply of cleaning products.
           <ul class="service-items">
             <li>Tile cleaning</li>
             <li>Detergents and disinfectants</li>
@@ -849,8 +1037,8 @@
 <section class="gallery" id="work">
   <div class="container">
     <div class="section-head">
-      <span class="section-label">Our Work</span>
-      <h2 class="section-title">A look at recent jobs.</h2>
+      <span class="section-label">Recent Work</span>
+      <h2 class="section-title">A look at <em>jobs we've completed.</em></h2>
     </div>
 
     <div class="gallery-grid" id="galleryGrid">
@@ -863,45 +1051,65 @@
   <div class="container">
     <div class="section-head">
       <span class="section-label">Book a Service</span>
-      <h2 class="section-title">Tell us what you need and we'll get back to you within a day.</h2>
+      <h2 class="section-title">Tell us what you need — we'll <em>respond within a day.</em></h2>
     </div>
 
-    <form class="order-form" id="orderForm" action="https://formspree.io/f/mjygwnny" method="POST">
-      <div class="form-group">
-        <label for="name">Full name</label>
-        <input type="text" id="name" name="name" required placeholder="Your name" />
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required placeholder="you@email.com" />
+    <div class="order-layout">
+      <div class="order-copy">
+        <p>Fill in the form and we'll call or message you back to confirm details, price, and timing.</p>
+        <div class="order-meta">
+          <div class="order-meta-item">
+            <span class="order-meta-num">01</span>
+            <span class="order-meta-text">Submit the form with your location and service needs.</span>
+          </div>
+          <div class="order-meta-item">
+            <span class="order-meta-num">02</span>
+            <span class="order-meta-text">We call or WhatsApp to confirm and schedule.</span>
+          </div>
+          <div class="order-meta-item">
+            <span class="order-meta-num">03</span>
+            <span class="order-meta-text">Our team arrives on time and gets the job done.</span>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="phone">Phone</label>
-          <input type="tel" id="phone" name="phone" required placeholder="+256..." />
+      </div>
+
+      <form class="order-form" id="orderForm" action="https://formspree.io/f/mjygwnny" method="POST">
+        <div class="form-field">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" required placeholder="Your name" />
         </div>
-      </div>
 
-      <div class="form-group">
-        <label for="service">Service</label>
-        <select id="service" name="service" required>
-          <option value="">Choose a service</option>
-          <option>Residential Cleaning</option>
-          <option>Commercial Cleaning</option>
-          <option>Compound & Grounds</option>
-          <option>Specialist Work & Supplies</option>
-        </select>
-      </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="you@email.com" />
+          </div>
+          <div class="form-field">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" required placeholder="+256..." />
+          </div>
+        </div>
 
-      <div class="form-group">
-        <label for="message">Details</label>
-        <textarea id="message" name="message" placeholder="Location, size of space, preferred date"></textarea>
-      </div>
+        <div class="form-field">
+          <label for="service">Service</label>
+          <select id="service" name="service" required>
+            <option value="">Choose a service</option>
+            <option>Residential Cleaning</option>
+            <option>Commercial Cleaning</option>
+            <option>Compound & Grounds</option>
+            <option>Specialist Work & Supplies</option>
+          </select>
+        </div>
 
-      <button type="submit" class="form-submit" id="submitBtn">Send Request</button>
-      <p class="form-status" id="formStatus"></p>
-    </form>
+        <div class="form-field">
+          <label for="message">Details</label>
+          <textarea id="message" name="message" placeholder="Location, size, preferred date"></textarea>
+        </div>
+
+        <button type="submit" class="form-submit" id="submitBtn">Send request</button>
+        <p class="form-status" id="formStatus"></p>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -909,15 +1117,15 @@
   <div class="container">
     <div class="section-head">
       <span class="section-label">Contact</span>
-      <h2 class="section-title">Reach us directly.</h2>
+      <h2 class="section-title">Reach us <em>directly.</em></h2>
     </div>
 
     <div class="contact-grid">
       <div class="contact-cell">
-        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
           <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
         </svg>
-        <div class="contact-label">Call us</div>
+        <div class="contact-label">Call</div>
         <div class="contact-value">
           <a href="tel:+256746200441">+256 746 200 441</a><br>
           <a href="tel:+256762093951">+256 762 093 951</a>
@@ -925,7 +1133,7 @@
       </div>
 
       <div class="contact-cell">
-        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
           <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
           <polyline points="22,6 12,13 2,6"/>
         </svg>
@@ -936,13 +1144,13 @@
       </div>
 
       <div class="contact-cell">
-        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
           <circle cx="12" cy="10" r="3"/>
         </svg>
-        <div class="contact-label">Location</div>
+        <div class="contact-label">Visit</div>
         <div class="contact-value">Mutungo 1, Zone 1A</div>
-        <div class="contact-sub">Nakawa Division, Kampala, Uganda</div>
+        <div class="contact-sub">Nakawa Division<br>Kampala, Uganda</div>
       </div>
     </div>
   </div>
@@ -951,7 +1159,7 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">Samridah Cleaning Services</div>
-    <div>© <span id="year"></span> Samridah Cleaning Services. All rights reserved.</div>
+    <div>© <span id="year"></span> Samridah Cleaning Services</div>
   </div>
 </footer>
 
@@ -961,6 +1169,10 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+  });
 
   function toggleMenu() {
     document.getElementById('mobileMenu').classList.toggle('open');
@@ -1017,12 +1229,13 @@
     const popup = document.createElement("div");
     popup.className = "ad-popup";
     popup.innerHTML = `
-      <button class="ad-close" aria-label="Close">&times;</button>
+      <button class="ad-popup-close" aria-label="Close">&times;</button>
       ${ad.imageUrl ? `<img src="${ad.imageUrl}" alt="" onerror="this.style.display='none'">` : ""}
-      <div class="ad-body">
+      <div class="ad-popup-body">
+        <div class="ad-popup-eyebrow">Promotion</div>
         <h3>${escapeHtml(ad.title || '')}</h3>
         ${ad.description ? `<p>${escapeHtml(ad.description)}</p>` : ""}
-        ${ad.link ? `<a href="${ad.link}" target="_blank" class="ad-btn">${escapeHtml(ad.btnText || 'Learn More')}</a>` : ""}
+        ${ad.link ? `<a href="${ad.link}" target="_blank" class="ad-popup-btn">${escapeHtml(ad.btnText || 'Learn more')}</a>` : ""}
       </div>
     `;
     document.body.appendChild(popup);
@@ -1031,7 +1244,7 @@
     const duration = (ad.duration || 8) * 1000;
     const hideTimer = setTimeout(hideAd, duration);
 
-    popup.querySelector(".ad-close").onclick = () => {
+    popup.querySelector(".ad-popup-close").onclick = () => {
       clearTimeout(hideTimer);
       hideAd();
     };
@@ -1105,10 +1318,10 @@
       form.reset();
     } catch (err) {
       statusEl.className = 'form-status error';
-      statusEl.textContent = 'Something went wrong. Please message us on WhatsApp instead.';
+      statusEl.textContent = 'Something went wrong. Please message us on WhatsApp.';
     } finally {
       btn.disabled = false;
-      btn.textContent = 'Send Request';
+      btn.textContent = 'Send request';
     }
   });
 </script>
