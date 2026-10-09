@@ -3,95 +3,707 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Samridah Cleaning Services | Kampala, Uganda</title>
-<meta name="description" content="Professional residential, commercial & compound cleaning in Kampala. Client satisfaction is our key to success." />
+<title>Samridah Cleaning Services — Professional Cleaning service providers</title>
+<meta name="description" content="Residential, commercial, and compound cleaning in Kampala, Uganda. Book a service online or on WhatsApp." />
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
+  :root {
+    --navy: #0F1B3D;
+    --navy-soft: #1A2A56;
+    --gold: #B48A3C;
+    --gold-light: #D4A94E;
+    --paper: #EFE7D8;
+    --ink: #1A1A1A;
+    --muted: #5A5A5A;
+    --line: #D8CFBC;
+  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
+
   html { scroll-behavior: smooth; }
-  body { font-family: 'Inter', -apple-system, sans-serif; background: #F4F6F9; color: #333; line-height: 1.6; }
-  a { text-decoration: none; }
 
-  .nav { background: #1A237E; color: #fff; padding: 16px 24px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-  .nav-inner { max-width: 1150px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-  .logo { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; }
-  .logo span { color: #FFD700; }
-  .nav-links { display: flex; gap: 32px; }
-  .nav-links a { color: #fff; font-weight: 500; transition: color .2s; }
-  .nav-links a:hover { color: #FFD700; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
 
-  .hero { background: linear-gradient(135deg, #1A237E 0%, #283593 100%); color: #fff; padding: 100px 24px; text-align: center; position: relative; overflow: hidden; }
-  .hero::before { content: ''; position: absolute; top: -50%; right: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255,215,0,0.15) 0%, transparent 70%); border-radius: 50%; }
-  .hero-content { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
-  .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 16px; letter-spacing: -1px; line-height: 1.15; }
-  .hero h1 span { color: #FFD700; }
-  .hero p { font-size: 1.2rem; font-style: italic; color: #e0e0e0; margin-bottom: 40px; }
-  .btn-primary { display: inline-block; background: #FFD700; color: #1A237E; padding: 15px 40px; border-radius: 6px; font-weight: 700; font-size: 1rem; transition: all .25s; border: none; cursor: pointer; }
-  .btn-primary:hover { background: #ffdb2e; transform: translateY(-2px); box-shadow: 0 10px 25px rgba(255,215,0,0.4); }
+  h1, h2, h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--navy);
+    line-height: 1.15;
+  }
 
-  section { padding: 80px 24px; }
-  .container { max-width: 1150px; margin: 0 auto; }
-  .section-title { font-size: 2.2rem; font-weight: 800; color: #1A237E; text-align: center; margin-bottom: 50px; position: relative; display: inline-block; left: 50%; transform: translateX(-50%); padding-bottom: 12px; letter-spacing: -0.5px; }
-  .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 70px; height: 4px; background: #FFD700; border-radius: 2px; }
+  a { text-decoration: none; color: inherit; }
+  img { display: block; max-width: 100%; }
+  ul { list-style: none; }
 
-  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; }
-  .service-card { background: #fff; padding: 30px 26px; border-radius: 12px; border-top: 4px solid #FFD700; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: transform .3s, box-shadow .3s; }
-  .service-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(26,35,126,0.15); }
-  .service-card h3 { color: #1A237E; font-size: 1.15rem; margin-bottom: 18px; font-weight: 700; }
-  .service-card ul { list-style: none; }
-  .service-card li { padding: 7px 0 7px 26px; position: relative; font-size: 0.95rem; color: #555; }
-  .service-card li::before { content: '✓'; position: absolute; left: 0; color: #FFD700; font-weight: 800; font-size: 1rem; }
+  /* ---------- NAV ---------- */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(239, 231, 216, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    z-index: 100;
+  }
 
-  .order-section { background: #1A237E; padding: 80px 24px; }
-  .order-section .section-title { color: #fff; }
-  .form-card { max-width: 620px; margin: 0 auto; background: #fff; padding: 45px; border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
-  .form-group { margin-bottom: 20px; }
-  .form-group label { display: block; color: #1A237E; font-weight: 600; margin-bottom: 8px; font-size: 0.95rem; }
-  .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 13px 15px; border: 1.5px solid #e0e0e0; border-radius: 8px; font-size: 1rem; font-family: inherit; transition: border-color .2s, box-shadow .2s; background: #fafafa; }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #FFD700; box-shadow: 0 0 0 3px rgba(255,215,0,0.2); background: #fff; }
-  .form-group textarea { resize: vertical; min-height: 100px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .submit-btn { width: 100%; padding: 15px; background: #FFD700; color: #1A237E; border: none; border-radius: 8px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all .25s; font-family: inherit; }
-  .submit-btn:hover { background: #ffdb2e; transform: translateY(-1px); box-shadow: 0 8px 20px rgba(255,215,0,0.4); }
-  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-  .form-status { text-align: center; margin-top: 18px; font-weight: 600; display: none; }
-  .form-status.success { display: block; color: #16a34a; }
-  .form-status.error { display: block; color: #dc2626; }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; margin-top: 20px; }
-  .contact-item { text-align: center; color: #fff; }
-  .contact-icon { display: inline-flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: rgba(255,215,0,0.15); border-radius: 50%; margin-bottom: 15px; font-size: 1.5rem; }
-  .contact-item p { font-size: 1rem; line-height: 1.7; }
-  .contact-item a { color: #FFD700; }
-  .footer-text { text-align: center; color: #aaa; font-size: 0.9rem; margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.15); }
+  .brand {
+    font-family: 'Fraunces', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: -0.02em;
+  }
 
-  .whatsapp-float { position: fixed; bottom: 24px; right: 24px; background: #25D366; color: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: 0 6px 20px rgba(37,211,102,0.5); z-index: 1000; transition: transform .25s; }
-  .whatsapp-float:hover { transform: scale(1.1); }
+  .brand-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    margin-left: 6px;
+    vertical-align: middle;
+    transform: translateY(-2px);
+  }
 
-  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
-  .gallery-item { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); transition: transform 0.3s; }
-  .gallery-item:hover { transform: translateY(-4px); }
-  .gallery-item img { width: 100%; height: 200px; object-fit: cover; display: block; }
-  .gallery-item p { padding: 12px 16px; font-size: 0.9rem; color: #555; margin: 0; }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
 
-  .ad-popup { position: fixed; bottom: 100px; right: 24px; width: 320px; max-width: calc(100vw - 48px); background: #fff; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.25); overflow: hidden; opacity: 0; transform: translateY(20px); transition: all 0.4s ease; z-index: 999; border-top: 4px solid #FFD700; }
+  .nav-links a {
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--navy); }
+
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--navy);
+    color: var(--paper);
+    padding: 10px 20px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+
+  .nav-cta:hover { background: var(--navy-soft); }
+
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    color: var(--navy);
+  }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 65px;
+    left: 0; right: 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    padding: 24px;
+    z-index: 99;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .mobile-menu.open { display: flex; }
+
+  .mobile-menu a {
+    font-size: 1rem;
+    color: var(--navy);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: flex-end;
+    background-image:
+      linear-gradient(180deg, rgba(15, 27, 61, 0.45) 0%, rgba(15, 27, 61, 0.85) 100%),
+      url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=2000&q=80');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding: 120px 24px 80px;
+  }
+
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: flex-end;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+    color: #fff;
+    margin-bottom: 28px;
+    max-width: 18ch;
+    font-weight: 600;
+    line-height: 1.05;
+  }
+
+  .hero-lede {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 42ch;
+    line-height: 1.6;
+    margin-bottom: 36px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+  }
+
+  .btn-gold {
+    background: var(--gold);
+    color: #fff;
+  }
+
+  .btn-gold:hover { background: var(--gold-light); }
+
+  .btn-outline {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  .btn-outline:hover { border-color: #fff; background: rgba(255, 255, 255, 0.05); }
+
+  .hero-aside {
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    padding-left: 40px;
+    padding-bottom: 8px;
+  }
+
+  .hero-stat { margin-bottom: 24px; }
+
+  .hero-stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 2.2rem;
+    color: #fff;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 6px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ---------- SECTION BASE ---------- */
+  section { padding: 100px 24px; }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  .section-head {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 60px;
+    margin-bottom: 70px;
+    align-items: baseline;
+  }
+
+  .section-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    max-width: 22ch;
+  }
+
+  /* ---------- SERVICES ---------- */
+  .services {
+    background: var(--paper);
+    border-top: 1px solid var(--line);
+  }
+
+  .services-list {
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .service-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 1.4fr;
+    gap: 40px;
+    padding: 40px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: start;
+    transition: background 0.2s;
+  }
+
+  .service-row:hover { background: rgba(180, 138, 60, 0.05); }
+
+  .service-num {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  .service-name {
+    font-family: 'Fraunces', serif;
+    font-size: 1.6rem;
+    color: var(--navy);
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .service-desc {
+    color: var(--muted);
+    font-size: 0.98rem;
+    line-height: 1.7;
+  }
+
+  .service-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    margin-top: 16px;
+  }
+
+  .service-items li {
+    font-size: 0.88rem;
+    color: var(--muted);
+    position: relative;
+    padding-left: 14px;
+  }
+
+  .service-items li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 4px; height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* ---------- GALLERY ---------- */
+  .gallery {
+    background: #F5EFE2;
+    border-top: 1px solid var(--line);
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .gallery-item {
+    background: var(--paper);
+    overflow: hidden;
+    border-radius: 4px;
+    position: relative;
+    aspect-ratio: 4/3;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .gallery-item:hover img { transform: scale(1.04); }
+
+  .gallery-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 20px;
+    background: linear-gradient(0deg, rgba(15, 27, 61, 0.85) 0%, transparent 100%);
+    color: #fff;
+    font-size: 0.88rem;
+    font-weight: 500;
+  }
+
+  .gallery-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--muted);
+    font-size: 0.95rem;
+    border: 1px dashed var(--line);
+    border-radius: 4px;
+  }
+
+  /* ---------- ORDER ---------- */
+  .order {
+    background: var(--navy);
+    color: #fff;
+    border-top: 1px solid var(--navy-soft);
+  }
+
+  .order .section-label { color: var(--gold-light); }
+  .order .section-title { color: #fff; }
+
+  .order-form {
+    max-width: 640px;
+    margin-left: auto;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 48px;
+    border-radius: 6px;
+  }
+
+  .form-group { margin-bottom: 22px; }
+
+  .form-group label {
+    display: block;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(255, 255, 255, 0.35); }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--gold-light);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .form-group select option { color: var(--ink); background: #fff; }
+
+  .form-group textarea { resize: vertical; min-height: 110px; }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .form-submit {
+    width: 100%;
+    padding: 16px;
+    background: var(--gold);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 8px;
+  }
+
+  .form-submit:hover { background: var(--gold-light); }
+  .form-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  .form-status {
+    margin-top: 18px;
+    font-size: 0.9rem;
+    text-align: center;
+    display: none;
+  }
+
+  .form-status.success { display: block; color: #8CD68C; }
+  .form-status.error { display: block; color: #F08080; }
+
+  /* ---------- CONTACT ---------- */
+  .contact {
+    background: var(--paper);
+    border-top: 1px solid var(--line);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .contact-cell {
+    padding: 48px 36px;
+    border-right: 1px solid var(--line);
+  }
+
+  .contact-cell:last-child { border-right: none; }
+
+  .contact-icon {
+    width: 36px;
+    height: 36px;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .contact-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .contact-value {
+    font-family: 'Fraunces', serif;
+    font-size: 1.2rem;
+    color: var(--navy);
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  .contact-value a { transition: color 0.2s; }
+  .contact-value a:hover { color: var(--gold); }
+
+  .contact-sub {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--navy);
+    color: rgba(255, 255, 255, 0.6);
+    padding: 48px 24px 32px;
+    font-size: 0.85rem;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-brand {
+    font-family: 'Fraunces', serif;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  /* ---------- WHATSAPP ---------- */
+  .wa-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 52px;
+    height: 52px;
+    background: #1A237E;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(15, 27, 61, 0.35);
+    z-index: 90;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  .wa-btn:hover { transform: translateY(-2px); background: var(--gold); }
+  .wa-btn svg { width: 24px; height: 24px; color: #fff; }
+
+  /* ---------- POPUP AD ---------- */
+  .ad-popup {
+    position: fixed;
+    bottom: 100px;
+    right: 24px;
+    width: 320px;
+    max-width: calc(100vw - 48px);
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 24px 60px rgba(15, 27, 61, 0.25);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    z-index: 95;
+    border-top: 3px solid var(--gold);
+  }
+
   .ad-popup.show { opacity: 1; transform: translateY(0); }
-  .ad-popup img { width: 100%; height: 160px; object-fit: cover; display: block; }
-  .ad-popup .ad-body { padding: 18px 20px 20px; }
-  .ad-popup h3 { color: #1A237E; font-size: 1.05rem; margin-bottom: 6px; font-weight: 700; }
-  .ad-popup p { color: #666; font-size: 0.88rem; line-height: 1.5; margin-bottom: 14px; }
-  .ad-popup .ad-btn { display: inline-block; background: #FFD700; color: #1A237E; padding: 9px 20px; border-radius: 6px; font-weight: 700; font-size: 0.9rem; }
-  .ad-popup .ad-close { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.5); color: #fff; border: none; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 1.1rem; line-height: 1; display: flex; align-items: center; justify-content: center; }
+  .ad-popup img { width: 100%; height: 150px; object-fit: cover; }
 
-  @media (max-width: 640px) {
-    .nav-links { display: none; }
+  .ad-popup .ad-body { padding: 20px; }
+
+  .ad-popup h3 {
+    font-size: 1.05rem;
+    color: var(--navy);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .ad-popup p {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .ad-popup .ad-btn {
+    display: inline-block;
+    background: var(--navy);
+    color: #fff;
+    padding: 9px 18px;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    font-weight: 500;
+  }
+
+  .ad-popup .ad-close {
+    position: absolute;
+    top: 10px; right: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px) {
+    .nav-links, .nav-cta { display: none; }
+    .menu-toggle { display: block; }
+
+    .hero { min-height: 85vh; padding: 120px 20px 60px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+    .hero-aside {
+      border-left: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-left: 0;
+      padding-top: 28px;
+    }
+
+    section { padding: 70px 20px; }
+
+    .section-head {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 50px;
+    }
+
+    .service-row {
+      grid-template-columns: 50px 1fr;
+      gap: 20px;
+      padding: 32px 0;
+    }
+
+    .service-desc { grid-column: 2 / -1; }
+
+    .order-form { padding: 32px 24px; }
+
     .form-row { grid-template-columns: 1fr; }
-    .form-card { padding: 30px 22px; }
-    section { padding: 60px 20px; }
-    .section-title { font-size: 1.7rem; }
-    .ad-popup { bottom: 90px; right: 12px; width: calc(100vw - 24px); }
+
+    .contact-grid { grid-template-columns: 1fr; }
+
+    .contact-cell {
+      border-right: none;
+      border-bottom: 1px solid var(--line);
+      padding: 36px 24px;
+    }
+
+    .contact-cell:last-child { border-bottom: none; }
+
+    .footer-inner { flex-direction: column; text-align: center; }
+
+    .ad-popup { bottom: 90px; right: 12px; }
   }
 </style>
 </head>
@@ -99,144 +711,260 @@
 
 <nav class="nav">
   <div class="nav-inner">
-    <div class="logo">Samridah <span>Cleaning</span></div>
+    <a href="#" class="brand">Samridah<span class="brand-dot"></span></a>
+
     <div class="nav-links">
       <a href="#services">Services</a>
-      <a href="#gallery">Our Work</a>
-      <a href="#order">Place Order</a>
+      <a href="#work">Our Work</a>
+      <a href="#order">Book</a>
       <a href="#contact">Contact</a>
     </div>
+
+    <a href="https://wa.me/256746200441" target="_blank" class="nav-cta">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+      WhatsApp
+    </a>
+
+    <button class="menu-toggle" aria-label="Open menu" onclick="toggleMenu()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    </button>
   </div>
 </nav>
 
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#work" onclick="toggleMenu()">Our Work</a>
+  <a href="#order" onclick="toggleMenu()">Book</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <a href="https://wa.me/256746200441" target="_blank">WhatsApp Us</a>
+</div>
+
 <header class="hero">
-  <div class="hero-content">
-    <h1>Samridah <span>Cleaning Services</span></h1>
-    <p>Client satisfaction is our key to success</p>
-    <a href="#order" class="btn-primary">Book a Service Today</a>
+  <div class="hero-inner">
+    <div class="hero-main">
+      <span class="hero-eyebrow">Kampala, Uganda</span>
+      <h1>Client satisfaction is our key to success.</h1>
+      <p class="hero-lede">Residential, commercial, and compound cleaning for homes and businesses across Kampala. Book a service in under a minute.</p>
+      <div class="hero-actions">
+        <a href="#order" class="btn btn-gold">
+          Book a Cleaning
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#services" class="btn btn-outline">See Services</a>
+      </div>
+    </div>
+
+    <aside class="hero-aside">
+      <div class="hero-stat">
+        <div class="hero-stat-num">10+</div>
+        <div class="hero-stat-label">Residential clients served</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">7</div>
+        <div class="hero-stat-label">Days a week availability</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">100%</div>
+        <div class="hero-stat-label">Satisfaction guaranteed</div>
+      </div>
+    </aside>
   </div>
 </header>
 
-<section id="services">
+<section class="services" id="services">
   <div class="container">
-    <h2 class="section-title">Our Services</h2>
-    <div class="services-grid">
-      <div class="service-card">
-        <h3>Residential Cleaning</h3>
-        <ul>
-          <li>General house cleaning</li>
-          <li>Deep cleaning</li>
-          <li>Carpet and rug cleaning</li>
-          <li>Window and glass cleaning</li>
-        </ul>
+    <div class="section-head">
+      <span class="section-label">Services</span>
+      <h2 class="section-title">Everything we clean, from a single room to a full compound.</h2>
+    </div>
+
+    <div class="services-list">
+      <div class="service-row">
+        <div class="service-num">01</div>
+        <div>
+          <h3 class="service-name">Residential Cleaning</h3>
+        </div>
+        <div class="service-desc">
+          Regular upkeep or a full top-to-bottom clean for your home.
+          <ul class="service-items">
+            <li>General house cleaning</li>
+            <li>Deep cleaning</li>
+            <li>Carpets and rugs</li>
+            <li>Windows and glass</li>
+          </ul>
+        </div>
       </div>
-      <div class="service-card">
-        <h3>Commercial Cleaning</h3>
-        <ul>
-          <li>Offices cleaning & maintenance</li>
-          <li>Factories, warehouses, malls</li>
-          <li>Arcades, supermarkets, schools</li>
-          <li>Restaurants and hotels</li>
-        </ul>
+
+      <div class="service-row">
+        <div class="service-num">02</div>
+        <div>
+          <h3 class="service-name">Commercial Cleaning</h3>
+        </div>
+        <div class="service-desc">
+          Scheduled maintenance for offices, retail, and industrial spaces.
+          <ul class="service-items">
+            <li>Offices</li>
+            <li>Warehouses and factories</li>
+            <li>Malls, arcades, supermarkets</li>
+            <li>Schools, restaurants, hotels</li>
+          </ul>
+        </div>
       </div>
-      <div class="service-card">
-        <h3>Compound Cleaning</h3>
-        <ul>
-          <li>Sweeping and maintenance</li>
-          <li>Trimming</li>
-          <li>Lawn mowing services</li>
-          <li>Compound designing</li>
-        </ul>
+
+      <div class="service-row">
+        <div class="service-num">03</div>
+        <div>
+          <h3 class="service-name">Compound & Grounds</h3>
+        </div>
+        <div class="service-desc">
+          Keeping your outdoor space clean, trimmed, and well-kept year round.
+          <ul class="service-items">
+            <li>Sweeping and upkeep</li>
+            <li>Hedge trimming</li>
+            <li>Lawn mowing</li>
+            <li>Compound design</li>
+          </ul>
+        </div>
       </div>
-      <div class="service-card">
-        <h3>Other Services & Supplies</h3>
-        <ul>
-          <li>Tile cleaning</li>
-          <li>Cleaning detergents & disinfectants</li>
-          <li>Air fresheners & toilet tissue</li>
-          <li>Toilet balls / urinal balls</li>
-        </ul>
+
+      <div class="service-row">
+        <div class="service-num">04</div>
+        <div>
+          <h3 class="service-name">Specialist Work & Supplies</h3>
+        </div>
+        <div class="service-desc">
+          Tile restoration and supply of cleaning products in bulk.
+          <ul class="service-items">
+            <li>Tile cleaning</li>
+            <li>Detergents and disinfectants</li>
+            <li>Air fresheners, tissue</li>
+            <li>Urinal and toilet supplies</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="gallery">
+<section class="gallery" id="work">
   <div class="container">
-    <h2 class="section-title">Our Work</h2>
+    <div class="section-head">
+      <span class="section-label">Our Work</span>
+      <h2 class="section-title">A look at recent jobs.</h2>
+    </div>
+
     <div class="gallery-grid" id="galleryGrid">
-      <p style="grid-column:1/-1; text-align:center; color:#999;">Loading photos...</p>
+      <div class="gallery-empty">Photos are being updated.</div>
     </div>
   </div>
 </section>
 
-<section id="order" class="order-section">
+<section class="order" id="order">
   <div class="container">
-    <h2 class="section-title">Place Your Order</h2>
-    <div class="form-card">
-      <form id="orderForm" action="https://formspree.io/f/mjygwnny" method="POST">
-        <div class="form-group">
-          <label>Full Name *</label>
-          <input type="text" name="name" required placeholder="Your name" />
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Email *</label>
-            <input type="email" name="email" required placeholder="you@email.com" />
-          </div>
-          <div class="form-group">
-            <label>Phone *</label>
-            <input type="tel" name="phone" required placeholder="+256 ..." />
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Service Needed *</label>
-          <select name="service" required>
-            <option value="">Select a service...</option>
-            <option>Residential Cleaning</option>
-            <option>Commercial Cleaning</option>
-            <option>Compound Cleaning</option>
-            <option>Other Services / Supplies</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Additional Details</label>
-          <textarea name="message" placeholder="Location, space size, preferred date..."></textarea>
-        </div>
-        <button type="submit" class="submit-btn" id="submitBtn">Send Order</button>
-        <p class="form-status" id="formStatus"></p>
-      </form>
+    <div class="section-head">
+      <span class="section-label">Book a Service</span>
+      <h2 class="section-title">Tell us what you need and we'll get back to you within a day.</h2>
     </div>
+
+    <form class="order-form" id="orderForm" action="https://formspree.io/f/mjygwnny" method="POST">
+      <div class="form-group">
+        <label for="name">Full name</label>
+        <input type="text" id="name" name="name" required placeholder="Your name" />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required placeholder="you@email.com" />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" required placeholder="+256..." />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="service">Service</label>
+        <select id="service" name="service" required>
+          <option value="">Choose a service</option>
+          <option>Residential Cleaning</option>
+          <option>Commercial Cleaning</option>
+          <option>Compound & Grounds</option>
+          <option>Specialist Work & Supplies</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Details</label>
+        <textarea id="message" name="message" placeholder="Location, size of space, preferred date"></textarea>
+      </div>
+
+      <button type="submit" class="form-submit" id="submitBtn">Send Request</button>
+      <p class="form-status" id="formStatus"></p>
+    </form>
   </div>
 </section>
 
-<footer id="contact" class="order-section" style="padding-top:60px;">
+<section class="contact" id="contact">
   <div class="container">
-    <h2 class="section-title">Get in Touch</h2>
+    <div class="section-head">
+      <span class="section-label">Contact</span>
+      <h2 class="section-title">Reach us directly.</h2>
+    </div>
+
     <div class="contact-grid">
-      <div class="contact-item">
-        <div class="contact-icon">📞</div>
-        <p>+256 746 200 441<br>+256 762 093 951</p>
+      <div class="contact-cell">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <div class="contact-label">Call us</div>
+        <div class="contact-value">
+          <a href="tel:+256746200441">+256 746 200 441</a><br>
+          <a href="tel:+256762093951">+256 762 093 951</a>
+        </div>
       </div>
-      <div class="contact-item">
-        <div class="contact-icon">✉️</div>
-        <p><a href="mailto:samridahservices@gmail.com">samridahservices@gmail.com</a></p>
+
+      <div class="contact-cell">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        <div class="contact-label">Email</div>
+        <div class="contact-value">
+          <a href="mailto:samridahservices@gmail.com">samridahservices@gmail.com</a>
+        </div>
       </div>
-      <div class="contact-item">
-        <div class="contact-icon">📍</div>
-        <p>Mutungo 1 Zone 1A,<br>Nakawa, Kampala Uganda</p>
+
+      <div class="contact-cell">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+        <div class="contact-label">Location</div>
+        <div class="contact-value">Mutungo 1, Zone 1A</div>
+        <div class="contact-sub">Nakawa Division, Kampala, Uganda</div>
       </div>
     </div>
-    <p class="footer-text">© <span id="year"></span> Samridah Cleaning Services. All rights reserved.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">Samridah Cleaning Services</div>
+    <div>© <span id="year"></span> Samridah Cleaning Services. All rights reserved.</div>
   </div>
 </footer>
 
-<a href="https://wa.me/256746200441" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp">
-  <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+<a href="https://wa.me/256746200441" target="_blank" rel="noopener" class="wa-btn" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
 
   const BIN_ID = "6ac91135ac6210605a2312fd";
   const ACCESS_KEY = "$2a$10$Hay64kFi7LRq1dLr4h057eyezzu8zm87wt0PN/FZ1umKIVo90TVAu";
@@ -265,14 +993,14 @@
     const grid = document.getElementById("galleryGrid");
     if (!grid) return;
     if (liveData.photos.length === 0) {
-      grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:#999;">Photos coming soon.</p>';
+      grid.innerHTML = '<div class="gallery-empty">Photos are being updated.</div>';
       return;
     }
     grid.innerHTML = liveData.photos.map(p => `
-      <div class="gallery-item">
+      <figure class="gallery-item">
         <img src="${p.imageUrl}" alt="${escapeHtml(p.caption || '')}" loading="lazy" onerror="this.parentElement.style.display='none'">
-        <p>${escapeHtml(p.caption || '')}</p>
-      </div>
+        ${p.caption ? `<figcaption class="gallery-caption">${escapeHtml(p.caption)}</figcaption>` : ''}
+      </figure>
     `).join("");
   }
 
@@ -282,7 +1010,7 @@
     const available = liveData.ads.filter(a => a.active === "yes" && !shownAds.includes(a.id));
     if (available.length === 0) return;
     const ad = available[Math.floor(Math.random() * available.length)];
-    setTimeout(() => showAd(ad), 3000);
+    setTimeout(() => showAd(ad), 4000);
   }
 
   function showAd(ad) {
@@ -326,15 +1054,15 @@
   setInterval(loadLive, 60000);
 
   const form = document.getElementById('orderForm');
-  const status = document.getElementById('formStatus');
+  const statusEl = document.getElementById('formStatus');
   const btn = document.getElementById('submitBtn');
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     btn.disabled = true;
     btn.textContent = 'Sending...';
-    status.className = 'form-status';
-    status.textContent = '';
+    statusEl.className = 'form-status';
+    statusEl.textContent = '';
 
     const formData = new FormData(form);
     const order = {
@@ -347,7 +1075,6 @@
     };
 
     try {
-      // 1. Send email via Formspree
       const res = await fetch(form.action, {
         method: 'POST',
         body: formData,
@@ -355,7 +1082,6 @@
       });
       if (!res.ok) throw new Error('Email failed');
 
-      // 2. Save order to JSONBin so it appears in the admin panel
       order.id = "or_" + Date.now();
       const current = await fetch(API_URL + "/latest", {
         headers: { "X-Access-Key": ACCESS_KEY }
@@ -374,15 +1100,15 @@
         body: JSON.stringify(record)
       });
 
-      status.className = 'form-status success';
-      status.textContent = '✓ Order sent! We will contact you shortly.';
+      statusEl.className = 'form-status success';
+      statusEl.textContent = 'Request sent. We will contact you shortly.';
       form.reset();
     } catch (err) {
-      status.className = 'form-status error';
-      status.textContent = 'Something went wrong. Please WhatsApp us instead.';
+      statusEl.className = 'form-status error';
+      statusEl.textContent = 'Something went wrong. Please message us on WhatsApp instead.';
     } finally {
       btn.disabled = false;
-      btn.textContent = 'Send Order';
+      btn.textContent = 'Send Request';
     }
   });
 </script>
