@@ -27,7 +27,12 @@
   .topbar-right a, .topbar-right button { color: #fff; background: rgba(255,255,255,0.15); padding: 8px 16px; border-radius: 6px; border: none; font-size: 0.9rem; cursor: pointer; font-family: inherit; text-decoration: none; }
   .topbar-right a:hover, .topbar-right button:hover { background: rgba(255,255,255,0.25); }
 
-  .tabs { display: flex; background: #fff; border-bottom: 1px solid #eee; padding: 0 32px; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; padding: 24px 32px; max-width: 1200px; margin: 0 auto; }
+  .stat-card { background: #fff; padding: 22px; border-radius: 10px; border-left: 5px solid #FFD700; box-shadow: 0 4px 15px rgba(0,0,0,0.06); }
+  .stat-card h3 { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; font-weight: 600; }
+  .stat-card p { font-size: 2rem; font-weight: 800; color: #1A237E; }
+
+  .tabs { display: flex; background: #fff; border-bottom: 1px solid #eee; padding: 0 32px; max-width: 1200px; margin: 0 auto; }
   .tab { padding: 16px 24px; cursor: pointer; font-weight: 600; color: #888; border-bottom: 3px solid transparent; transition: 0.2s; }
   .tab.active { color: #1A237E; border-bottom-color: #FFD700; }
   .tab:hover { color: #1A237E; }
@@ -54,6 +59,15 @@
   .btn-del { background: #ffe0e0; color: #c00; }
   .btn-del:hover { background: #ffc7c7; }
 
+  .orders-table { width: 100%; border-collapse: collapse; }
+  .orders-table th { text-align: left; padding: 14px 20px; font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; background: #fafafa; font-weight: 600; border-bottom: 1px solid #eee; }
+  .orders-table td { padding: 14px 20px; border-bottom: 1px solid #f0f0f0; font-size: 0.9rem; }
+  .orders-table tr:hover td { background: #fafafa; }
+  .status-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; background: #d6f5dd; color: #1b7c3a; }
+  .wa-link { color: #25D366; font-weight: 600; font-size: 0.85rem; text-decoration: none; }
+  .wa-link:hover { text-decoration: underline; }
+  .row-actions button { background: none; border: none; color: #dc2626; font-size: 0.8rem; cursor: pointer; font-weight: 600; }
+
   .empty { padding: 60px 20px; text-align: center; color: #999; grid-column: 1 / -1; }
 
   .modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
@@ -78,10 +92,10 @@
   .loading { text-align: center; padding: 60px; color: #888; grid-column: 1 / -1; }
 
   @media (max-width: 640px) {
-    .main { padding: 20px; }
-    .topbar { padding: 14px 20px; }
-    .tabs { padding: 0 12px; }
+    .main, .stats, .tabs { padding-left: 12px; padding-right: 12px; }
+    .topbar { padding: 14px 16px; }
     .tab { padding: 14px 12px; font-size: 0.9rem; }
+    .orders-table th, .orders-table td { padding: 10px 12px; font-size: 0.8rem; }
   }
 </style>
 </head>
@@ -106,13 +120,44 @@
     </div>
   </div>
 
+  <div class="stats">
+    <div class="stat-card">
+      <h3>Total Orders</h3>
+      <p id="statOrders">0</p>
+    </div>
+    <div class="stat-card">
+      <h3>Total Ads</h3>
+      <p id="statAds">0</p>
+    </div>
+    <div class="stat-card">
+      <h3>Active Ads</h3>
+      <p id="statActiveAds">0</p>
+    </div>
+    <div class="stat-card">
+      <h3>Photos</h3>
+      <p id="statPhotos">0</p>
+    </div>
+  </div>
+
   <div class="tabs">
-    <div class="tab active" onclick="switchTab('ads', this)">Ads / Promotions</div>
+    <div class="tab active" onclick="switchTab('orders', this)">Orders</div>
+    <div class="tab" onclick="switchTab('ads', this)">Ads / Promotions</div>
     <div class="tab" onclick="switchTab('photos', this)">Photo Gallery</div>
   </div>
 
   <div class="main">
-    <div id="adsTab">
+
+    <div id="ordersTab">
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Orders Received</h2>
+          <button class="add-btn" onclick="loadData()">Refresh</button>
+        </div>
+        <div id="ordersWrap"></div>
+      </div>
+    </div>
+
+    <div id="adsTab" style="display:none;">
       <div class="panel">
         <div class="panel-header">
           <h2>Ads & Promotions</h2>
@@ -145,9 +190,8 @@
     <label>Description</label>
     <textarea id="adDesc" rows="3" placeholder="Short description shown on the ad"></textarea>
 
-    <label>Image URL</label>
-    <input type="url" id="adImageUrl" placeholder="https://i.ibb.co/..." />
-    <small>Upload to imgbb.com and paste the direct link here</small>
+    <label>Image URL (direct link ending in .jpg or .png)</label>
+    <input type="url" id="adImageUrl" placeholder="https://i.ibb.co/.../photo.jpg" />
 
     <label>Link (optional)</label>
     <input type="url" id="adLink" placeholder="https://wa.me/256746200441" />
@@ -179,9 +223,8 @@
     <label>Caption</label>
     <input type="text" id="photoCaption" placeholder="e.g. Office deep clean - Kampala" />
 
-    <label>Image URL</label>
-    <input type="url" id="photoImageUrl" placeholder="https://i.ibb.co/..." />
-    <small>Upload to imgbb.com and paste the direct link here</small>
+    <label>Image URL (direct link ending in .jpg or .png)</label>
+    <input type="url" id="photoImageUrl" placeholder="https://i.ibb.co/.../photo.jpg" />
 
     <div class="modal-actions">
       <button class="cancel" onclick="closeModal('photoModalBg')">Cancel</button>
@@ -193,16 +236,13 @@
 <div class="toast" id="toast"></div>
 
 <script>
-  // ============ YOUR JSONBIN CONFIG ============
   const BIN_ID = "6ac91135ac6210605a2312fd";
   const ACCESS_KEY = "$2a$10$Hay64kFi7LRq1dLr4h057eyezzu8zm87wt0PN/FZ1umKIVo90TVAu";
   const API_URL = "https://api.jsonbin.io/v3/b/" + BIN_ID;
-  // =============================================
 
   const ADMIN_PASSWORD = "samridah2026";
 
-  let data = { ads: [], photos: [] };
-  let loaded = false;
+  let data = { ads: [], photos: [], orders: [] };
 
   function login() {
     if (document.getElementById("passwordInput").value === ADMIN_PASSWORD) {
@@ -223,6 +263,7 @@
   function switchTab(tab, el) {
     document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
     el.classList.add("active");
+    document.getElementById("ordersTab").style.display = tab === "orders" ? "block" : "none";
     document.getElementById("adsTab").style.display = tab === "ads" ? "block" : "none";
     document.getElementById("photosTab").style.display = tab === "photos" ? "block" : "none";
   }
@@ -233,12 +274,14 @@
         headers: { "X-Access-Key": ACCESS_KEY }
       });
       const json = await res.json();
-      data = json.record || { ads: [], photos: [] };
+      data = json.record || {};
       if (!data.ads) data.ads = [];
       if (!data.photos) data.photos = [];
-      loaded = true;
+      if (!data.orders) data.orders = [];
+      renderStats();
       renderAds();
       renderPhotos();
+      renderOrders();
     } catch (err) {
       toast("Failed to load data: " + err.message, true);
     }
@@ -262,6 +305,56 @@
     }
   }
 
+  function renderStats() {
+    document.getElementById("statOrders").textContent = data.orders.length;
+    document.getElementById("statAds").textContent = data.ads.length;
+    document.getElementById("statActiveAds").textContent = data.ads.filter(a => a.active === "yes").length;
+    document.getElementById("statPhotos").textContent = data.photos.length;
+  }
+
+  function renderOrders() {
+    const wrap = document.getElementById("ordersWrap");
+    if (data.orders.length === 0) {
+      wrap.innerHTML = '<div class="empty"><p>No orders yet.</p><p>Orders placed through the website will appear here.</p></div>';
+      return;
+    }
+    wrap.innerHTML = `
+      <table class="orders-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Client</th>
+            <th>Phone</th>
+            <th>Service</th>
+            <th>Message</th>
+            <th>Contact</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          ${data.orders.map((o, i) => `
+            <tr>
+              <td>${escapeHtml(o.date || '')}</td>
+              <td><strong>${escapeHtml(o.name || '')}</strong><br><small style="color:#888">${escapeHtml(o.email || '')}</small></td>
+              <td>${escapeHtml(o.phone || '')}</td>
+              <td><span class="status-badge">${escapeHtml(o.service || '')}</span></td>
+              <td style="max-width:200px; font-size:0.85rem; color:#666;">${escapeHtml((o.message || '').slice(0,80))}${(o.message || '').length > 80 ? '...' : ''}</td>
+              <td><a class="wa-link" href="https://wa.me/${(o.phone || '').replace(/[^0-9]/g, '')}" target="_blank">WhatsApp</a></td>
+              <td class="row-actions"><button onclick="deleteOrder(${i})">Delete</button></td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    `;
+  }
+
+  async function deleteOrder(i) {
+    if (!confirm("Delete this order from the dashboard? (It stays in your email.)")) return;
+    data.orders.splice(i, 1);
+    const ok = await saveData();
+    if (ok) { renderOrders(); renderStats(); toast("Order removed"); }
+  }
+
   function renderAds() {
     const grid = document.getElementById("adsGrid");
     if (data.ads.length === 0) {
@@ -273,7 +366,7 @@
       const card = document.createElement("div");
       card.className = "item-card";
       card.innerHTML = `
-        ${ad.imageUrl ? `<img class="item-img" src="${ad.imageUrl}" alt="">` : `<div class="item-img" style="display:flex;align-items:center;justify-content:center;color:#bbb;">No image</div>`}
+        ${ad.imageUrl ? `<img class="item-img" src="${ad.imageUrl}" alt="" onerror="this.style.display='none'">` : `<div class="item-img" style="display:flex;align-items:center;justify-content:center;color:#bbb;">No image</div>`}
         <div class="item-body">
           <div class="item-title">${escapeHtml(ad.title || "Untitled")}</div>
           <div class="item-desc">${escapeHtml(ad.description || "")}</div>
@@ -299,7 +392,8 @@
       const card = document.createElement("div");
       card.className = "item-card";
       card.innerHTML = `
-        ${p.imageUrl ? `<img class="item-img" src="${p.imageUrl}" alt="">` : ""}
+        ${p.imageUrl ? `<img class="item-img" src="${p.imageUrl}" alt="" onerror="this.parentElement.querySelector('.img-err').style.display='flex'">` : ""}
+        <div class="item-img img-err" style="display:none;align-items:center;justify-content:center;color:#c00;font-size:0.8rem;background:#ffe0e0;">Image failed to load</div>
         <div class="item-body">
           <div class="item-title">${escapeHtml(p.caption || "Untitled")}</div>
           <div class="item-actions">
@@ -364,6 +458,7 @@
     const ok = await saveData();
     if (ok) {
       renderAds();
+      renderStats();
       closeModal("adModalBg");
     }
   }
@@ -372,7 +467,7 @@
     if (!confirm("Delete this ad?")) return;
     data.ads = data.ads.filter(a => a.id !== id);
     const ok = await saveData();
-    if (ok) { renderAds(); toast("Ad deleted"); }
+    if (ok) { renderAds(); renderStats(); toast("Ad deleted"); }
   }
 
   function openPhotoModal(id) {
@@ -416,6 +511,7 @@
     const ok = await saveData();
     if (ok) {
       renderPhotos();
+      renderStats();
       closeModal("photoModalBg");
     }
   }
@@ -424,7 +520,7 @@
     if (!confirm("Delete this photo?")) return;
     data.photos = data.photos.filter(p => p.id !== id);
     const ok = await saveData();
-    if (ok) { renderPhotos(); toast("Photo deleted"); }
+    if (ok) { renderPhotos(); renderStats(); toast("Photo deleted"); }
   }
 
   function closeModal(id) {
