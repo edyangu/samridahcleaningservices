@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samridah Cleaning Services | Kampala</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #1A237E;
+            --primary-yellow: #FFD700;
+            --light-bg: #F4F6F9;
+            --text-dark: #333333;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--primary-blue);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            color: var(--white);
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--primary-yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-yellow);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 35, 126, 0.85), rgba(26, 35, 126, 0.85)), url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1920&q=80') center/cover;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+        }
+
+        .hero-content h1 span {
+            color: var(--primary-yellow);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-yellow);
+            color: var(--primary-blue);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #e6c200;
+            transform: translateY(-2px);
+        }
+
+        /* Services Section */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-yellow);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .services {
+            padding: 80px 5%;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--primary-yellow);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .service-card ul {
+            list-style-type: none;
+        }
+
+        .service-card ul li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .service-card ul li::before {
+            content: '•';
+            color: var(--primary-yellow);
+            font-weight: bold;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+
+        /* Order Form Section */
+        .order-section {
+            background-color: var(--primary-blue);
+            padding: 80px 5%;
+            color: var(--white);
+        }
+
+        .order-section .section-title {
+            color: var(--white);
+        }
+
+        .order-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-yellow);
+            box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Contact & Footer */
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--white);
+            font-size: 1.1rem;
+        }
+
+        .contact-item i {
+            color: var(--primary-yellow);
+            font-size: 1.5rem;
+        }
+
+        footer {
+            background-color: #0f144a;
+            color: #aaa;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50px;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } /* Simplified for mobile */
+            .contact-info { flex-direction: column; align-items: center; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Samridah <span>Cleaning</span></div>
+        <div class="nav-links">
+            <a href="#services">Services</a>
+            <a href="#order">Place Order</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Samridah <span>Cleaning Services</span></h1>
+            <p>Client satisfaction is our key to success</p>
+            <a href="#order" class="btn btn-primary">Book a Service Today</a>
+        </div>
+    </header>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid">
+            
+            <div class="service-card">
+                <h3>Residential Cleaning</h3>
+                <ul>
+                    <li>General house cleaning</li>
+                    <li>Deep cleaning</li>
+                    <li>Carpet and rug cleaning</li>
+                    <li>Window and glass cleaning</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <h3>Commercial Cleaning</h3>
+                <ul>
+                    <li>Offices cleaning and maintenance</li>
+                    <li>Factories, warehouses & malls</li>
+                    <li>Arcades & supermarkets</li>
+                    <li>Schools, restaurants & hotels</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <h3>Compound Cleaning</h3>
+                <ul>
+                    <li>Sweeping and maintenance</li>
+                    <li>Trimming</li>
+                    <li>Lawn mowing services</li>
+                    <li>Compound designing</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <h3>Other Services & Supplies</h3>
+                <ul>
+                    <li>Tile cleaning</li>
+                    <li>Supply of detergents & disinfectants</li>
+                    <li>Air fresheners & toilet tissue</li>
+                    <li>Toilet balls / urinal balls</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Order Section -->
+    <section class="order-section" id="order">
+        <h2 class="section-title">Place Your Order</h2>
+        <div class="order-container">
+            <form id="orderForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" required placeholder="Enter your phone number">
+                </div>
+                <div class="form-group">
+                    <label for="service">Service Needed</label>
+                    <select id="service" required>
+                        <option value="">Select a service...</option>
+                        <option value="Residential Cleaning">Residential Cleaning</option>
+                        <option value="Commercial Cleaning">Commercial Cleaning</option>
+                        <option value="Compound Cleaning">Compound Cleaning</option>
+                        <option value="Other Services / Supplies">Other Services / Supplies</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Additional Details</label>
+                    <textarea id="message" placeholder="Tell us about your space, location, and preferred date..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Order via Email</button>
+            </form>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="contact-info" id="contact">
+            <div class="contact-item">
+                <i class="fas fa-phone-alt"></i>
+                <span>+256 746 200 441 / +256 762 093 951</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Mutungo 1 Zone 1A, Nakawa, Kampala Uganda</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Samridah Cleaning Services. All rights reserved. | 10+ Residential Clients Served.</p>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/256746200441" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i>
+        Chat with us
+    </a>
+
+    <script>
+        // Handle Order Form Submission (Opens Email Client)
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
+
+            const subject = `New Order Request: ${service}`;
+            const body = `Hello Samridah Cleaning Services,%0D%0A%0D%0A` +
+                         `I would like to place an order.%0D%0A%0D%0A` +
+                         `Name: ${name}%0D%0A` +
+                         `Email: ${email}%0D%0A` +
+                         `Phone: ${phone}%0D%0A` +
+                         `Service: ${service}%0D%0A%0D%0A` +
+                         `Details: ${message}`;
+
+            // Opens the default email client
+            window.location.href = `mailto:samridahservices@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+            
+            // Show a confirmation message
+            alert("Thank you! Your email client will open to send your order to samridahservices@gmail.com.");
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>
