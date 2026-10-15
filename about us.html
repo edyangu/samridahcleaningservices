@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>About Us | Samridah Cleaning Services</title>
+<meta name="description" content="Who we are, how we started, and why homes and businesses across Kampala trust Samridah Cleaning Services.">
+<meta name="theme-color" content="#1E2A44">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231E2A44'/%3E%3Ctext x='16' y='23' font-family='Inter,sans-serif' font-size='18' font-weight='700' fill='white' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --navy:#1E2A44; --navy-2:#2A3A5C; --slate:#4E6289; --slate-2:#7D93B8;
+    --light:#F4F6FA; --light-2:#E8ECF3; --white:#fff;
+    --ink:#1A2235; --body:#4A5568; --muted:#8891A5; --rule:#D6DBE5;
+    --green:#10B981;
+    --radius:12px; --radius-sm:8px; --radius-lg:20px;
+    --shadow-sm:0 1px 3px rgba(30,42,68,0.08), 0 1px 2px rgba(30,42,68,0.04);
+    --shadow:0 4px 12px rgba(30,42,68,0.08), 0 2px 4px rgba(30,42,68,0.04);
+    --shadow-lg:0 12px 32px rgba(30,42,68,0.12), 0 4px 8px rgba(30,42,68,0.06);
+    padding-top:env(safe-area-inset-top,0);
+    padding-bottom:env(safe-area-inset-bottom,0);
+  }
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--white);color:var(--body);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{color:var(--ink);font-weight:700;line-height:1.2;letter-spacing:-0.02em}
+  a{text-decoration:none;color:inherit}
+  img{max-width:100%;display:block}
+  ul{list-style:none}
+
+  .container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+  .topbar{background:var(--navy);color:rgba(255,255,255,0.85);font-size:13.5px;padding:8px 0}
+  .topbar .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+  .topbar-left{display:flex;gap:24px;flex-wrap:wrap}
+  .topbar-left span{display:inline-flex;align-items:center;gap:8px}
+  .topbar-left svg{width:14px;height:14px;stroke:var(--slate-2);fill:none;stroke-width:2}
+  @media (max-width:768px){ .topbar{display:none} }
+
+  .header{background:var(--white);box-shadow:var(--shadow-sm);position:sticky;top:0;z-index:100}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:32px}
+  .logo{display:flex;align-items:center;gap:12px;font-weight:700;font-size:19px;color:var(--navy);letter-spacing:-0.02em}
+  .logo-icon{width:40px;height:40px;background:var(--navy);border-radius:10px;display:grid;place-items:center;color:#fff;font-size:18px;font-weight:700;flex:none}
+  .logo-text{display:flex;flex-direction:column;line-height:1.15}
+  .logo-text small{font-size:11px;color:var(--muted);font-weight:500;letter-spacing:0.08em;text-transform:uppercase}
+
+  .nav{display:flex;gap:32px;font-size:15px;font-weight:500}
+  .nav a{color:var(--body);transition:color .15s;position:relative;padding:4px 0}
+  .nav a:hover{color:var(--navy)}
+  .nav a.active{color:var(--navy)}
+  .nav a.active::after{content:'';position:absolute;left:0;bottom:-2px;width:100%;height:2px;background:var(--slate)}
+  .nav a:not(.active)::after{content:'';position:absolute;left:0;bottom:-2px;width:100%;height:2px;background:var(--slate);transform:scaleX(0);transform-origin:left;transition:transform .2s}
+  .nav a:not(.active):hover::after{transform:scaleX(1)}
+
+  .header-cta{display:flex;align-items:center;gap:12px}
+  .header-phone{display:flex;align-items:center;gap:10px;padding:10px 16px;background:var(--light);border-radius:var(--radius-sm);font-weight:600;font-size:14.5px;color:var(--navy);transition:background .15s}
+  .header-phone:hover{background:var(--light-2)}
+  .header-phone svg{width:16px;height:16px;stroke:var(--slate);fill:none;stroke-width:2}
+
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;font-family:inherit;font-weight:600;font-size:14.5px;border-radius:var(--radius-sm);border:none;cursor:pointer;transition:all .15s;white-space:nowrap;text-decoration:none}
+  .btn-primary{background:var(--slate);color:#fff}
+  .btn-primary:hover{background:var(--navy)}
+  .btn-outline{background:transparent;color:var(--navy);border:1.5px solid var(--rule)}
+  .btn-outline:hover{border-color:var(--navy)}
+  .btn-white{background:#fff;color:var(--navy)}
+  .btn-white:hover{background:var(--light)}
+
+  .menu-toggle{display:none;background:transparent;border:1.5px solid var(--rule);border-radius:var(--radius-sm);padding:10px;cursor:pointer}
+  .menu-toggle svg{width:22px;height:22px;stroke:var(--navy);fill:none;stroke-width:2}
+  @media (max-width:960px){
+    .nav,.header-phone{display:none}
+    .menu-toggle{display:block}
+  }
+
+  .mobile-nav{display:none;background:#fff;border-top:1px solid var(--rule);padding:20px 0}
+  .mobile-nav.open{display:block}
+  .mobile-nav a{display:block;padding:14px 0;border-bottom:1px solid var(--rule);font-weight:500;color:var(--navy)}
+  .mobile-nav a:last-child{border-bottom:none}
+
+  .page-hero{background:linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);color:#fff;padding:80px 0 72px;position:relative;overflow:hidden}
+  .page-hero::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(125,147,184,0.2) 0%,transparent 65%);border-radius:50%}
+  .page-hero-inner{max-width:820px;position:relative;z-index:1}
+  .page-hero .crumb{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;color:rgba(255,255,255,0.6);margin-bottom:20px}
+  .page-hero .crumb a{color:rgba(255,255,255,0.75);transition:color .15s}
+  .page-hero .crumb a:hover{color:#fff}
+  .page-hero .crumb svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+  .page-hero h1{font-size:clamp(36px, 5vw, 54px);color:#fff;letter-spacing:-0.03em;line-height:1.08;margin-bottom:20px;max-width:18ch}
+  .page-hero h1 span{color:var(--slate-2)}
+  .page-hero p{font-size:18px;color:rgba(255,255,255,0.72);line-height:1.65;max-width:56ch}
+
+  section{padding:80px 0}
+  .section-label{display:inline-block;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--slate);margin-bottom:14px}
+  .section-title{font-size:clamp(28px, 3.6vw, 40px);color:var(--ink);letter-spacing:-0.025em;margin-bottom:20px;line-height:1.15;max-width:18ch}
+
+  /* STORY */
+  .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+  .story-content p{font-size:16px;color:var(--body);line-height:1.75;margin-bottom:18px}
+  .story-content p:last-child{margin-bottom:0}
+  .story-content strong{color:var(--ink);font-weight:600}
+  .story-visual{
+    aspect-ratio:4/5;border-radius:var(--radius-lg);
+    background:linear-gradient(135deg, var(--slate) 0%, var(--navy) 100%);
+    display:grid;place-items:center;color:#fff;
+    box-shadow:var(--shadow-lg);position:relative;overflow:hidden;
+  }
+  .story-visual::before{
+    content:'';position:absolute;top:-30%;right:-20%;
+    width:70%;height:70%;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,255,255,0.15) 0%,transparent 70%);
+  }
+  .story-visual-inner{position:relative;z-index:1;text-align:center;padding:40px}
+  .story-visual-inner .big{
+    font-size:clamp(72px, 10vw, 120px);font-weight:700;letter-spacing:-0.05em;
+    line-height:0.9;color:#fff;margin-bottom:16px;
+  }
+  .story-visual-inner .label{
+    font-size:13px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--slate-2);
+  }
+  @media (max-width:900px){
+    .story-grid{grid-template-columns:1fr;gap:40px}
+    .story-visual{aspect-ratio:16/10}
+  }
+
+  /* VALUES */
+  .values{background:var(--light)}
+  .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:48px}
+  .value-card{background:#fff;border-radius:var(--radius);padding:36px 28px;box-shadow:var(--shadow-sm)}
+  .value-icon{
+    width:52px;height:52px;border-radius:12px;
+    background:linear-gradient(135deg, var(--slate) 0%, var(--navy) 100%);
+    display:grid;place-items:center;margin-bottom:22px;
+  }
+  .value-icon svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .value-card h3{font-size:19px;color:var(--ink);margin-bottom:12px;letter-spacing:-0.015em}
+  .value-card p{font-size:15px;color:var(--body);line-height:1.65}
+  @media (max-width:900px){ .values-grid{grid-template-columns:1fr} }
+
+  /* CREDENTIALS */
+  .credentials{background:#fff}
+  .credentials-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px}
+  .credential{background:var(--light);border-radius:var(--radius);padding:28px 24px;border:1px solid var(--rule)}
+  .credential-label{font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .credential-value{font-size:22px;font-weight:700;color:var(--navy);letter-spacing:-0.02em;line-height:1.2;margin-bottom:6px}
+  .credential-note{font-size:13.5px;color:var(--body);line-height:1.5}
+  @media (max-width:900px){ .credentials-grid{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:520px){ .credentials-grid{grid-template-columns:1fr} }
+
+  /* TEAM */
+  .team{background:var(--light)}
+  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+  .team-card{background:#fff;border-radius:var(--radius);padding:32px 28px;text-align:center;box-shadow:var(--shadow-sm)}
+  .team-avatar{
+    width:88px;height:88px;border-radius:50%;margin:0 auto 20px;
+    background:linear-gradient(135deg, var(--slate) 0%, var(--navy) 100%);
+    display:grid;place-items:center;
+    color:#fff;font-size:32px;font-weight:700;letter-spacing:-0.03em;
+  }
+  .team-card h3{font-size:18px;color:var(--ink);margin-bottom:6px;letter-spacing:-0.015em}
+  .team-role{font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--slate);margin-bottom:16px}
+  .team-bio{font-size:14.5px;color:var(--body);line-height:1.65}
+  @media (max-width:900px){ .team-grid{grid-template-columns:1fr} }
+
+  /* CTA */
+  .cta-band{background:linear-gradient(135deg, var(--slate) 0%, var(--navy) 100%);color:#fff;padding:72px 0;text-align:center;position:relative;overflow:hidden}
+  .cta-band::before{content:'';position:absolute;top:-50%;left:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(255,255,255,0.08) 0%,transparent 60%);border-radius:50%}
+  .cta-band h2{font-size:clamp(28px, 3.5vw, 38px);color:#fff;letter-spacing:-0.025em;margin-bottom:16px;position:relative}
+  .cta-band p{font-size:17px;color:rgba(255,255,255,0.78);margin-bottom:32px;max-width:560px;margin-left:auto;margin-right:auto;position:relative}
+  .cta-band .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}
+
+  footer{background:var(--navy);color:rgba(255,255,255,0.65);padding:64px 0 32px;font-size:14.5px}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.1)}
+  .footer-brand .logo{color:#fff}
+  .footer-brand .logo-icon{background:var(--slate)}
+  .footer-brand .logo-text small{color:rgba(255,255,255,0.5)}
+  .footer-brand > p{font-size:14.5px;line-height:1.65;margin:20px 0;color:rgba(255,255,255,0.6)}
+  .footer-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;background:rgba(125,147,184,0.15);border:1px solid rgba(125,147,184,0.25);border-radius:999px;font-size:12px;font-weight:600;color:var(--slate-2);letter-spacing:0.02em}
+  .footer-badge svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.5}
+  .footer-col h4{font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fff;margin-bottom:20px}
+  .footer-col ul{display:flex;flex-direction:column;gap:12px}
+  .footer-col a{color:rgba(255,255,255,0.62);font-size:14.5px;transition:color .15s}
+  .footer-col a:hover{color:#fff}
+  .footer-bottom{padding-top:32px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13.5px;color:rgba(255,255,255,0.5)}
+  @media (max-width:900px){
+    .footer-grid{grid-template-columns:1fr 1fr;gap:40px}
+    .footer-brand{grid-column:1/-1}
+  }
+  @media (max-width:520px){ .footer-grid{grid-template-columns:1fr} }
+
+  .wa-float{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));width:56px;height:56px;background:#25D366;border-radius:50%;display:grid;place-items:center;box-shadow:0 8px 24px rgba(37,211,102,0.4);z-index:90;transition:transform .2s, box-shadow .2s}
+  .wa-float:hover{transform:scale(1.06);box-shadow:0 12px 32px rgba(37,211,102,0.5)}
+  .wa-float svg{width:28px;height:28px;fill:#fff}
+
+  .rv{opacity:0;transform:translateY(24px);transition:opacity .7s, transform .7s}
+  .rv.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .rv{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-left">
+      <span>
+        <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+        +256 746 200 441
+      </span>
+      <span>
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        samridahservices@gmail.com
+      </span>
+    </div>
+  </div>
+</div>
+
+<header class="header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">S</span>
+        <span class="logo-text">
+          <span>Samridah</span>
+          <small>Cleaning Services</small>
+        </span>
+      </a>
+
+      <nav class="nav">
+        <a href="services.html">Services</a>
+        <a href="about.html" class="active">About</a>
+        <a href="index.html#work">Our Work</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <div class="header-cta">
+        <a href="tel:+256746200441" class="header-phone">
+          <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+          0746 200 441
+        </a>
+        <a href="index.html#book" class="btn btn-primary">Book Now</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+          <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav class="mobile-nav" id="mobileNav">
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="index.html#work">Our Work</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="index.html#book" class="btn btn-primary" style="margin-top:14px;justify-content:center">Book Now</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-inner">
+      <div class="crumb">
+        <a href="index.html">Home</a>
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        <span>About</span>
+      </div>
+      <h1>Real people, real work, <span>since 2024.</span></h1>
+      <p>Samridah Cleaning Services started with one simple idea: cleaning should be done properly, on time, and by people who actually care about the result. That has not changed.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-content rv">
+        <span class="section-label">Our story</span>
+        <h2 class="section-title">Started in Kampala, built on trust.</h2>
+        <p>We started Samridah because we saw too many homes and offices being cleaned to a standard that nobody would accept for their own space. Rushed jobs, missed corners, empty promises about coming back. We knew it could be done better.</p>
+        <p>So in 2024 we registered the business with URSB and started taking bookings across Kampala. From Mutungo to Nakawa, from family homes to offices and compounds, we've built a small but loyal client base by doing exactly what we say we will do. No shortcuts, no excuses.</p>
+        <p>Today we serve homes, businesses, and compounds across the city. Every job, big or small, gets the same attention. That is why our clients keep coming back, and why the ones who refer us to friends and neighbours do so without hesitation.</p>
+      </div>
+
+      <div class="story-visual rv">
+        <div class="story-visual-inner">
+          <div class="big">2024</div>
+          <div class="label">Registered with URSB</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="values">
+  <div class="container">
+    <div class="rv" style="max-width:720px">
+      <span class="section-label">What we stand for</span>
+      <h2 class="section-title">Three values we do not compromise on.</h2>
+    </div>
+
+    <div class="values-grid">
+      <div class="value-card rv">
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>We show up on time</h3>
+        <p>Time is the one thing we can all agree is precious. When we agree a date and a time, we arrive on that date at that time. No excuses, no last-minute changes. If something genuinely goes wrong, we tell you before you have to ask.</p>
+      </div>
+
+      <div class="value-card rv">
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5 2 7L12 16l-6.5 4.5 2-7L2 9h7z"/></svg>
+        </div>
+        <h3>We clean to a real standard</h3>
+        <p>We clean the way we would want our own homes cleaned. Corners, edges, under the furniture, behind the toilet, the parts that get skipped when someone is rushing. That is the standard every single job is held to.</p>
+      </div>
+
+      <div class="value-card rv">
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <h3>We are accountable</h3>
+        <p>Samridah is registered with URSB. We are a real, accountable business with a physical address, a working phone number, and a reputation we protect. Your home or office is in responsible hands, every single time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="credentials">
+  <div class="container">
+    <div class="rv" style="max-width:720px">
+      <span class="section-label">By the numbers</span>
+      <h2 class="section-title">The facts about our business.</h2>
+    </div>
+
+    <div class="credentials-grid">
+      <div class="credential rv">
+        <div class="credential-label">Registered</div>
+        <div class="credential-value">URSB</div>
+        <div class="credential-note">Officially registered with the Uganda Registration Services Bureau</div>
+      </div>
+      <div class="credential rv">
+        <div class="credential-label">Founded</div>
+        <div class="credential-value">2024</div>
+        <div class="credential-note">Serving Kampala homes and businesses since</div>
+      </div>
+      <div class="credential rv">
+        <div class="credential-label">Availability</div>
+        <div class="credential-value">7 days</div>
+        <div class="credential-note">Monday through Sunday, including public holidays</div>
+      </div>
+      <div class="credential rv">
+        <div class="credential-label">Based in</div>
+        <div class="credential-value">Nakawa</div>
+        <div class="credential-note">Mutungo 1, Zone 1A, Kampala Division</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="team">
+  <div class="container">
+    <div class="rv" style="max-width:720px">
+      <span class="section-label">Our team</span>
+      <h2 class="section-title">The people behind the work.</h2>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-card rv">
+        <div class="team-avatar">S</div>
+        <h3>Sarah Nakato</h3>
+        <div class="team-role">Founder and Director</div>
+        <p class="team-bio">Founded Samridah after years of seeing cleaning done poorly. Runs the day-to-day, handles client quotes, and personally checks the standard of work on every job.</p>
+      </div>
+      <div class="team-card rv">
+        <div class="team-avatar">J</div>
+        <h3>Joseph Mukasa</h3>
+        <div class="team-role">Operations Manager</div>
+        <p class="team-bio">Coordinates the cleaning teams, manages schedules, and makes sure every job has the right equipment and products on hand. Handles commercial contracts.</p>
+      </div>
+      <div class="team-card rv">
+        <div class="team-avatar">G</div>
+        <h3>Grace Achieng</h3>
+        <div class="team-role">Client Relations</div>
+        <p class="team-bio">The voice on the other end of WhatsApp and the phone. Answers questions, confirms bookings, follows up after every job to make sure clients are happy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2 class="rv">Want to work with us?</h2>
+    <p class="rv">Tell us what you need. We reply within a day with a price and a date that works for you.</p>
+    <div class="actions rv">
+      <a href="index.html#book" class="btn btn-white">Book a cleaning</a>
+      <a href="https://wa.me/256746200441" target="_blank" rel="noopener" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.3)">Chat on WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <span class="logo-icon">S</span>
+          <span class="logo-text">
+            <span>Samridah</span>
+            <small>Cleaning Services</small>
+          </span>
+        </a>
+        <p>Home, office and compound cleaning across Kampala. Serving homes and businesses since 2024.</p>
+        <span class="footer-badge">
+          <svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Registered with URSB
+        </span>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html#residential">Residential cleaning</a></li>
+          <li><a href="services.html#commercial">Commercial cleaning</a></li>
+          <li><a href="services.html#compound">Compound and grounds</a></li>
+          <li><a href="services.html#tiles">Tiles and supplies</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="index.html#work">Recent work</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="tel:+256746200441">+256 746 200 441</a></li>
+          <li><a href="tel:+256762093951">+256 762 093 951</a></li>
+          <li><a href="mailto:samridahservices@gmail.com">samridahservices@gmail.com</a></li>
+          <li><a href="https://wa.me/256746200441" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; <span id="year"></span> Samridah Cleaning Services. All rights reserved.</div>
+      <div>Mutungo 1, Zone 1A, Nakawa, Kampala · <a href="privacy.html" style="color:rgba(255,255,255,0.7)">Privacy</a></div>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/256746200441" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+</a>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  var mobileNav = document.getElementById('mobileNav');
+  document.getElementById('menuToggle').addEventListener('click', function () {
+    mobileNav.classList.toggle('open');
+  });
+  mobileNav.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () { mobileNav.classList.remove('open'); });
+  });
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.1 });
+  setTimeout(function () {
+    document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
+  }, 0);
+</script>
+</body>
+</html>
