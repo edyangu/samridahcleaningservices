@@ -12,51 +12,24 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231E2A44'/%3E%3Ctext x='16' y='23' font-family='Inter,sans-serif' font-size='18' font-weight='700' fill='white' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
-
   :root{
-    --navy:#1E2A44;
-    --navy-2:#2A3A5C;
-    --slate:#4E6289;
-    --slate-2:#7D93B8;
-    --light:#F4F6FA;
-    --light-2:#E8ECF3;
-    --white:#FFFFFF;
-    --ink:#1A2235;
-    --body:#4A5568;
-    --muted:#8891A5;
-    --rule:#D6DBE5;
-    --warm:#B89272;
-    --green:#10B981;
-    --red:#DC2626;
-
-    --radius:12px;
-    --radius-sm:8px;
-    --radius-lg:20px;
-
+    --navy:#1E2A44; --navy-2:#2A3A5C; --slate:#4E6289; --slate-2:#7D93B8;
+    --light:#F4F6FA; --light-2:#E8ECF3; --white:#FFFFFF;
+    --ink:#1A2235; --body:#4A5568; --muted:#8891A5; --rule:#D6DBE5;
+    --green:#10B981; --red:#DC2626;
+    --radius:12px; --radius-sm:8px; --radius-lg:20px;
     --shadow-sm:0 1px 3px rgba(30,42,68,0.08), 0 1px 2px rgba(30,42,68,0.04);
     --shadow:0 4px 12px rgba(30,42,68,0.08), 0 2px 4px rgba(30,42,68,0.04);
     --shadow-lg:0 12px 32px rgba(30,42,68,0.12), 0 4px 8px rgba(30,42,68,0.06);
-
     padding-top:env(safe-area-inset-top,0px);
     padding-bottom:env(safe-area-inset-bottom,0px);
   }
-
   html{scroll-behavior:smooth;scroll-padding-top:80px}
-
-  body{
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-    background:var(--white);
-    color:var(--body);
-    line-height:1.6;
-    font-size:16px;
-    -webkit-font-smoothing:antialiased;
-  }
-
+  body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--white);color:var(--body);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
   h1,h2,h3,h4{color:var(--ink);font-weight:700;line-height:1.2;letter-spacing:-0.02em}
   a{text-decoration:none;color:inherit}
   img{max-width:100%;display:block}
   ul{list-style:none}
-
   .container{max-width:1200px;margin:0 auto;padding:0 24px}
 
   .topbar{background:var(--navy);color:rgba(255,255,255,0.85);font-size:13.5px;padding:8px 0}
@@ -96,7 +69,6 @@
 
   .menu-toggle{display:none;background:transparent;border:1.5px solid var(--rule);border-radius:var(--radius-sm);padding:10px;cursor:pointer}
   .menu-toggle svg{width:22px;height:22px;stroke:var(--navy);fill:none;stroke-width:2}
-
   @media (max-width:960px){
     .nav,.header-phone{display:none}
     .menu-toggle{display:block}
@@ -149,15 +121,18 @@
 
   .services{background:#fff}
   .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-  .service-card{background:#fff;border:1px solid var(--rule);border-radius:var(--radius);padding:28px 24px;transition:all .2s;cursor:pointer}
+  .service-card{background:#fff;border:1px solid var(--rule);border-radius:var(--radius);padding:28px 24px;transition:all .2s;cursor:pointer;display:flex;flex-direction:column}
   .service-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--slate)}
-  .service-icon{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg, var(--slate) 0%, var(--navy) 100%);display:grid;place-items:center;margin-bottom:20px}
-  .service-icon svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .service-icon{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg, var(--slate) 0%, var(--navy) 100%);display:grid;place-items:center;margin-bottom:20px;overflow:hidden;flex:none;position:relative}
+  .service-icon svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;position:relative;z-index:1}
+  .service-icon img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
   .service-card h3{font-size:19px;color:var(--ink);margin-bottom:10px;letter-spacing:-0.015em}
-  .service-card p{font-size:14.5px;line-height:1.6;color:var(--body);margin-bottom:16px}
+  .service-card p{font-size:14.5px;line-height:1.6;color:var(--body);margin-bottom:16px;flex:1}
   .service-list{padding-top:16px;border-top:1px solid var(--rule)}
   .service-list li{font-size:13.5px;color:var(--muted);padding:4px 0;padding-left:18px;position:relative}
   .service-list li::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:5px;height:5px;background:var(--slate);border-radius:50%}
+  .services-loading{padding:64px 24px;text-align:center;color:var(--muted);font-size:15px;grid-column:1/-1}
+  .services-more{text-align:center;margin-top:48px}
   @media (max-width:960px){ .services-grid{grid-template-columns:repeat(2,1fr)} }
   @media (max-width:520px){ .services-grid{grid-template-columns:1fr} }
 
@@ -277,18 +252,15 @@
   .footer-brand > p{font-size:14.5px;line-height:1.65;margin:20px 0;color:rgba(255,255,255,0.6)}
   .footer-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;background:rgba(125,147,184,0.15);border:1px solid rgba(125,147,184,0.25);border-radius:999px;font-size:12px;font-weight:600;color:var(--slate-2);letter-spacing:0.02em}
   .footer-badge svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.5}
-
   .footer-col h4{font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fff;margin-bottom:20px}
   .footer-col ul{display:flex;flex-direction:column;gap:12px}
   .footer-col a{color:rgba(255,255,255,0.62);font-size:14.5px;transition:color .15s;display:inline-flex;align-items:center;gap:8px}
   .footer-col a:hover{color:#fff}
   .footer-col a svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;flex:none;opacity:0.7}
   .footer-col a:hover svg{opacity:1}
-
   .footer-bottom{padding-top:32px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13.5px;color:rgba(255,255,255,0.5)}
   .footer-bottom a{color:rgba(255,255,255,0.7);transition:color .15s}
   .footer-bottom a:hover{color:#fff}
-
   @media (max-width:900px){
     .footer-grid{grid-template-columns:1fr 1fr;gap:40px}
     .footer-brand{grid-column:1/-1}
@@ -441,7 +413,12 @@
       <h2 class="section-title rv">Complete cleaning solutions for every space.</h2>
       <p class="section-desc rv">From a single room to a full compound, we handle it all with the same attention to detail every time.</p>
     </div>
-    <div class="services-grid" id="svcGrid"></div>
+    <div class="services-grid" id="svcGrid">
+      <div class="services-loading">Loading services...</div>
+    </div>
+    <div class="services-more" id="servicesMore" style="display:none">
+      <a href="services.html" class="btn btn-outline">See all services and details</a>
+    </div>
   </div>
 </section>
 
@@ -491,7 +468,7 @@
 
     <div class="feedback-grid">
       <div class="feedback-list" id="feedbackList">
-        <div class="empty-state">Loading feedback…</div>
+        <div class="empty-state">Loading feedback...</div>
       </div>
 
       <div class="feedback-form-card rv">
@@ -674,11 +651,8 @@
 
       <div class="footer-col">
         <h4>Services</h4>
-        <ul>
-          <li><a href="services.html#residential">Residential cleaning</a></li>
-          <li><a href="services.html#commercial">Commercial cleaning</a></li>
-          <li><a href="services.html#compound">Compound and grounds</a></li>
-          <li><a href="services.html#tiles">Tiles and supplies</a></li>
+        <ul id="footerServicesList">
+          <li><a href="services.html">All services</a></li>
         </ul>
       </div>
 
@@ -735,7 +709,6 @@
         </ul>
       </div>
     </div>
-
     <div class="footer-bottom">
       <div>&copy; <span id="year"></span> Samridah Cleaning Services. All rights reserved.</div>
       <div>Mutungo 1, Zone 1A, Nakawa, Kampala · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></div>
@@ -769,13 +742,6 @@
   var WHATSAPP = '256746200441';
   var FORMSPREE = 'https://formspree.io/f/mjygwnny';
 
-  var SERVICES = [
-    { title: 'Residential Cleaning', desc: 'Regular upkeep or a full top-to-bottom clean for your home.', key: 'Residential Cleaning', icon: '<svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>', items: ['General house cleaning', 'Deep cleaning', 'Carpets and rugs', 'Windows and glass'] },
-    { title: 'Commercial Cleaning', desc: 'Scheduled maintenance for offices, retail and industrial spaces.', key: 'Commercial Cleaning', icon: '<svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>', items: ['Offices', 'Warehouses and factories', 'Malls and arcades', 'Schools and hotels'] },
-    { title: 'Compound & Grounds', desc: 'Keeping your outdoor space clean, trimmed and well kept all year.', key: 'Compound and Grounds', icon: '<svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>', items: ['Sweeping and upkeep', 'Hedge trimming', 'Lawn mowing', 'Compound design'] },
-    { title: 'Tiles & Supplies', desc: 'Tile restoration and bulk supply of cleaning products.', key: 'Tiles and Supplies', icon: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>', items: ['Tile cleaning', 'Detergents and disinfectants', 'Air fresheners and tissue', 'Urinal and toilet supplies'] }
-  ];
-
   document.getElementById('year').textContent = new Date().getFullYear();
 
   var mobileNav = document.getElementById('mobileNav');
@@ -786,23 +752,6 @@
     a.addEventListener('click', function () { mobileNav.classList.remove('open'); });
   });
 
-  var svcGrid = document.getElementById('svcGrid');
-  var serviceInput = document.getElementById('serviceInput');
-  SERVICES.forEach(function (s) {
-    var card = document.createElement('div');
-    card.className = 'service-card rv';
-    card.innerHTML =
-      '<div class="service-icon">' + s.icon + '</div>' +
-      '<h3>' + s.title + '</h3>' +
-      '<p>' + s.desc + '</p>' +
-      '<ul class="service-list">' + s.items.map(function (i) { return '<li>' + i + '</li>'; }).join('') + '</ul>';
-    card.addEventListener('click', function () {
-      serviceInput.value = s.key;
-      document.getElementById('book').scrollIntoView({ behavior: 'smooth' });
-    });
-    svcGrid.appendChild(card);
-  });
-
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (!e.isIntersecting) return;
@@ -810,16 +759,74 @@
       io.unobserve(e.target);
     });
   }, { threshold: 0.1 });
-  setTimeout(function () {
-    document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
-  }, 0);
 
   function escapeHtml(str) {
     var div = document.createElement('div');
     div.textContent = str || '';
     return div.innerHTML;
   }
+  function slugify(str) {
+    return (str || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  }
 
+  var iconPool = [
+    '<svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
+    '<svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>',
+    '<svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+    '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>'
+  ];
+
+  /* LIVE SERVICES */
+  var svcGrid = document.getElementById('svcGrid');
+  var servicesMore = document.getElementById('servicesMore');
+  var footerServicesList = document.getElementById('footerServicesList');
+  var serviceInput = document.getElementById('serviceInput');
+
+  var servicesQuery = query(collection(db, 'services'), orderBy('createdAt', 'asc'));
+
+  onSnapshot(servicesQuery, function (snap) {
+    var services = [];
+    snap.forEach(function (d) { services.push({ id: d.id, ...d.data() }); });
+    services = services.filter(function (s) { return s.title; });
+
+    if (!services.length) {
+      svcGrid.innerHTML = '<div class="services-loading">Services are being updated. Check back soon.</div>';
+      servicesMore.style.display = 'none';
+      footerServicesList.innerHTML = '<li><a href="services.html">All services</a></li>';
+      return;
+    }
+
+    svcGrid.innerHTML = '';
+    services.forEach(function (s, i) {
+      var icon = iconPool[i % iconPool.length];
+      var iconContent = s.imageUrl
+        ? '<img src="' + s.imageUrl + '" alt="" onerror="this.style.display=\'none\'">' + icon
+        : icon;
+      var itemsHtml = (s.items || []).slice(0, 4).map(function (it) { return '<li>' + escapeHtml(it) + '</li>'; }).join('');
+
+      var card = document.createElement('div');
+      card.className = 'service-card rv';
+      card.innerHTML =
+        '<div class="service-icon">' + iconContent + '</div>' +
+        '<h3>' + escapeHtml(s.title) + '</h3>' +
+        '<p>' + escapeHtml(s.description || '') + '</p>' +
+        (itemsHtml ? '<ul class="service-list">' + itemsHtml + '</ul>' : '');
+      card.addEventListener('click', function () {
+        serviceInput.value = s.title;
+        document.getElementById('book').scrollIntoView({ behavior: 'smooth' });
+      });
+      svcGrid.appendChild(card);
+      io.observe(card);
+    });
+
+    servicesMore.style.display = 'block';
+
+    footerServicesList.innerHTML = services.slice(0, 6).map(function (s) {
+      return '<li><a href="services.html#' + slugify(s.title) + '">' + escapeHtml(s.title) + '</a></li>';
+    }).join('') + '<li><a href="services.html">View all services</a></li>';
+  });
+
+  /* LIVE GALLERY */
   var workSection = document.getElementById('work');
   var gallery = document.getElementById('gallery');
   var workLink = document.getElementById('workLink');
@@ -828,7 +835,6 @@
   onSnapshot(collection(db, 'photos'), function (snap) {
     var photos = [];
     snap.forEach(function (d) { photos.push({ id: d.id, ...d.data() }); });
-
     var real = photos.filter(function (p) { return p.imageUrl; });
 
     if (!real.length) {
@@ -857,12 +863,11 @@
         f.appendChild(c);
       }
       gallery.appendChild(f);
+      io.observe(f);
     });
-    setTimeout(function () {
-      gallery.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
-    }, 0);
   });
 
+  /* LIVE ADS */
   var shownAds = [];
   try { shownAds = JSON.parse(sessionStorage.getItem('samridah_shown_ads') || '[]'); } catch (e) { shownAds = []; }
   var adsTriggered = false;
@@ -870,7 +875,6 @@
   onSnapshot(collection(db, 'ads'), function (snap) {
     var ads = [];
     snap.forEach(function (d) { ads.push({ id: d.id, ...d.data() }); });
-
     var active = ads.filter(function (a) { return a.active === 'yes' && shownAds.indexOf(a.id) === -1; });
     if (!active.length || adsTriggered) return;
     adsTriggered = true;
@@ -899,6 +903,7 @@
     }
   }
 
+  /* FEEDBACK */
   var feedbackList = document.getElementById('feedbackList');
   var feedbackQuery = query(collection(db, 'feedback'), orderBy('createdAt', 'desc'), limit(30));
 
@@ -970,6 +975,7 @@
       });
   });
 
+  /* ORDER FORM */
   var form = document.getElementById('orderForm');
   var statusEl = document.getElementById('status');
   var btn = document.getElementById('submitBtn');
@@ -991,6 +997,7 @@
       phone: (fd.get('phone') || '').trim(),
       service: fd.get('service') || 'General enquiry',
       message: (fd.get('message') || '').trim(),
+      status: 'pending',
       date: new Date().toISOString().split('T')[0],
       createdAt: serverTimestamp()
     };
@@ -1034,6 +1041,10 @@
       'Details: ' + (fd.get('message') || '');
     window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
   });
+
+  setTimeout(function () {
+    document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
+  }, 0);
 </script>
 </body>
 </html>
