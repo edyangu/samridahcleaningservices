@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://samridah-website.vercel.app/sitemap.xml
+Sitemap: https://samridahcleaningservices.vercel.app/sitemap.xml
