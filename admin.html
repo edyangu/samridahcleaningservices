@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Admin — Samridah Cleaning Services</title>
+<title>Admin | Samridah Cleaning Services</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -12,7 +12,7 @@
     --navy:#1E2A44; --navy-2:#2A3A5C; --slate:#4E6289; --slate-2:#7D93B8;
     --light:#F4F6FA; --light-2:#E8ECF3; --white:#fff;
     --ink:#1A2235; --body:#4A5568; --muted:#8891A5; --rule:#D6DBE5;
-    --green:#10B981; --red:#DC2626; --amber:#F59E0B;
+    --green:#10B981; --red:#DC2626; --amber:#F59E0B; --blue:#3B82F6;
     --r:12px; --r-sm:8px; --r-lg:20px;
     --sh-sm:0 1px 3px rgba(30,42,68,0.08);
     --sh:0 4px 12px rgba(30,42,68,0.08);
@@ -20,7 +20,7 @@
     padding-top:env(safe-area-inset-top,0);
     padding-bottom:env(safe-area-inset-bottom,0);
   }
-  body{font-family:'Inter',-apple-system,sans-serif;background:var(--light);color:var(--body);font-size:15.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  body{font-family:'Inter',-apple-system,sans-serif;background:var(--light);color:var(--body);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
   h1,h2,h3,h4{color:var(--ink);font-weight:700;line-height:1.2;letter-spacing:-0.02em}
   a{color:inherit;text-decoration:none}
   ul{list-style:none}
@@ -45,74 +45,93 @@
   /* DASHBOARD */
   .dashboard{display:none;min-height:100vh}
   .dashboard.active{display:block}
-  .topbar{background:var(--navy);color:#fff;padding:16px 32px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10;gap:16px;flex-wrap:wrap}
+  .topbar{background:var(--navy);color:#fff;padding:14px 32px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10;gap:16px;flex-wrap:wrap}
   .topbar-brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:16px;letter-spacing:-0.02em}
   .topbar-brand-icon{width:32px;height:32px;background:var(--slate);border-radius:8px;display:grid;place-items:center;font-size:15px}
   .topbar-user{display:flex;align-items:center;gap:12px;font-size:14px}
   .topbar-user span{color:rgba(255,255,255,0.6)}
-  .topbar-user button{background:rgba(255,255,255,0.08);color:#fff;border:0;padding:8px 16px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;transition:background .15s}
-  .topbar-user button:hover{background:rgba(255,255,255,0.16)}
   .topbar-user a{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.2);padding:8px 16px;border-radius:8px;font-size:14px;font-weight:500;transition:background .15s}
   .topbar-user a:hover{background:rgba(255,255,255,0.08)}
+  .topbar-user button{background:rgba(255,255,255,0.08);color:#fff;border:0;padding:8px 16px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;transition:background .15s}
+  .topbar-user button:hover{background:rgba(255,255,255,0.16)}
 
-  .stats{background:#fff;border-bottom:1px solid var(--rule);padding:24px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0}
-  .stat{padding:0 24px;border-right:1px solid var(--rule)}
+  .stats{background:#fff;border-bottom:1px solid var(--rule);padding:22px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0}
+  .stat{padding:0 22px;border-right:1px solid var(--rule)}
   .stat:first-child{padding-left:0}
   .stat:last-child{border-right:0}
-  .stat-label{font-size:11.5px;font-weight:600;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px}
-  .stat-value{font-size:32px;font-weight:700;color:var(--navy);letter-spacing:-0.03em;line-height:1}
+  .stat-label{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px}
+  .stat-value{font-size:28px;font-weight:700;color:var(--navy);letter-spacing:-0.03em;line-height:1}
 
-  .tabs{background:#fff;border-bottom:1px solid var(--rule);padding:0 32px;display:flex;gap:32px;overflow-x:auto}
-  .tab{padding:18px 0;font-size:14.5px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;cursor:pointer;transition:color .15s, border-color .15s;white-space:nowrap}
+  .tabs{background:#fff;border-bottom:1px solid var(--rule);padding:0 32px;display:flex;gap:28px;overflow-x:auto;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{padding:16px 0;font-size:14.5px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;cursor:pointer;transition:color .15s, border-color .15s;white-space:nowrap}
   .tab.active{color:var(--navy);border-bottom-color:var(--slate)}
   .tab:hover{color:var(--navy)}
 
-  .main{padding:32px;max-width:1200px;margin:0 auto}
+  .main{padding:28px;max-width:1200px;margin:0 auto}
   .panel{background:#fff;border-radius:var(--r);box-shadow:var(--sh-sm);overflow:hidden}
   .panel-head{padding:20px 24px;border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
   .panel-head h2{font-size:18px}
-  .panel-head p{font-size:14px;color:var(--body);margin-top:2px}
+  .panel-head p{font-size:13.5px;color:var(--body);margin-top:2px}
 
   .btn{padding:10px 18px;border:0;border-radius:var(--r-sm);font-size:14px;font-weight:600;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:6px}
+  .btn:disabled{opacity:0.6;cursor:not-allowed}
   .btn-primary{background:var(--slate);color:#fff}
-  .btn-primary:hover{background:var(--navy)}
+  .btn-primary:hover:not(:disabled){background:var(--navy)}
   .btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--rule)}
-  .btn-outline:hover{border-color:var(--ink)}
+  .btn-outline:hover:not(:disabled){border-color:var(--ink)}
   .btn-danger{background:transparent;color:var(--red);border:1.5px solid rgba(220,38,38,0.3)}
-  .btn-danger:hover{background:rgba(220,38,38,0.06)}
+  .btn-danger:hover:not(:disabled){background:rgba(220,38,38,0.06)}
 
+  /* Filters */
+  .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+  .filter-btn{padding:7px 14px;background:#fff;border:1.5px solid var(--rule);border-radius:999px;font-size:13px;font-weight:500;cursor:pointer;transition:all .15s}
+  .filter-btn:hover{border-color:var(--slate)}
+  .filter-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .search-input{padding:9px 14px;background:#fff;border:1.5px solid var(--rule);border-radius:var(--r-sm);font-size:14px;font-family:inherit;flex:1;min-width:180px}
+  .search-input:focus{outline:none;border-color:var(--slate)}
+
+  /* Tables */
   table{width:100%;border-collapse:collapse}
-  th{text-align:left;padding:14px 24px;font-size:11.5px;font-weight:600;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;background:var(--light);border-bottom:1px solid var(--rule)}
-  td{padding:18px 24px;border-bottom:1px solid var(--rule);font-size:14.5px;color:var(--body);vertical-align:top}
+  th{text-align:left;padding:12px 20px;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;background:var(--light);border-bottom:1px solid var(--rule)}
+  td{padding:16px 20px;border-bottom:1px solid var(--rule);font-size:14px;color:var(--body);vertical-align:top}
   tr:last-child td{border-bottom:0}
   tr:hover td{background:var(--light)}
   td strong{color:var(--ink);font-weight:600}
   td small{color:var(--muted);font-size:12.5px}
 
-  .badge{display:inline-block;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;background:var(--light-2);color:var(--navy)}
-  .link-wa{color:var(--green);font-weight:600;font-size:13.5px}
-  .link-wa:hover{text-decoration:underline}
-  .link-danger{color:var(--red);font-weight:600;font-size:13.5px;background:none;border:0;cursor:pointer;padding:0}
-  .link-danger:hover{text-decoration:underline}
+  .status-badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:11.5px;font-weight:600;letter-spacing:0.02em}
+  .status-pending{background:#FEF3C7;color:#92400E}
+  .status-contacted{background:#DBEAFE;color:#1E40AF}
+  .status-booked{background:#E0E7FF;color:#3730A3}
+  .status-completed{background:#D1FAE5;color:#065F46}
+  .status-cancelled{background:#FEE2E2;color:#991B1B}
 
-  .items-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;padding:24px}
+  .action-link{color:var(--slate);font-weight:600;font-size:13px;background:none;border:0;cursor:pointer;padding:0;margin-right:10px;text-decoration:underline;text-underline-offset:3px}
+  .action-link:hover{color:var(--navy)}
+  .action-link.danger{color:var(--red)}
+  .action-link.danger:hover{color:#991B1B}
+
+  /* Grid items */
+  .items-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;padding:20px}
   .item{background:var(--light);border-radius:var(--r);overflow:hidden;border:1px solid var(--rule)}
   .item-img{width:100%;height:150px;object-fit:cover;background:#e8ecf3;display:block}
   .item-img-missing{width:100%;height:150px;background:var(--light-2);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px}
   .item-body{padding:16px}
-  .item-body h3{font-size:16px;margin-bottom:6px}
-  .item-body p{font-size:13.5px;color:var(--body);margin-bottom:12px;line-height:1.5}
-  .item-meta{font-size:12px;color:var(--muted);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:12px}
+  .item-body h3{font-size:15px;margin-bottom:6px}
+  .item-body p{font-size:13px;color:var(--body);margin-bottom:10px;line-height:1.5}
+  .item-meta{font-size:11.5px;color:var(--muted);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:12px}
   .item-actions{display:flex;gap:8px;padding-top:12px;border-top:1px solid var(--rule)}
-  .item-actions button{padding:6px 12px;font-size:13px;border-radius:6px}
+  .item-actions button{padding:6px 12px;font-size:12.5px;border-radius:6px}
 
   .empty{padding:64px 24px;text-align:center;color:var(--muted)}
-  .empty h3{font-size:18px;color:var(--ink);margin-bottom:8px}
+  .empty h3{font-size:17px;color:var(--ink);margin-bottom:8px}
   .empty p{font-size:14px}
 
+  /* Modal */
   .modal-bg{display:none;position:fixed;inset:0;background:rgba(30,42,68,0.5);z-index:1000;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
   .modal-bg.active{display:flex}
-  .modal{background:#fff;border-radius:var(--r-lg);padding:32px;width:100%;max-width:520px;max-height:90vh;overflow-y:auto}
+  .modal{background:#fff;border-radius:var(--r-lg);padding:32px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto}
   .modal h2{font-size:20px;margin-bottom:24px}
   .modal-field{display:grid;gap:8px;margin-bottom:18px}
   .modal-field label{font-size:13px;font-weight:600;color:var(--ink)}
@@ -120,32 +139,45 @@
   .modal-field input:focus,.modal-field textarea:focus,.modal-field select:focus{outline:none;border-color:var(--slate)}
   .modal-field textarea{resize:vertical;min-height:80px}
   .modal-field small{font-size:12px;color:var(--muted)}
+  .image-preview{margin-top:10px;width:100%;height:140px;border-radius:var(--r-sm);background:var(--light);border:1.5px dashed var(--rule);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12.5px;overflow:hidden}
+  .image-preview img{width:100%;height:100%;object-fit:cover}
   .modal-actions{display:flex;gap:12px;margin-top:28px;padding-top:20px;border-top:1px solid var(--rule)}
   .modal-actions button{flex:1;padding:12px;border-radius:var(--r-sm);font-weight:600;font-size:14.5px;cursor:pointer;border:0}
   .modal-cancel{background:var(--light);color:var(--ink)}
+  .modal-cancel:hover{background:var(--light-2)}
   .modal-save{background:var(--slate);color:#fff}
   .modal-save:hover{background:var(--navy)}
+  .modal-save:disabled{opacity:0.6;cursor:not-allowed}
 
-  .toast{position:fixed;bottom:24px;right:24px;background:var(--navy);color:#fff;padding:14px 22px;border-radius:var(--r-sm);box-shadow:var(--sh-lg);font-size:14px;font-weight:500;opacity:0;transform:translateY(20px);transition:opacity .3s, transform .3s;z-index:2000;border-left:4px solid var(--slate-2)}
+  .upload-hint{background:#EFF6FF;border:1px solid #BFDBFE;border-radius:var(--r-sm);padding:14px 16px;margin-bottom:16px;font-size:13px;color:#1E40AF;line-height:1.55}
+  .upload-hint strong{color:#1E3A8A;display:block;margin-bottom:4px}
+  .upload-hint a{color:#1E40AF;text-decoration:underline;font-weight:600}
+
+  .toast{position:fixed;bottom:24px;right:24px;background:var(--navy);color:#fff;padding:14px 22px;border-radius:var(--r-sm);box-shadow:var(--sh-lg);font-size:14px;font-weight:500;opacity:0;transform:translateY(20px);transition:opacity .3s, transform .3s;z-index:2000;border-left:4px solid var(--slate-2);max-width:calc(100vw - 48px)}
   .toast.show{opacity:1;transform:translateY(0)}
   .toast.error{background:var(--red);border-left-color:#fff}
+  .toast.success{background:var(--green);border-left-color:#fff}
 
-  .loading{padding:64px 24px;text-align:center;color:var(--muted);font-size:14px}
+  .loading{padding:56px 24px;text-align:center;color:var(--muted);font-size:14px}
+
+  .service-items-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+  .service-items-list span{background:#fff;border:1px solid var(--rule);border-radius:999px;padding:3px 10px;font-size:11.5px;color:var(--body)}
 
   @media (max-width:768px){
-    .stats{padding:20px;grid-template-columns:1fr 1fr}
-    .stat{padding:12px 16px;border-right:0;border-bottom:1px solid var(--rule)}
+    .stats{padding:16px;grid-template-columns:1fr 1fr}
+    .stat{padding:10px 14px;border-right:0;border-bottom:1px solid var(--rule)}
+    .stat:first-child{padding-left:14px}
     .stat:nth-child(2n){border-right:0}
-    .stat:first-child{padding-left:16px}
-    .stat-value{font-size:24px}
-    .topbar{padding:14px 20px}
+    .stat-value{font-size:22px}
+    .topbar{padding:12px 16px}
     .topbar-user span{display:none}
-    .tabs{padding:0 20px;gap:24px}
-    .main{padding:20px}
-    .panel-head{padding:16px 20px}
-    th,td{padding:12px 16px;font-size:13.5px}
+    .tabs{padding:0 16px;gap:20px}
+    .main{padding:16px}
+    .panel-head{padding:16px 18px}
+    th,td{padding:10px 12px;font-size:13px}
     table{display:block;overflow-x:auto;white-space:nowrap}
-    .items-grid{padding:16px;grid-template-columns:1fr;gap:16px}
+    .items-grid{padding:14px;grid-template-columns:1fr}
+    .modal{padding:24px 20px}
   }
 </style>
 </head>
@@ -156,16 +188,14 @@
     <div class="login-logo">S</div>
     <h1>Admin access</h1>
     <p>Sign in to manage Samridah Cleaning Services.</p>
-
     <div class="login-field">
       <label for="loginEmail">Email</label>
       <input type="email" id="loginEmail" placeholder="you@email.com" autocomplete="email">
     </div>
     <div class="login-field">
       <label for="loginPassword">Password</label>
-      <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password">
+      <input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password">
     </div>
-
     <button class="login-btn" id="loginBtn">Sign in</button>
     <p class="login-error" id="loginError">Incorrect email or password.</p>
   </div>
@@ -187,14 +217,16 @@
 
   <div class="stats">
     <div class="stat"><div class="stat-label">Orders</div><div class="stat-value" id="statOrders">0</div></div>
+    <div class="stat"><div class="stat-label">Pending</div><div class="stat-value" id="statPending">0</div></div>
+    <div class="stat"><div class="stat-label">Services</div><div class="stat-value" id="statServices">0</div></div>
     <div class="stat"><div class="stat-label">Ads</div><div class="stat-value" id="statAds">0</div></div>
-    <div class="stat"><div class="stat-label">Active ads</div><div class="stat-value" id="statActiveAds">0</div></div>
     <div class="stat"><div class="stat-label">Photos</div><div class="stat-value" id="statPhotos">0</div></div>
     <div class="stat"><div class="stat-label">Feedback</div><div class="stat-value" id="statFeedback">0</div></div>
   </div>
 
   <div class="tabs">
     <div class="tab active" data-tab="orders">Orders</div>
+    <div class="tab" data-tab="services">Services</div>
     <div class="tab" data-tab="ads">Ads</div>
     <div class="tab" data-tab="photos">Photos</div>
     <div class="tab" data-tab="feedback">Feedback</div>
@@ -207,7 +239,27 @@
         <div class="panel-head">
           <div><h2>Orders</h2><p>Requests submitted through the website.</p></div>
         </div>
+        <div style="padding:16px 24px 0">
+          <div class="filters">
+            <input type="text" class="search-input" id="orderSearch" placeholder="Search by name or phone...">
+            <button class="filter-btn active" data-order-filter="all">All</button>
+            <button class="filter-btn" data-order-filter="pending">Pending</button>
+            <button class="filter-btn" data-order-filter="contacted">Contacted</button>
+            <button class="filter-btn" data-order-filter="booked">Booked</button>
+            <button class="filter-btn" data-order-filter="completed">Completed</button>
+          </div>
+        </div>
         <div id="ordersWrap"><div class="loading">Loading orders...</div></div>
+      </div>
+    </div>
+
+    <div id="servicesTab" style="display:none">
+      <div class="panel">
+        <div class="panel-head">
+          <div><h2>Services</h2><p>Edit the services shown on the services page.</p></div>
+          <button class="btn btn-primary" id="addServiceBtn">+ Add service</button>
+        </div>
+        <div class="items-grid" id="servicesGrid"><div class="loading" style="grid-column:1/-1">Loading services...</div></div>
       </div>
     </div>
 
@@ -224,7 +276,7 @@
     <div id="photosTab" style="display:none">
       <div class="panel">
         <div class="panel-head">
-          <div><h2>Photos</h2><p>Gallery images shown in the "Our Work" section.</p></div>
+          <div><h2>Photos</h2><p>Gallery images shown in the Our Work section.</p></div>
           <button class="btn btn-primary" id="addPhotoBtn">+ Add photo</button>
         </div>
         <div class="items-grid" id="photosGrid"><div class="loading" style="grid-column:1/-1">Loading photos...</div></div>
@@ -234,7 +286,7 @@
     <div id="feedbackTab" style="display:none">
       <div class="panel">
         <div class="panel-head">
-          <div><h2>Feedback</h2><p>Client comments — visible on the website immediately.</p></div>
+          <div><h2>Feedback</h2><p>Client comments shown on the website.</p></div>
         </div>
         <div id="feedbackWrap"><div class="loading">Loading feedback...</div></div>
       </div>
@@ -243,22 +295,45 @@
   </div>
 </div>
 
+<!-- SERVICE MODAL -->
+<div class="modal-bg" id="serviceModal">
+  <div class="modal">
+    <h2 id="serviceModalTitle">Add service</h2>
+    <input type="hidden" id="serviceEditId">
+
+    <div class="modal-field"><label for="serviceTitle">Service name</label><input type="text" id="serviceTitle" placeholder="e.g. Residential cleaning"></div>
+    <div class="modal-field"><label for="serviceDesc">Short description</label><textarea id="serviceDesc" rows="2" placeholder="What this service covers"></textarea></div>
+    <div class="modal-field"><label for="serviceItems">What's included (one per line)</label><textarea id="serviceItems" rows="4" placeholder="General house cleaning&#10;Deep cleaning&#10;Carpets and rugs"></textarea></div>
+    <div class="modal-field"><label for="serviceImageUrl">Image URL</label><input type="url" id="serviceImageUrl" placeholder="https://i.postimg.cc/.../photo.jpg"></div>
+    <div class="image-preview" id="serviceImagePreview">Paste image URL above to preview</div>
+
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal('serviceModal')">Cancel</button>
+      <button class="modal-save" id="serviceSaveBtn">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- AD MODAL -->
 <div class="modal-bg" id="adModal">
   <div class="modal">
     <h2 id="adModalTitle">Add ad</h2>
     <input type="hidden" id="adEditId">
 
+    <div class="upload-hint">
+      <strong>Upload your image first</strong>
+      Go to <a href="https://postimages.org" target="_blank" rel="noopener">postimages.org</a>, upload your image, then copy the <strong>Direct link</strong>. It ends in .jpg or .png. Paste it below.
+    </div>
+
     <div class="modal-field"><label for="adTitle">Title</label><input type="text" id="adTitle" placeholder="e.g. 20% off deep cleaning"></div>
-    <div class="modal-field"><label for="adDesc">Description</label><textarea id="adDesc" placeholder="Short description shown on the ad" rows="3"></textarea></div>
-    <div class="modal-field"><label for="adImageUrl">Image URL</label><input type="url" id="adImageUrl" placeholder="https://i.ibb.co/.../photo.jpg"><small>Direct link to a .jpg or .png image</small></div>
+    <div class="modal-field"><label for="adDesc">Description</label><textarea id="adDesc" rows="2" placeholder="Short line shown on the ad"></textarea></div>
+    <div class="modal-field"><label for="adImageUrl">Image URL</label><input type="url" id="adImageUrl" placeholder="https://i.postimg.cc/.../photo.jpg"></div>
+    <div class="image-preview" id="adImagePreview">Paste image URL above to preview</div>
     <div class="modal-field"><label for="adLink">Link (optional)</label><input type="url" id="adLink" placeholder="https://wa.me/256746200441"></div>
     <div class="modal-field"><label for="adBtnText">Button text</label><input type="text" id="adBtnText" placeholder="Book now"></div>
     <div class="modal-field"><label for="adDuration">Duration (seconds)</label><input type="number" id="adDuration" value="8" min="3" max="60"></div>
     <div class="modal-field"><label for="adActive">Status</label>
-      <select id="adActive">
-        <option value="yes">Active — show on site</option>
-        <option value="no">Hidden</option>
-      </select>
+      <select id="adActive"><option value="yes">Active</option><option value="no">Hidden</option></select>
     </div>
 
     <div class="modal-actions">
@@ -268,17 +343,53 @@
   </div>
 </div>
 
+<!-- PHOTO MODAL -->
 <div class="modal-bg" id="photoModal">
   <div class="modal">
     <h2 id="photoModalTitle">Add photo</h2>
     <input type="hidden" id="photoEditId">
 
-    <div class="modal-field"><label for="photoCaption">Caption</label><input type="text" id="photoCaption" placeholder="e.g. Office deep clean — Kololo"></div>
-    <div class="modal-field"><label for="photoImageUrl">Image URL</label><input type="url" id="photoImageUrl" placeholder="https://i.ibb.co/.../photo.jpg"><small>Direct link to a .jpg or .png image</small></div>
+    <div class="upload-hint">
+      <strong>Upload your image first</strong>
+      Go to <a href="https://postimages.org" target="_blank" rel="noopener">postimages.org</a>, upload your image, then copy the <strong>Direct link</strong>. Paste it below.
+    </div>
+
+    <div class="modal-field"><label for="photoCaption">Caption</label><input type="text" id="photoCaption" placeholder="e.g. Office deep clean in Kololo"></div>
+    <div class="modal-field"><label for="photoImageUrl">Image URL</label><input type="url" id="photoImageUrl" placeholder="https://i.postimg.cc/.../photo.jpg"></div>
+    <div class="image-preview" id="photoImagePreview">Paste image URL above to preview</div>
 
     <div class="modal-actions">
       <button class="modal-cancel" onclick="closeModal('photoModal')">Cancel</button>
       <button class="modal-save" id="photoSaveBtn">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ORDER DETAIL MODAL -->
+<div class="modal-bg" id="orderModal">
+  <div class="modal">
+    <h2>Order details</h2>
+    <input type="hidden" id="orderEditId">
+
+    <div class="modal-field"><label>Client</label><input type="text" id="orderName" readonly></div>
+    <div class="modal-field"><label>Email</label><input type="text" id="orderEmail" readonly></div>
+    <div class="modal-field"><label>Phone</label><input type="text" id="orderPhone" readonly></div>
+    <div class="modal-field"><label>Service</label><input type="text" id="orderService" readonly></div>
+    <div class="modal-field"><label>Message</label><textarea id="orderMessage" rows="3" readonly></textarea></div>
+    <div class="modal-field"><label for="orderStatus">Status</label>
+      <select id="orderStatus">
+        <option value="pending">Pending</option>
+        <option value="contacted">Contacted</option>
+        <option value="booked">Booked</option>
+        <option value="completed">Completed</option>
+        <option value="cancelled">Cancelled</option>
+      </select>
+    </div>
+    <div class="modal-field"><label for="orderNotes">Internal notes</label><textarea id="orderNotes" rows="3" placeholder="Notes only you can see"></textarea></div>
+
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal('orderModal')">Close</button>
+      <button class="modal-save" id="orderSaveBtn">Save changes</button>
     </div>
   </div>
 </div>
@@ -288,7 +399,7 @@
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
   import {
-    getFirestore, collection, doc, addDoc, setDoc, deleteDoc,
+    getFirestore, collection, doc, addDoc, setDoc, deleteDoc, updateDoc,
     onSnapshot, query, orderBy, serverTimestamp
   } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
   import {
@@ -308,9 +419,12 @@
   const db = getFirestore(app);
   const auth = getAuth(app);
 
-  var orders = [], ads = [], photos = [], feedback = [];
+  var orders = [], services = [], ads = [], photos = [], feedback = [];
   var listenersStarted = false;
+  var currentOrderFilter = 'all';
+  var currentOrderSearch = '';
 
+  /* AUTH */
   var loginBtn = document.getElementById('loginBtn');
   var loginError = document.getElementById('loginError');
 
@@ -323,11 +437,9 @@
     var email = document.getElementById('loginEmail').value.trim();
     var password = document.getElementById('loginPassword').value;
     if (!email || !password) return;
-
     loginBtn.disabled = true;
     loginBtn.textContent = 'Signing in...';
     loginError.classList.remove('show');
-
     signInWithEmailAndPassword(auth, email, password)
       .catch(function (err) {
         console.error(err);
@@ -359,27 +471,30 @@
     }
   });
 
+  /* TABS */
   document.querySelectorAll('.tab').forEach(function (t) {
     t.addEventListener('click', function () {
       document.querySelectorAll('.tab').forEach(function (x) { x.classList.remove('active'); });
       t.classList.add('active');
       var tab = t.dataset.tab;
       document.getElementById('ordersTab').style.display = tab === 'orders' ? 'block' : 'none';
+      document.getElementById('servicesTab').style.display = tab === 'services' ? 'block' : 'none';
       document.getElementById('adsTab').style.display = tab === 'ads' ? 'block' : 'none';
       document.getElementById('photosTab').style.display = tab === 'photos' ? 'block' : 'none';
       document.getElementById('feedbackTab').style.display = tab === 'feedback' ? 'block' : 'none';
     });
   });
 
+  /* HELPERS */
   function escapeHtml(str) {
     var div = document.createElement('div');
     div.textContent = str || '';
     return div.innerHTML;
   }
-  function toast(msg, isError) {
+  function toast(msg, type) {
     var t = document.getElementById('toast');
     t.textContent = msg;
-    t.className = 'toast show' + (isError ? ' error' : '');
+    t.className = 'toast show' + (type ? ' ' + type : '');
     setTimeout(function () { t.className = 'toast'; }, 3000);
   }
   window.closeModal = function (id) { document.getElementById(id).classList.remove('active'); };
@@ -387,75 +502,238 @@
     bg.addEventListener('click', function (e) { if (e.target === bg) bg.classList.remove('active'); });
   });
 
+  /* LIVE LISTENERS */
   function startListeners() {
     onSnapshot(query(collection(db, 'orders'), orderBy('createdAt', 'desc')), function (snap) {
       orders = [];
       snap.forEach(function (d) { orders.push({ id: d.id, ...d.data() }); });
       renderOrders();
       updateStats();
-    }, function (err) { console.warn(err); });
+    });
+
+    onSnapshot(query(collection(db, 'services'), orderBy('createdAt', 'asc')), function (snap) {
+      services = [];
+      snap.forEach(function (d) { services.push({ id: d.id, ...d.data() }); });
+      renderServices();
+      updateStats();
+    });
 
     onSnapshot(collection(db, 'ads'), function (snap) {
       ads = [];
       snap.forEach(function (d) { ads.push({ id: d.id, ...d.data() }); });
       renderAds();
       updateStats();
-    }, function (err) { console.warn(err); });
+    });
 
     onSnapshot(collection(db, 'photos'), function (snap) {
       photos = [];
       snap.forEach(function (d) { photos.push({ id: d.id, ...d.data() }); });
       renderPhotos();
       updateStats();
-    }, function (err) { console.warn(err); });
+    });
 
     onSnapshot(query(collection(db, 'feedback'), orderBy('createdAt', 'desc')), function (snap) {
       feedback = [];
       snap.forEach(function (d) { feedback.push({ id: d.id, ...d.data() }); });
       renderFeedback();
       updateStats();
-    }, function (err) { console.warn(err); });
+    });
   }
 
   function updateStats() {
     document.getElementById('statOrders').textContent = orders.filter(function (o) { return o.name; }).length;
+    document.getElementById('statPending').textContent = orders.filter(function (o) { return o.name && (o.status === 'pending' || !o.status); }).length;
+    document.getElementById('statServices').textContent = services.filter(function (s) { return s.title; }).length;
     document.getElementById('statAds').textContent = ads.length;
-    document.getElementById('statActiveAds').textContent = ads.filter(function (a) { return a.active === 'yes'; }).length;
     document.getElementById('statPhotos').textContent = photos.filter(function (p) { return p.imageUrl; }).length;
     document.getElementById('statFeedback').textContent = feedback.filter(function (f) { return f.name; }).length;
   }
 
+  /* ---------- ORDERS ---------- */
+  document.querySelectorAll('[data-order-filter]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('[data-order-filter]').forEach(function (x) { x.classList.remove('active'); });
+      b.classList.add('active');
+      currentOrderFilter = b.dataset.orderFilter;
+      renderOrders();
+    });
+  });
+  document.getElementById('orderSearch').addEventListener('input', function (e) {
+    currentOrderSearch = e.target.value.toLowerCase();
+    renderOrders();
+  });
+
   function renderOrders() {
     var wrap = document.getElementById('ordersWrap');
     var real = orders.filter(function (o) { return o.name; });
+
+    if (currentOrderFilter !== 'all') {
+      real = real.filter(function (o) {
+        var s = o.status || 'pending';
+        return s === currentOrderFilter;
+      });
+    }
+
+    if (currentOrderSearch) {
+      real = real.filter(function (o) {
+        return (o.name || '').toLowerCase().includes(currentOrderSearch) ||
+               (o.phone || '').toLowerCase().includes(currentOrderSearch) ||
+               (o.email || '').toLowerCase().includes(currentOrderSearch);
+      });
+    }
+
     if (!real.length) {
-      wrap.innerHTML = '<div class="empty"><h3>No orders yet</h3><p>Orders submitted on the website will appear here.</p></div>';
+      wrap.innerHTML = '<div class="empty"><h3>No orders found</h3><p>Try a different filter or search term.</p></div>';
       return;
     }
-    wrap.innerHTML = '<table><thead><tr><th>Date</th><th>Client</th><th>Phone</th><th>Service</th><th>Details</th><th></th></tr></thead><tbody>' +
+
+    wrap.innerHTML = '<table><thead><tr><th>Date</th><th>Client</th><th>Phone</th><th>Service</th><th>Status</th><th>Actions</th></tr></thead><tbody>' +
       real.map(function (o) {
+        var status = o.status || 'pending';
+        var statusText = status.charAt(0).toUpperCase() + status.slice(1);
         return '<tr>' +
           '<td><small>' + escapeHtml(o.date || '') + '</small></td>' +
           '<td><strong>' + escapeHtml(o.name || '') + '</strong><br><small>' + escapeHtml(o.email || '') + '</small></td>' +
           '<td>' + escapeHtml(o.phone || '') + '</td>' +
-          '<td><span class="badge">' + escapeHtml(o.service || '') + '</span></td>' +
-          '<td style="max-width:260px;font-size:13.5px">' + escapeHtml((o.message || '').slice(0, 140)) + ((o.message || '').length > 140 ? '…' : '') + '</td>' +
-          '<td style="white-space:nowrap">' +
-            '<a class="link-wa" href="https://wa.me/' + (o.phone || '').replace(/[^0-9]/g, '') + '" target="_blank">WhatsApp</a>' +
-            ' &nbsp; <button class="link-danger" data-del-order="' + o.id + '">Delete</button>' +
+          '<td><small>' + escapeHtml(o.service || '') + '</small></td>' +
+          '<td><span class="status-badge status-' + status + '">' + statusText + '</span></td>' +
+          '<td>' +
+            '<a class="action-link" href="https://wa.me/' + (o.phone || '').replace(/[^0-9]/g, '') + '" target="_blank">WhatsApp</a>' +
+            '<button class="action-link" data-open-order="' + o.id + '">View</button>' +
+            '<button class="action-link danger" data-del-order="' + o.id + '">Delete</button>' +
           '</td>' +
         '</tr>';
       }).join('') +
       '</tbody></table>';
+
+    wrap.querySelectorAll('[data-open-order]').forEach(function (b) {
+      b.addEventListener('click', function () { openOrder(b.dataset.openOrder); });
+    });
     wrap.querySelectorAll('[data-del-order]').forEach(function (b) {
       b.addEventListener('click', function () { deleteOrder(b.dataset.delOrder); });
     });
   }
 
-  function deleteOrder(id) {
-    if (!confirm('Delete this order?')) return;
-    deleteDoc(doc(db, 'orders', id)).then(function () { toast('Order deleted'); }).catch(function () { toast('Failed', true); });
+  function openOrder(id) {
+    var o = orders.find(function (x) { return x.id === id; });
+    if (!o) return;
+    document.getElementById('orderEditId').value = id;
+    document.getElementById('orderName').value = o.name || '';
+    document.getElementById('orderEmail').value = o.email || '';
+    document.getElementById('orderPhone').value = o.phone || '';
+    document.getElementById('orderService').value = o.service || '';
+    document.getElementById('orderMessage').value = o.message || '';
+    document.getElementById('orderStatus').value = o.status || 'pending';
+    document.getElementById('orderNotes').value = o.notes || '';
+    document.getElementById('orderModal').classList.add('active');
   }
+
+  document.getElementById('orderSaveBtn').addEventListener('click', function () {
+    var id = document.getElementById('orderEditId').value;
+    var status = document.getElementById('orderStatus').value;
+    var notes = document.getElementById('orderNotes').value.trim();
+    updateDoc(doc(db, 'orders', id), { status: status, notes: notes, updatedAt: serverTimestamp() })
+      .then(function () { toast('Order updated', 'success'); closeModal('orderModal'); })
+      .catch(function (e) { console.error(e); toast('Update failed', 'error'); });
+  });
+
+  function deleteOrder(id) {
+    if (!confirm('Delete this order permanently?')) return;
+    deleteDoc(doc(db, 'orders', id))
+      .then(function () { toast('Order deleted'); })
+      .catch(function (e) { console.error(e); toast('Delete failed', 'error'); });
+  }
+
+  /* ---------- SERVICES ---------- */
+  document.getElementById('addServiceBtn').addEventListener('click', function () { openServiceModal(); });
+
+  function renderServices() {
+    var grid = document.getElementById('servicesGrid');
+    var real = services.filter(function (s) { return s.title; });
+    if (!real.length) {
+      grid.innerHTML = '<div class="empty" style="grid-column:1/-1"><h3>No services yet</h3><p>Click "+ Add service" to create your first service. Changes appear on the services page.</p></div>';
+      return;
+    }
+    grid.innerHTML = real.map(function (s) {
+      var img = s.imageUrl
+        ? '<img class="item-img" src="' + s.imageUrl + '" alt="" onerror="this.outerHTML=\'<div class=item-img-missing>Image failed to load</div>\'">'
+        : '<div class="item-img-missing">No image</div>';
+      var items = (s.items || []).map(function (i) { return '<span>' + escapeHtml(i) + '</span>'; }).join('');
+      return '<div class="item">' + img +
+        '<div class="item-body">' +
+          '<h3>' + escapeHtml(s.title) + '</h3>' +
+          '<p>' + escapeHtml(s.description || '') + '</p>' +
+          (items ? '<div class="service-items-list">' + items + '</div>' : '') +
+          '<div class="item-actions">' +
+            '<button class="btn btn-outline" data-edit-service="' + s.id + '">Edit</button>' +
+            '<button class="btn btn-danger" data-del-service="' + s.id + '">Delete</button>' +
+          '</div>' +
+        '</div></div>';
+    }).join('');
+    grid.querySelectorAll('[data-edit-service]').forEach(function (b) { b.addEventListener('click', function () { openServiceModal(b.dataset.editService); }); });
+    grid.querySelectorAll('[data-del-service]').forEach(function (b) { b.addEventListener('click', function () { deleteService(b.dataset.delService); }); });
+  }
+
+  function openServiceModal(id) {
+    var m = document.getElementById('serviceModal');
+    m.classList.add('active');
+    if (id) {
+      var s = services.find(function (x) { return x.id === id; });
+      document.getElementById('serviceModalTitle').textContent = 'Edit service';
+      document.getElementById('serviceEditId').value = id;
+      document.getElementById('serviceTitle').value = s.title || '';
+      document.getElementById('serviceDesc').value = s.description || '';
+      document.getElementById('serviceItems').value = (s.items || []).join('\n');
+      document.getElementById('serviceImageUrl').value = s.imageUrl || '';
+      updateImagePreview('serviceImageUrl', 'serviceImagePreview');
+    } else {
+      document.getElementById('serviceModalTitle').textContent = 'Add service';
+      document.getElementById('serviceEditId').value = '';
+      document.getElementById('serviceTitle').value = '';
+      document.getElementById('serviceDesc').value = '';
+      document.getElementById('serviceItems').value = '';
+      document.getElementById('serviceImageUrl').value = '';
+      document.getElementById('serviceImagePreview').innerHTML = 'Paste image URL above to preview';
+    }
+  }
+
+  document.getElementById('serviceSaveBtn').addEventListener('click', function () {
+    var id = document.getElementById('serviceEditId').value;
+    var title = document.getElementById('serviceTitle').value.trim();
+    if (!title) return toast('Service name required', 'error');
+
+    var items = document.getElementById('serviceItems').value
+      .split('\n')
+      .map(function (s) { return s.trim(); })
+      .filter(function (s) { return s.length > 0; });
+
+    var data = {
+      title: title,
+      description: document.getElementById('serviceDesc').value.trim(),
+      items: items,
+      imageUrl: document.getElementById('serviceImageUrl').value.trim(),
+      updatedAt: serverTimestamp()
+    };
+
+    var p = id
+      ? setDoc(doc(db, 'services', id), data, { merge: true })
+      : addDoc(collection(db, 'services'), Object.assign({}, data, { createdAt: serverTimestamp(), order: services.length }));
+
+    p.then(function () {
+      closeModal('serviceModal');
+      toast(id ? 'Service updated' : 'Service added', 'success');
+    }).catch(function (e) { console.error(e); toast('Save failed', 'error'); });
+  });
+
+  function deleteService(id) {
+    if (!confirm('Delete this service?')) return;
+    deleteDoc(doc(db, 'services', id))
+      .then(function () { toast('Service deleted'); })
+      .catch(function (e) { console.error(e); toast('Delete failed', 'error'); });
+  }
+
+  /* ---------- ADS ---------- */
+  document.getElementById('addAdBtn').addEventListener('click', function () { openAdModal(); });
 
   function renderAds() {
     var grid = document.getElementById('adsGrid');
@@ -483,11 +761,9 @@
     grid.querySelectorAll('[data-del-ad]').forEach(function (b) { b.addEventListener('click', function () { deleteAd(b.dataset.delAd); }); });
   }
 
-  document.getElementById('addAdBtn').addEventListener('click', function () { openAdModal(); });
-
   function openAdModal(id) {
-    var modal = document.getElementById('adModal');
-    modal.classList.add('active');
+    var m = document.getElementById('adModal');
+    m.classList.add('active');
     if (id) {
       var a = ads.find(function (x) { return x.id === id; });
       document.getElementById('adModalTitle').textContent = 'Edit ad';
@@ -499,19 +775,21 @@
       document.getElementById('adBtnText').value = a.btnText || '';
       document.getElementById('adDuration').value = a.duration || 8;
       document.getElementById('adActive').value = a.active || 'yes';
+      updateImagePreview('adImageUrl', 'adImagePreview');
     } else {
       document.getElementById('adModalTitle').textContent = 'Add ad';
       document.getElementById('adEditId').value = '';
       ['adTitle','adDesc','adImageUrl','adLink','adBtnText'].forEach(function (i) { document.getElementById(i).value = ''; });
       document.getElementById('adDuration').value = 8;
       document.getElementById('adActive').value = 'yes';
+      document.getElementById('adImagePreview').innerHTML = 'Paste image URL above to preview';
     }
   }
 
   document.getElementById('adSaveBtn').addEventListener('click', function () {
     var id = document.getElementById('adEditId').value;
     var title = document.getElementById('adTitle').value.trim();
-    if (!title) { toast('Title is required', true); return; }
+    if (!title) return toast('Title required', 'error');
 
     var data = {
       title: title,
@@ -527,16 +805,22 @@
     var p = id
       ? setDoc(doc(db, 'ads', id), data, { merge: true })
       : addDoc(collection(db, 'ads'), Object.assign({}, data, { createdAt: serverTimestamp() }));
+
     p.then(function () {
       closeModal('adModal');
-      toast(id ? 'Ad updated' : 'Ad created');
-    }).catch(function (err) { console.error(err); toast('Failed to save', true); });
+      toast(id ? 'Ad updated' : 'Ad created', 'success');
+    }).catch(function (e) { console.error(e); toast('Save failed', 'error'); });
   });
 
   function deleteAd(id) {
     if (!confirm('Delete this ad?')) return;
-    deleteDoc(doc(db, 'ads', id)).then(function () { toast('Ad deleted'); }).catch(function () { toast('Failed', true); });
+    deleteDoc(doc(db, 'ads', id))
+      .then(function () { toast('Ad deleted'); })
+      .catch(function (e) { console.error(e); toast('Delete failed', 'error'); });
   }
+
+  /* ---------- PHOTOS ---------- */
+  document.getElementById('addPhotoBtn').addEventListener('click', function () { openPhotoModal(); });
 
   function renderPhotos() {
     var grid = document.getElementById('photosGrid');
@@ -560,22 +844,22 @@
     grid.querySelectorAll('[data-del-photo]').forEach(function (b) { b.addEventListener('click', function () { deletePhoto(b.dataset.delPhoto); }); });
   }
 
-  document.getElementById('addPhotoBtn').addEventListener('click', function () { openPhotoModal(); });
-
   function openPhotoModal(id) {
-    var modal = document.getElementById('photoModal');
-    modal.classList.add('active');
+    var m = document.getElementById('photoModal');
+    m.classList.add('active');
     if (id) {
       var p = photos.find(function (x) { return x.id === id; });
       document.getElementById('photoModalTitle').textContent = 'Edit photo';
       document.getElementById('photoEditId').value = id;
       document.getElementById('photoCaption').value = p.caption || '';
       document.getElementById('photoImageUrl').value = p.imageUrl || '';
+      updateImagePreview('photoImageUrl', 'photoImagePreview');
     } else {
       document.getElementById('photoModalTitle').textContent = 'Add photo';
       document.getElementById('photoEditId').value = '';
       document.getElementById('photoCaption').value = '';
       document.getElementById('photoImageUrl').value = '';
+      document.getElementById('photoImagePreview').innerHTML = 'Paste image URL above to preview';
     }
   }
 
@@ -583,24 +867,28 @@
     var id = document.getElementById('photoEditId').value;
     var caption = document.getElementById('photoCaption').value.trim();
     var imageUrl = document.getElementById('photoImageUrl').value.trim();
-    if (!caption) { toast('Caption is required', true); return; }
-    if (!imageUrl && !id) { toast('Image URL is required', true); return; }
+    if (!caption) return toast('Caption required', 'error');
+    if (!imageUrl && !id) return toast('Image URL required', 'error');
 
     var data = { caption: caption, imageUrl: imageUrl, updatedAt: serverTimestamp() };
     var p = id
       ? setDoc(doc(db, 'photos', id), data, { merge: true })
       : addDoc(collection(db, 'photos'), Object.assign({}, data, { createdAt: serverTimestamp() }));
+
     p.then(function () {
       closeModal('photoModal');
-      toast(id ? 'Photo updated' : 'Photo added');
-    }).catch(function (err) { console.error(err); toast('Failed to save', true); });
+      toast(id ? 'Photo updated' : 'Photo added', 'success');
+    }).catch(function (e) { console.error(e); toast('Save failed', 'error'); });
   });
 
   function deletePhoto(id) {
     if (!confirm('Delete this photo?')) return;
-    deleteDoc(doc(db, 'photos', id)).then(function () { toast('Photo deleted'); }).catch(function () { toast('Failed', true); });
+    deleteDoc(doc(db, 'photos', id))
+      .then(function () { toast('Photo deleted'); })
+      .catch(function (e) { console.error(e); toast('Delete failed', 'error'); });
   }
 
+  /* ---------- FEEDBACK ---------- */
   function renderFeedback() {
     var wrap = document.getElementById('feedbackWrap');
     var real = feedback.filter(function (f) { return f.name && f.message; });
@@ -608,14 +896,14 @@
       wrap.innerHTML = '<div class="empty"><h3>No feedback yet</h3><p>Client comments will appear here.</p></div>';
       return;
     }
-    wrap.innerHTML = '<table><thead><tr><th>Date</th><th>Name</th><th>Comment</th><th></th></tr></thead><tbody>' +
+    wrap.innerHTML = '<table><thead><tr><th>Date</th><th>Name</th><th>Comment</th><th>Action</th></tr></thead><tbody>' +
       real.map(function (f) {
         var when = f.createdAt && f.createdAt.toDate ? f.createdAt.toDate().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
         return '<tr>' +
           '<td><small>' + escapeHtml(when) + '</small></td>' +
           '<td><strong>' + escapeHtml(f.name) + '</strong></td>' +
           '<td style="max-width:480px;font-size:13.5px">' + escapeHtml(f.message) + '</td>' +
-          '<td><button class="link-danger" data-del-fb="' + f.id + '">Delete</button></td>' +
+          '<td><button class="action-link danger" data-del-fb="' + f.id + '">Delete</button></td>' +
         '</tr>';
       }).join('') +
       '</tbody></table>';
@@ -626,8 +914,25 @@
 
   function deleteFeedback(id) {
     if (!confirm('Delete this feedback?')) return;
-    deleteDoc(doc(db, 'feedback', id)).then(function () { toast('Feedback deleted'); }).catch(function () { toast('Failed', true); });
+    deleteDoc(doc(db, 'feedback', id))
+      .then(function () { toast('Feedback deleted'); })
+      .catch(function (e) { console.error(e); toast('Delete failed', 'error'); });
   }
+
+  /* IMAGE PREVIEW */
+  function updateImagePreview(inputId, previewId) {
+    var url = document.getElementById(inputId).value.trim();
+    var preview = document.getElementById(previewId);
+    if (!url) {
+      preview.innerHTML = 'Paste image URL above to preview';
+      return;
+    }
+    preview.innerHTML = '<img src="' + url + '" alt="" onerror="this.parentElement.innerHTML=\'Image could not load. Check the URL.\'">';
+  }
+
+  document.getElementById('serviceImageUrl').addEventListener('input', function () { updateImagePreview('serviceImageUrl', 'serviceImagePreview'); });
+  document.getElementById('adImageUrl').addEventListener('input', function () { updateImagePreview('adImageUrl', 'adImagePreview'); });
+  document.getElementById('photoImageUrl').addEventListener('input', function () { updateImagePreview('photoImageUrl', 'photoImagePreview'); });
 </script>
 </body>
 </html>
