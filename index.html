@@ -236,6 +236,9 @@
   .field textarea{resize:vertical;min-height:110px}
   .field-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
   .form-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:4px}
+  .consent-line{font-size:12.5px;color:var(--muted);margin-top:14px;line-height:1.5}
+  .consent-line a{color:var(--slate);text-decoration:underline}
+  .consent-line a:hover{color:var(--navy)}
   #status{font-size:14px;font-weight:500;min-height:1.5em}
   #status.success{color:var(--green)}
   #status.error{color:var(--red)}
@@ -503,6 +506,9 @@
           <div class="form-actions">
             <button type="submit" class="btn btn-primary" id="fbBtn">Post feedback</button>
           </div>
+          <p class="consent-line">
+            Your name and comment will be shown publicly. See our <a href="privacy.html">Privacy Policy</a>.
+          </p>
           <p id="fbStatus" style="font-size:14px;font-weight:500;min-height:1.5em;"></p>
         </form>
       </div>
@@ -582,6 +588,10 @@
           </div>
 
           <input type="hidden" name="service" id="serviceInput" value="">
+
+          <p class="consent-line">
+            By submitting this form you agree to our <a href="privacy.html">Privacy Policy</a>. We only use your details to respond to your request.
+          </p>
           <p id="status" role="status"></p>
         </form>
       </div>
@@ -673,12 +683,13 @@
           <li><a href="tel:+256762093951">+256 762 093 951</a></li>
           <li><a href="mailto:samridahservices@gmail.com">samridahservices@gmail.com</a></li>
           <li><a href="https://wa.me/256746200441" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <div>&copy; <span id="year"></span> Samridah Cleaning Services. All rights reserved.</div>
-      <div>Mutungo 1, Zone 1A, Nakawa, Kampala</div>
+      <div>Mutungo 1, Zone 1A, Nakawa, Kampala · <a href="privacy.html" style="color:rgba(255,255,255,0.7)">Privacy</a></div>
     </div>
   </div>
 </footer>
