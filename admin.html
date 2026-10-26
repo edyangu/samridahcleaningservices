@@ -17,8 +17,6 @@
     --sh-sm:0 1px 3px rgba(30,42,68,0.08);
     --sh:0 4px 12px rgba(30,42,68,0.08);
     --sh-lg:0 12px 32px rgba(30,42,68,0.12);
-    padding-top:env(safe-area-inset-top,0);
-    padding-bottom:env(safe-area-inset-bottom,0);
   }
   body{font-family:'Inter',-apple-system,sans-serif;background:var(--light);color:var(--body);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
   h1,h2,h3,h4{color:var(--ink);font-weight:700;line-height:1.2;letter-spacing:-0.02em}
@@ -139,7 +137,7 @@
   .modal-field input:focus,.modal-field textarea:focus,.modal-field select:focus{outline:none;border-color:var(--slate)}
   .modal-field textarea{resize:vertical;min-height:80px}
   .modal-field small{font-size:12px;color:var(--muted)}
-  .image-preview{margin-top:10px;width:100%;height:140px;border-radius:var(--r-sm);background:var(--light);border:1.5px dashed var(--rule);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12.5px;overflow:hidden}
+  .image-preview{margin-top:10px;width:100%;height:160px;border-radius:var(--r-sm);background:var(--light);border:1.5px dashed var(--rule);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12.5px;overflow:hidden}
   .image-preview img{width:100%;height:100%;object-fit:cover}
   .modal-actions{display:flex;gap:12px;margin-top:28px;padding-top:20px;border-top:1px solid var(--rule)}
   .modal-actions button{flex:1;padding:12px;border-radius:var(--r-sm);font-weight:600;font-size:14.5px;cursor:pointer;border:0}
@@ -149,9 +147,24 @@
   .modal-save:hover{background:var(--navy)}
   .modal-save:disabled{opacity:0.6;cursor:not-allowed}
 
-  .upload-hint{background:#EFF6FF;border:1px solid #BFDBFE;border-radius:var(--r-sm);padding:14px 16px;margin-bottom:16px;font-size:13px;color:#1E40AF;line-height:1.55}
-  .upload-hint strong{color:#1E3A8A;display:block;margin-bottom:4px}
-  .upload-hint a{color:#1E40AF;text-decoration:underline;font-weight:600}
+  /* File input + upload progress */
+  .file-drop{border:2px dashed var(--rule);border-radius:var(--r-sm);padding:20px;text-align:center;background:var(--light);cursor:pointer;transition:border-color .15s, background .15s}
+  .file-drop:hover{border-color:var(--slate);background:#fff}
+  .file-drop.has-file{border-color:var(--green);background:#F0FDF4}
+  .file-drop svg{width:28px;height:28px;color:var(--muted);margin-bottom:6px}
+  .file-drop-title{font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:2px}
+  .file-drop-hint{font-size:12px;color:var(--muted)}
+  .file-drop input[type=file]{display:none}
+
+  .upload-bar{height:6px;background:var(--light-2);border-radius:999px;overflow:hidden;margin-top:10px;display:none}
+  .upload-bar.active{display:block}
+  .upload-bar-fill{height:100%;width:0%;background:var(--slate);transition:width .2s}
+  .upload-status{font-size:12px;color:var(--muted);margin-top:6px;display:none}
+  .upload-status.active{display:block}
+
+  .url-toggle{background:none;border:0;color:var(--slate);font-size:12.5px;font-weight:600;cursor:pointer;padding:0;margin-top:4px;text-decoration:underline;text-underline-offset:2px}
+  .url-field-wrap{display:none;margin-top:10px}
+  .url-field-wrap.active{display:block}
 
   .toast{position:fixed;bottom:24px;right:24px;background:var(--navy);color:#fff;padding:14px 22px;border-radius:var(--r-sm);box-shadow:var(--sh-lg);font-size:14px;font-weight:500;opacity:0;transform:translateY(20px);transition:opacity .3s, transform .3s;z-index:2000;border-left:4px solid var(--slate-2);max-width:calc(100vw - 48px)}
   .toast.show{opacity:1;transform:translateY(0)}
@@ -304,8 +317,23 @@
     <div class="modal-field"><label for="serviceTitle">Service name</label><input type="text" id="serviceTitle" placeholder="e.g. Residential cleaning"></div>
     <div class="modal-field"><label for="serviceDesc">Short description</label><textarea id="serviceDesc" rows="2" placeholder="What this service covers"></textarea></div>
     <div class="modal-field"><label for="serviceItems">What's included (one per line)</label><textarea id="serviceItems" rows="4" placeholder="General house cleaning&#10;Deep cleaning&#10;Carpets and rugs"></textarea></div>
-    <div class="modal-field"><label for="serviceImageUrl">Image URL</label><input type="url" id="serviceImageUrl" placeholder="https://i.postimg.cc/.../photo.jpg"></div>
-    <div class="image-preview" id="serviceImagePreview">Paste image URL above to preview</div>
+
+    <div class="modal-field">
+      <label>Service image</label>
+      <label class="file-drop" id="serviceFileDrop">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        <div class="file-drop-title">Click to choose an image</div>
+        <div class="file-drop-hint">JPG, PNG or WebP · max 5 MB</div>
+        <input type="file" id="serviceFile" accept="image/*">
+      </label>
+      <div class="upload-bar" id="serviceUploadBar"><div class="upload-bar-fill" id="serviceUploadFill"></div></div>
+      <div class="upload-status" id="serviceUploadStatus"></div>
+      <button type="button" class="url-toggle" data-toggle-url="serviceUrlWrap">Or paste an image URL instead</button>
+      <div class="url-field-wrap" id="serviceUrlWrap">
+        <input type="url" id="serviceImageUrl" placeholder="https://example.com/photo.jpg">
+      </div>
+      <div class="image-preview" id="serviceImagePreview">No image selected</div>
+    </div>
 
     <div class="modal-actions">
       <button class="modal-cancel" onclick="closeModal('serviceModal')">Cancel</button>
@@ -320,15 +348,26 @@
     <h2 id="adModalTitle">Add ad</h2>
     <input type="hidden" id="adEditId">
 
-    <div class="upload-hint">
-      <strong>Upload your image first</strong>
-      Go to <a href="https://postimages.org" target="_blank" rel="noopener">postimages.org</a>, upload your image, then copy the <strong>Direct link</strong>. It ends in .jpg or .png. Paste it below.
-    </div>
-
     <div class="modal-field"><label for="adTitle">Title</label><input type="text" id="adTitle" placeholder="e.g. 20% off deep cleaning"></div>
     <div class="modal-field"><label for="adDesc">Description</label><textarea id="adDesc" rows="2" placeholder="Short line shown on the ad"></textarea></div>
-    <div class="modal-field"><label for="adImageUrl">Image URL</label><input type="url" id="adImageUrl" placeholder="https://i.postimg.cc/.../photo.jpg"></div>
-    <div class="image-preview" id="adImagePreview">Paste image URL above to preview</div>
+
+    <div class="modal-field">
+      <label>Ad image</label>
+      <label class="file-drop" id="adFileDrop">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        <div class="file-drop-title">Click to choose an image</div>
+        <div class="file-drop-hint">JPG, PNG or WebP · max 5 MB</div>
+        <input type="file" id="adFile" accept="image/*">
+      </label>
+      <div class="upload-bar" id="adUploadBar"><div class="upload-bar-fill" id="adUploadFill"></div></div>
+      <div class="upload-status" id="adUploadStatus"></div>
+      <button type="button" class="url-toggle" data-toggle-url="adUrlWrap">Or paste an image URL instead</button>
+      <div class="url-field-wrap" id="adUrlWrap">
+        <input type="url" id="adImageUrl" placeholder="https://example.com/photo.jpg">
+      </div>
+      <div class="image-preview" id="adImagePreview">No image selected</div>
+    </div>
+
     <div class="modal-field"><label for="adLink">Link (optional)</label><input type="url" id="adLink" placeholder="https://wa.me/256746200441"></div>
     <div class="modal-field"><label for="adBtnText">Button text</label><input type="text" id="adBtnText" placeholder="Book now"></div>
     <div class="modal-field"><label for="adDuration">Duration (seconds)</label><input type="number" id="adDuration" value="8" min="3" max="60"></div>
@@ -349,14 +388,24 @@
     <h2 id="photoModalTitle">Add photo</h2>
     <input type="hidden" id="photoEditId">
 
-    <div class="upload-hint">
-      <strong>Upload your image first</strong>
-      Go to <a href="https://postimages.org" target="_blank" rel="noopener">postimages.org</a>, upload your image, then copy the <strong>Direct link</strong>. Paste it below.
-    </div>
-
     <div class="modal-field"><label for="photoCaption">Caption</label><input type="text" id="photoCaption" placeholder="e.g. Office deep clean in Kololo"></div>
-    <div class="modal-field"><label for="photoImageUrl">Image URL</label><input type="url" id="photoImageUrl" placeholder="https://i.postimg.cc/.../photo.jpg"></div>
-    <div class="image-preview" id="photoImagePreview">Paste image URL above to preview</div>
+
+    <div class="modal-field">
+      <label>Photo</label>
+      <label class="file-drop" id="photoFileDrop">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        <div class="file-drop-title">Click to choose an image</div>
+        <div class="file-drop-hint">JPG, PNG or WebP · max 5 MB</div>
+        <input type="file" id="photoFile" accept="image/*">
+      </label>
+      <div class="upload-bar" id="photoUploadBar"><div class="upload-bar-fill" id="photoUploadFill"></div></div>
+      <div class="upload-status" id="photoUploadStatus"></div>
+      <button type="button" class="url-toggle" data-toggle-url="photoUrlWrap">Or paste an image URL instead</button>
+      <div class="url-field-wrap" id="photoUrlWrap">
+        <input type="url" id="photoImageUrl" placeholder="https://example.com/photo.jpg">
+      </div>
+      <div class="image-preview" id="photoImagePreview">No image selected</div>
+    </div>
 
     <div class="modal-actions">
       <button class="modal-cancel" onclick="closeModal('photoModal')">Cancel</button>
@@ -405,6 +454,9 @@
   import {
     getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged
   } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+  import {
+    getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, deleteObject
+  } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-storage.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyAnhTb_9ccSjEGi_y1VMbRTWeMaUmMi8t0",
@@ -418,11 +470,15 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
   const auth = getAuth(app);
+  const storage = getStorage(app);
 
   var orders = [], services = [], ads = [], photos = [], feedback = [];
   var listenersStarted = false;
   var currentOrderFilter = 'all';
   var currentOrderSearch = '';
+
+  // Track selected files per modal (so we know if user picked a file to upload)
+  var pendingFiles = { service: null, ad: null, photo: null };
 
   /* AUTH */
   var loginBtn = document.getElementById('loginBtn');
@@ -443,7 +499,7 @@
     signInWithEmailAndPassword(auth, email, password)
       .catch(function (err) {
         console.error(err);
-        loginError.textContent = 'Incorrect email or password.';
+        loginError.textContent = 'Incorrect email or password. (' + err.code + ')';
         loginError.classList.add('show');
       })
       .finally(function () {
@@ -458,6 +514,7 @@
 
   onAuthStateChanged(auth, function (user) {
     if (user) {
+      console.log('LOGGED IN UID:', user.uid); // helpful for debugging rules
       document.getElementById('loginScreen').style.display = 'none';
       document.getElementById('dashboard').classList.add('active');
       document.getElementById('userEmail').textContent = user.email;
@@ -495,12 +552,140 @@
     var t = document.getElementById('toast');
     t.textContent = msg;
     t.className = 'toast show' + (type ? ' ' + type : '');
-    setTimeout(function () { t.className = 'toast'; }, 3000);
+    setTimeout(function () { t.className = 'toast'; }, 4000);
   }
   window.closeModal = function (id) { document.getElementById(id).classList.remove('active'); };
   document.querySelectorAll('.modal-bg').forEach(function (bg) {
     bg.addEventListener('click', function (e) { if (e.target === bg) bg.classList.remove('active'); });
   });
+
+  /* URL toggle buttons ("Or paste an image URL instead") */
+  document.querySelectorAll('[data-toggle-url]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var wrap = document.getElementById(btn.dataset.toggleUrl);
+      wrap.classList.toggle('active');
+    });
+  });
+
+  /* ---------- IMAGE UPLOAD HELPERS ---------- */
+  // Wire a file input + drop zone to show preview and remember the file.
+  function wireFileInput(kind, fileInputId, dropId, previewId, urlInputId) {
+    var fileInput = document.getElementById(fileInputId);
+    var drop = document.getElementById(dropId);
+    var preview = document.getElementById(previewId);
+    var urlInput = document.getElementById(urlInputId);
+
+    fileInput.addEventListener('change', function () {
+      var file = fileInput.files[0];
+      if (!file) {
+        pendingFiles[kind] = null;
+        drop.classList.remove('has-file');
+        preview.innerHTML = 'No image selected';
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        toast('Image is over 5 MB. Please compress it first.', 'error');
+        fileInput.value = '';
+        pendingFiles[kind] = null;
+        drop.classList.remove('has-file');
+        return;
+      }
+      pendingFiles[kind] = file;
+      drop.classList.add('has-file');
+      drop.querySelector('.file-drop-title').textContent = file.name;
+      drop.querySelector('.file-drop-hint').textContent =
+        (file.size / 1024 / 1024).toFixed(2) + ' MB · ready to upload';
+
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        preview.innerHTML = '<img src="' + e.target.result + '" alt="">';
+      };
+      reader.readAsDataURL(file);
+
+      // Clear URL field if user picks a file
+      if (urlInput) urlInput.value = '';
+    });
+
+    // URL input live preview
+    if (urlInput) {
+      urlInput.addEventListener('input', function () {
+        var url = urlInput.value.trim();
+        if (!url) {
+          if (!pendingFiles[kind]) preview.innerHTML = 'No image selected';
+          return;
+        }
+        preview.innerHTML = '<img src="' + url + '" alt="" onerror="this.parentElement.innerHTML=\'Image could not load. Check the URL.\'">';
+      });
+    }
+  }
+
+  // Upload the pending file for a given kind. Returns Promise<downloadURL or null>.
+  // If no file was picked but a URL was typed, returns that URL.
+  function resolveImage(kind, urlInputId, uploadBarId, uploadFillId, uploadStatusId) {
+    var urlInput = document.getElementById(urlInputId);
+    var url = urlInput ? urlInput.value.trim() : '';
+    var file = pendingFiles[kind];
+
+    if (!file) {
+      return Promise.resolve(url || null); // no file → use URL (or nothing)
+    }
+
+    // Upload file to Storage
+    var path = kind + 's/' + Date.now() + '_' + file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+    var sRef = storageRef(storage, path);
+    var task = uploadBytesResumable(sRef, file);
+
+    var bar = document.getElementById(uploadBarId);
+    var fill = document.getElementById(uploadFillId);
+    var status = document.getElementById(uploadStatusId);
+    bar.classList.add('active');
+    status.classList.add('active');
+    status.textContent = 'Uploading... 0%';
+
+    return new Promise(function (resolve, reject) {
+      task.on('state_changed',
+        function (snap) {
+          var pct = Math.round((snap.bytesTransferred / snap.totalBytes) * 100);
+          fill.style.width = pct + '%';
+          status.textContent = 'Uploading... ' + pct + '%';
+        },
+        function (err) {
+          console.error('UPLOAD ERROR:', err.code, err.message);
+          bar.classList.remove('active');
+          status.classList.remove('active');
+          reject(err);
+        },
+        function () {
+          getDownloadURL(task.snapshot.ref).then(function (dlUrl) {
+            fill.style.width = '100%';
+            status.textContent = 'Uploaded ✓';
+            setTimeout(function () {
+              bar.classList.remove('active');
+              status.classList.remove('active');
+              fill.style.width = '0%';
+            }, 800);
+            resolve(dlUrl);
+          }).catch(reject);
+        }
+      );
+    });
+  }
+
+  function setSaveBtn(btn, busy, label) {
+    if (busy) {
+      btn.disabled = true;
+      btn.dataset.original = btn.textContent;
+      btn.textContent = label || 'Saving...';
+    } else {
+      btn.disabled = false;
+      btn.textContent = btn.dataset.original || 'Save';
+    }
+  }
+
+  /* Wire all three file inputs once */
+  wireFileInput('service', 'serviceFile', 'serviceFileDrop', 'serviceImagePreview', 'serviceImageUrl');
+  wireFileInput('ad', 'adFile', 'adFileDrop', 'adImagePreview', 'adImageUrl');
+  wireFileInput('photo', 'photoFile', 'photoFileDrop', 'photoImagePreview', 'photoImageUrl');
 
   /* LIVE LISTENERS */
   function startListeners() {
@@ -634,14 +819,14 @@
     var notes = document.getElementById('orderNotes').value.trim();
     updateDoc(doc(db, 'orders', id), { status: status, notes: notes, updatedAt: serverTimestamp() })
       .then(function () { toast('Order updated', 'success'); closeModal('orderModal'); })
-      .catch(function (e) { console.error(e); toast('Update failed', 'error'); });
+      .catch(function (e) { console.error(e); toast('Update failed: ' + e.code, 'error'); });
   });
 
   function deleteOrder(id) {
     if (!confirm('Delete this order permanently?')) return;
     deleteDoc(doc(db, 'orders', id))
       .then(function () { toast('Order deleted'); })
-      .catch(function (e) { console.error(e); toast('Delete failed', 'error'); });
+      .catch(function (e) { console.error(e); toast('Delete failed: ' + e.code, 'error'); });
   }
 
   /* ---------- SERVICES ---------- */
@@ -677,6 +862,14 @@
   function openServiceModal(id) {
     var m = document.getElementById('serviceModal');
     m.classList.add('active');
+    pendingFiles.service = null;
+    document.getElementById('serviceFile').value = '';
+    document.getElementById('serviceFileDrop').classList.remove('has-file');
+    document.getElementById('serviceFileDrop').querySelector('.file-drop-title').textContent = 'Click to choose an image';
+    document.getElementById('serviceFileDrop').querySelector('.file-drop-hint').textContent = 'JPG, PNG or WebP · max 5 MB';
+    document.getElementById('serviceUploadBar').classList.remove('active');
+    document.getElementById('serviceUploadStatus').classList.remove('active');
+
     if (id) {
       var s = services.find(function (x) { return x.id === id; });
       document.getElementById('serviceModalTitle').textContent = 'Edit service';
@@ -685,7 +878,9 @@
       document.getElementById('serviceDesc').value = s.description || '';
       document.getElementById('serviceItems').value = (s.items || []).join('\n');
       document.getElementById('serviceImageUrl').value = s.imageUrl || '';
-      updateImagePreview('serviceImageUrl', 'serviceImagePreview');
+      document.getElementById('serviceImagePreview').innerHTML = s.imageUrl
+        ? '<img src="' + s.imageUrl + '" alt="">'
+        : 'No image selected';
     } else {
       document.getElementById('serviceModalTitle').textContent = 'Add service';
       document.getElementById('serviceEditId').value = '';
@@ -693,11 +888,12 @@
       document.getElementById('serviceDesc').value = '';
       document.getElementById('serviceItems').value = '';
       document.getElementById('serviceImageUrl').value = '';
-      document.getElementById('serviceImagePreview').innerHTML = 'Paste image URL above to preview';
+      document.getElementById('serviceImagePreview').innerHTML = 'No image selected';
     }
   }
 
   document.getElementById('serviceSaveBtn').addEventListener('click', function () {
+    var btn = document.getElementById('serviceSaveBtn');
     var id = document.getElementById('serviceEditId').value;
     var title = document.getElementById('serviceTitle').value.trim();
     if (!title) return toast('Service name required', 'error');
@@ -707,29 +903,37 @@
       .map(function (s) { return s.trim(); })
       .filter(function (s) { return s.length > 0; });
 
-    var data = {
-      title: title,
-      description: document.getElementById('serviceDesc').value.trim(),
-      items: items,
-      imageUrl: document.getElementById('serviceImageUrl').value.trim(),
-      updatedAt: serverTimestamp()
-    };
+    setSaveBtn(btn, true, 'Saving...');
 
-    var p = id
-      ? setDoc(doc(db, 'services', id), data, { merge: true })
-      : addDoc(collection(db, 'services'), Object.assign({}, data, { createdAt: serverTimestamp(), order: services.length }));
-
-    p.then(function () {
-      closeModal('serviceModal');
-      toast(id ? 'Service updated' : 'Service added', 'success');
-    }).catch(function (e) { console.error(e); toast('Save failed', 'error'); });
+    resolveImage('service', 'serviceImageUrl', 'serviceUploadBar', 'serviceUploadFill', 'serviceUploadStatus')
+      .then(function (imageUrl) {
+        var data = {
+          title: title,
+          description: document.getElementById('serviceDesc').value.trim(),
+          items: items,
+          imageUrl: imageUrl || '',
+          updatedAt: serverTimestamp()
+        };
+        return id
+          ? setDoc(doc(db, 'services', id), data, { merge: true })
+          : addDoc(collection(db, 'services'), Object.assign({}, data, { createdAt: serverTimestamp(), order: services.length }));
+      })
+      .then(function () {
+        closeModal('serviceModal');
+        toast(id ? 'Service updated' : 'Service added', 'success');
+      })
+      .catch(function (e) {
+        console.error('SAVE ERROR:', e.code, e.message);
+        toast('Save failed: ' + (e.code || e.message), 'error');
+      })
+      .finally(function () { setSaveBtn(btn, false); });
   });
 
   function deleteService(id) {
     if (!confirm('Delete this service?')) return;
     deleteDoc(doc(db, 'services', id))
       .then(function () { toast('Service deleted'); })
-      .catch(function (e) { console.error(e); toast('Delete failed', 'error'); });
+      .catch(function (e) { console.error(e); toast('Delete failed: ' + e.code, 'error'); });
   }
 
   /* ---------- ADS ---------- */
@@ -764,6 +968,14 @@
   function openAdModal(id) {
     var m = document.getElementById('adModal');
     m.classList.add('active');
+    pendingFiles.ad = null;
+    document.getElementById('adFile').value = '';
+    document.getElementById('adFileDrop').classList.remove('has-file');
+    document.getElementById('adFileDrop').querySelector('.file-drop-title').textContent = 'Click to choose an image';
+    document.getElementById('adFileDrop').querySelector('.file-drop-hint').textContent = 'JPG, PNG or WebP · max 5 MB';
+    document.getElementById('adUploadBar').classList.remove('active');
+    document.getElementById('adUploadStatus').classList.remove('active');
+
     if (id) {
       var a = ads.find(function (x) { return x.id === id; });
       document.getElementById('adModalTitle').textContent = 'Edit ad';
@@ -775,48 +987,59 @@
       document.getElementById('adBtnText').value = a.btnText || '';
       document.getElementById('adDuration').value = a.duration || 8;
       document.getElementById('adActive').value = a.active || 'yes';
-      updateImagePreview('adImageUrl', 'adImagePreview');
+      document.getElementById('adImagePreview').innerHTML = a.imageUrl
+        ? '<img src="' + a.imageUrl + '" alt="">'
+        : 'No image selected';
     } else {
       document.getElementById('adModalTitle').textContent = 'Add ad';
       document.getElementById('adEditId').value = '';
       ['adTitle','adDesc','adImageUrl','adLink','adBtnText'].forEach(function (i) { document.getElementById(i).value = ''; });
       document.getElementById('adDuration').value = 8;
       document.getElementById('adActive').value = 'yes';
-      document.getElementById('adImagePreview').innerHTML = 'Paste image URL above to preview';
+      document.getElementById('adImagePreview').innerHTML = 'No image selected';
     }
   }
 
   document.getElementById('adSaveBtn').addEventListener('click', function () {
+    var btn = document.getElementById('adSaveBtn');
     var id = document.getElementById('adEditId').value;
     var title = document.getElementById('adTitle').value.trim();
     if (!title) return toast('Title required', 'error');
 
-    var data = {
-      title: title,
-      description: document.getElementById('adDesc').value.trim(),
-      imageUrl: document.getElementById('adImageUrl').value.trim(),
-      link: document.getElementById('adLink').value.trim(),
-      btnText: document.getElementById('adBtnText').value.trim(),
-      duration: parseInt(document.getElementById('adDuration').value) || 8,
-      active: document.getElementById('adActive').value,
-      updatedAt: serverTimestamp()
-    };
+    setSaveBtn(btn, true, 'Saving...');
 
-    var p = id
-      ? setDoc(doc(db, 'ads', id), data, { merge: true })
-      : addDoc(collection(db, 'ads'), Object.assign({}, data, { createdAt: serverTimestamp() }));
-
-    p.then(function () {
-      closeModal('adModal');
-      toast(id ? 'Ad updated' : 'Ad created', 'success');
-    }).catch(function (e) { console.error(e); toast('Save failed', 'error'); });
+    resolveImage('ad', 'adImageUrl', 'adUploadBar', 'adUploadFill', 'adUploadStatus')
+      .then(function (imageUrl) {
+        var data = {
+          title: title,
+          description: document.getElementById('adDesc').value.trim(),
+          imageUrl: imageUrl || '',
+          link: document.getElementById('adLink').value.trim(),
+          btnText: document.getElementById('adBtnText').value.trim(),
+          duration: parseInt(document.getElementById('adDuration').value) || 8,
+          active: document.getElementById('adActive').value,
+          updatedAt: serverTimestamp()
+        };
+        return id
+          ? setDoc(doc(db, 'ads', id), data, { merge: true })
+          : addDoc(collection(db, 'ads'), Object.assign({}, data, { createdAt: serverTimestamp() }));
+      })
+      .then(function () {
+        closeModal('adModal');
+        toast(id ? 'Ad updated' : 'Ad created', 'success');
+      })
+      .catch(function (e) {
+        console.error('SAVE ERROR:', e.code, e.message);
+        toast('Save failed: ' + (e.code || e.message), 'error');
+      })
+      .finally(function () { setSaveBtn(btn, false); });
   });
 
   function deleteAd(id) {
     if (!confirm('Delete this ad?')) return;
     deleteDoc(doc(db, 'ads', id))
       .then(function () { toast('Ad deleted'); })
-      .catch(function (e) { console.error(e); toast('Delete failed', 'error'); });
+      .catch(function (e) { console.error(e); toast('Delete failed: ' + e.code, 'error'); });
   }
 
   /* ---------- PHOTOS ---------- */
@@ -847,45 +1070,64 @@
   function openPhotoModal(id) {
     var m = document.getElementById('photoModal');
     m.classList.add('active');
+    pendingFiles.photo = null;
+    document.getElementById('photoFile').value = '';
+    document.getElementById('photoFileDrop').classList.remove('has-file');
+    document.getElementById('photoFileDrop').querySelector('.file-drop-title').textContent = 'Click to choose an image';
+    document.getElementById('photoFileDrop').querySelector('.file-drop-hint').textContent = 'JPG, PNG or WebP · max 5 MB';
+    document.getElementById('photoUploadBar').classList.remove('active');
+    document.getElementById('photoUploadStatus').classList.remove('active');
+
     if (id) {
       var p = photos.find(function (x) { return x.id === id; });
       document.getElementById('photoModalTitle').textContent = 'Edit photo';
       document.getElementById('photoEditId').value = id;
       document.getElementById('photoCaption').value = p.caption || '';
       document.getElementById('photoImageUrl').value = p.imageUrl || '';
-      updateImagePreview('photoImageUrl', 'photoImagePreview');
+      document.getElementById('photoImagePreview').innerHTML = p.imageUrl
+        ? '<img src="' + p.imageUrl + '" alt="">'
+        : 'No image selected';
     } else {
       document.getElementById('photoModalTitle').textContent = 'Add photo';
       document.getElementById('photoEditId').value = '';
       document.getElementById('photoCaption').value = '';
       document.getElementById('photoImageUrl').value = '';
-      document.getElementById('photoImagePreview').innerHTML = 'Paste image URL above to preview';
+      document.getElementById('photoImagePreview').innerHTML = 'No image selected';
     }
   }
 
   document.getElementById('photoSaveBtn').addEventListener('click', function () {
+    var btn = document.getElementById('photoSaveBtn');
     var id = document.getElementById('photoEditId').value;
     var caption = document.getElementById('photoCaption').value.trim();
-    var imageUrl = document.getElementById('photoImageUrl').value.trim();
     if (!caption) return toast('Caption required', 'error');
-    if (!imageUrl && !id) return toast('Image URL required', 'error');
 
-    var data = { caption: caption, imageUrl: imageUrl, updatedAt: serverTimestamp() };
-    var p = id
-      ? setDoc(doc(db, 'photos', id), data, { merge: true })
-      : addDoc(collection(db, 'photos'), Object.assign({}, data, { createdAt: serverTimestamp() }));
+    setSaveBtn(btn, true, 'Saving...');
 
-    p.then(function () {
-      closeModal('photoModal');
-      toast(id ? 'Photo updated' : 'Photo added', 'success');
-    }).catch(function (e) { console.error(e); toast('Save failed', 'error'); });
+    resolveImage('photo', 'photoImageUrl', 'photoUploadBar', 'photoUploadFill', 'photoUploadStatus')
+      .then(function (imageUrl) {
+        if (!imageUrl && !id) throw { code: 'missing-image', message: 'Please choose an image or paste a URL.' };
+        var data = { caption: caption, imageUrl: imageUrl || '', updatedAt: serverTimestamp() };
+        return id
+          ? setDoc(doc(db, 'photos', id), data, { merge: true })
+          : addDoc(collection(db, 'photos'), Object.assign({}, data, { createdAt: serverTimestamp() }));
+      })
+      .then(function () {
+        closeModal('photoModal');
+        toast(id ? 'Photo updated' : 'Photo added', 'success');
+      })
+      .catch(function (e) {
+        console.error('SAVE ERROR:', e.code, e.message);
+        toast('Save failed: ' + (e.code || e.message), 'error');
+      })
+      .finally(function () { setSaveBtn(btn, false); });
   });
 
   function deletePhoto(id) {
     if (!confirm('Delete this photo?')) return;
     deleteDoc(doc(db, 'photos', id))
       .then(function () { toast('Photo deleted'); })
-      .catch(function (e) { console.error(e); toast('Delete failed', 'error'); });
+      .catch(function (e) { console.error(e); toast('Delete failed: ' + e.code, 'error'); });
   }
 
   /* ---------- FEEDBACK ---------- */
@@ -916,23 +1158,8 @@
     if (!confirm('Delete this feedback?')) return;
     deleteDoc(doc(db, 'feedback', id))
       .then(function () { toast('Feedback deleted'); })
-      .catch(function (e) { console.error(e); toast('Delete failed', 'error'); });
+      .catch(function (e) { console.error(e); toast('Delete failed: ' + e.code, 'error'); });
   }
-
-  /* IMAGE PREVIEW */
-  function updateImagePreview(inputId, previewId) {
-    var url = document.getElementById(inputId).value.trim();
-    var preview = document.getElementById(previewId);
-    if (!url) {
-      preview.innerHTML = 'Paste image URL above to preview';
-      return;
-    }
-    preview.innerHTML = '<img src="' + url + '" alt="" onerror="this.parentElement.innerHTML=\'Image could not load. Check the URL.\'">';
-  }
-
-  document.getElementById('serviceImageUrl').addEventListener('input', function () { updateImagePreview('serviceImageUrl', 'serviceImagePreview'); });
-  document.getElementById('adImageUrl').addEventListener('input', function () { updateImagePreview('adImageUrl', 'adImagePreview'); });
-  document.getElementById('photoImageUrl').addEventListener('input', function () { updateImagePreview('photoImageUrl', 'photoImagePreview'); });
 </script>
 </body>
 </html>
